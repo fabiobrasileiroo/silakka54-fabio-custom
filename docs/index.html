@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Silakka54 — Case personalizada (F/B + linux)</title>
+<meta name="description" content="Pacote de impressão 3D do teclado ergonômico split Silakka54: covers customizados F/B + linux, baseplates com frases, visualizador 3D interativo e guia de ergonomia." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="kicker">Keyboard case · STL · GitHub Pages</p>
+    <h1>Silakka54 <span class="accent">personalizada</span></h1>
+    <p class="sub">
+      Teclado ergonômico split (40% colunar) — case impresso em 3D com covers
+      <strong>“F + linux”</strong> e <strong>“B + linux”</strong>, baseplates com frases
+      gravadas na face inferior e as 4 peças prontas para imprimir.
+    </p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#viewer">Ver em 3D</a>
+      <a class="btn ghost" href="#pecas">Peças e arquivos</a>
+      <a class="btn ghost" href="#ergonomia">Guia de ergonomia</a>
+    </div>
+    <p class="muted small">STLs servidos via <a href="https://www.jsdelivr.com" target="_blank" rel="noopener">jsDelivr CDN</a> · render 3D com <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a></p>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===================== VISUALIZADOR 3D ===================== -->
+  <section id="viewer" class="section">
+    <h2>Visualizador 3D interativo</h2>
+    <p class="muted">Arraste para girar · scroll para zoom · botão direito para pan. As 4 peças finalizadas.</p>
+
+    <div class="viewer-wrap">
+      <div id="canvas-host"></div>
+      <div class="viewer-overlay">
+        <button id="btn-autorotate" class="chip active" title="Rotação automática">⟳ auto-rotate</button>
+        <button id="btn-reset" class="chip" title="Resetar câmera">⤾ reset</button>
+        <div id="piece-tabs" class="tabs"></div>
+      </div>
+    </div>
+
+    <div id="piece-meta" class="piece-meta"></div>
+  </section>
+
+  <!-- ===================== PEÇAS ===================== -->
+  <section id="pecas" class="section">
+    <h2>Peças e arquivos</h2>
+    <p class="muted">Base do projeto: <code>full-mcu-cover-chevrons.stl</code> (Patrick Faulkner, GPL v2) +
+      plaqueta 22×15 mm + gravações com profundidade 0,55 mm. Regra de ouro: <strong>imprimir RH direto,
+      nunca espelhar de novo</strong>.</p>
+    <div id="pecas-grid" class="grid"></div>
+  </section>
+
+  <!-- ===================== COMO USAR ===================== -->
+  <section id="ergonomia" class="section">
+    <h2>Como usar o teclado ergonômico</h2>
+    <p class="muted">Recomendações baseadas em literatura (NIOSH, Chen 2009, Rempel 2007) — resumo executivo do estudo completo no repo.</p>
+
+    <div class="grid grid-2">
+      <article class="card">
+        <h3>🪨 Tenting (inclinação lateral) 10–15°</h3>
+        <p>Eleve a <em>linha do polegar</em> (borda medial) de cada metade em 10–15°.
+          Isso reduz a pronação do antebraço (rotação interna) e a pressão no túnel do carpo
+          — o benefício mais documentado em teclados split.</p>
+        <p class="hint">Use o kit “Tent &amp; Tilt” incluído em <code>00-original/tent-tilt-kit/</code>
+          (side shells + base supports + tilt wedge) — compatível com o case screwless.</p>
+      </article>
+
+      <article class="card">
+        <h3>📐 Slope (inclinação frontal) 0° a −4°</h3>
+        <p>Caso prefira inclinar o teclado, faça na direção <em>negativa</em> (borda mais alta
+          longe de você, ou seja, teclado “descendo” em direção às mãos). Slope positivo alto é
+          um dos maiores geradores de extensão de punho — evite.</p>
+        <p class="hint">A case original sai com 0° slope / 0° tenting — já funcional; o tenting é o upgrade.</p>
+      </article>
+
+      <article class="card">
+        <h3>🙌 Apoio de pulso? Não — apoie o antebraço</h3>
+        <p>Apoio de pulso clássico <strong>aumenta</strong> a pressão no túnel do carpo.
+          Prefira apoiar o <strong>antebraço</strong> (mesa, braços de cadeira ou palm rests
+          largos) e deixar as mãos flutuando, com a palma em altura das teclas.</p>
+      </article>
+
+      <article class="card">
+        <h3>🦴 Postura de topo</h3>
+        <ul class="plain">
+          <li>Cotovelos a ~90° e próximos ao corpo (não “asas de frango”).</li>
+          <li>Punhos neutros: sem dobrar para cima/baixo nem para os lados.</li>
+          <li>Ombros relaxados; teclado perto do corpo para não “alcançar” as teclas.</li>
+          <li>Coluna ereta: a Silva54 (40% colunar) reduz o alcance das teclas — aproveite para manter os ombros alinhados.</li>
+        </ul>
+      </article>
+    </div>
+
+    <p class="note">📄 Estudo completo com referências: <code>03-estudos/REPORT-ERGONOMIA.md</code> no repositório.</p>
+  </section>
+
+  <footer class="footer">
+    <p>Silakka54 © Patrick Faulkner (GPL v2.0) · remix “less screws”/screwless © Douglas Serrão ·
+      personalização e site: <a href="https://github.com/fabiobrasileiroo" target="_blank" rel="noopener">@fabiobrasileiroo</a></p>
+    <p class="muted small">Fontes: Audiowide e JetBrains Mono (OFL 1.1). Render 3D: three.js via CDN. STLs: jsDelivr CDN do repositório.</p>
+  </footer>
+
+</main>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
