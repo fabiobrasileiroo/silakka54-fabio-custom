@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Guia visual interativo de ergonomia para teclado split colunar Silakka54. Funciona 100% offline.">
+<title>Guia de Ergonomia — Teclado Split Silakka54</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card-2: #243349;
+    --border: #334155;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #14b8a6;
+    --accent-soft: rgba(20, 184, 166, 0.14);
+    --alert: #f43f5e;
+    --alert-soft: rgba(244, 63, 94, 0.14);
+    --ok: #22c55e;
+    --ok-soft: rgba(34, 197, 94, 0.14);
+    --warn: #f59e0b;
+    --warn-soft: rgba(245, 158, 11, 0.14);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --nav-h: 64px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); }
+
+  /* ---------- Navegação ---------- */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--accent);
+    color: #042f2e;
+    padding: 8px 16px;
+    border-radius: 0 0 8px 0;
+    font-weight: 600;
+    z-index: 100;
+  }
+  .skip-link:focus { left: 0; }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 24px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .nav-brand svg { flex-shrink: 0; }
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--card-2); }
+  .nav-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- Layout ---------- */
+  main { max-width: 1040px; margin: 0 auto; padding: 0 24px 80px; }
+
+  section[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
+
+  .section { margin-top: 72px; }
+
+  .section-head { margin-bottom: 24px; }
+  .section-head .kicker {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .section-head h2 { font-size: 1.7rem; line-height: 1.25; letter-spacing: -0.01em; }
+  .section-head p { color: var(--muted); margin-top: 8px; max-width: 70ch; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 72px 24px 64px;
+    text-align: center;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(20, 184, 166, 0.16), transparent 60%),
+      var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-inner { max-width: 760px; margin: 0 auto; }
+  .hero h1 {
+    font-size: clamp(1.9rem, 4.5vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 20px 0 14px;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero p.lead { color: var(--muted); font-size: 1.05rem; max-width: 60ch; margin: 0 auto 26px; }
+  .hero-badges { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .badge svg { flex-shrink: 0; }
+  .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+  .hero-keyboard { margin: 34px auto 0; max-width: 460px; }
+
+  /* ---------- SVG helpers ---------- */
+  svg text { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  .svg-label {
+    fill: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    paint-order: stroke;
+    stroke: var(--bg);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+  }
+  .svg-label-sm { font-size: 11.5px; font-weight: 500; }
+  .svg-muted { fill: var(--muted); }
+  .svg-accent { fill: var(--accent); }
+  .svg-alert { fill: var(--alert); }
+  .svg-ok { fill: var(--ok); }
+
+  .pulse-ring {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pulse 2.2s ease-out infinite;
+  }
+  .pulse-ring.alert { stroke: var(--alert); }
+  .pulse-ring.ok { stroke: var(--ok); }
+  @keyframes pulse {
+    0%   { transform: scale(0.35); opacity: 0.9; }
+    100% { transform: scale(2.4); opacity: 0; }
+  }
+
+  .dash-anim { stroke-dasharray: 6 6; animation: dashmove 1.4s linear infinite; }
+  @keyframes dashmove { to { stroke-dashoffset: -12; } }
+
+  .float-y { animation: floaty 4s ease-in-out infinite; }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+  }
+
+  /* ---------- Seção 1: postura ---------- */
+  .posture-figure { width: 100%; height: auto; display: block; }
+
+  /* ---------- Seção 3: tenting ---------- */
+  .tent-layout { display: grid; grid-template-columns: 1.15fr 1fr; gap: 20px; align-items: start; }
+  .tent-controls { margin-top: 18px; }
+  .tent-readout {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .tent-readout .value {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .tent-readout .unit { color: var(--muted); font-weight: 600; }
+  .tent-readout .hint { color: var(--muted); font-size: 0.85rem; margin-left: auto; }
+
+  input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent);
+    height: 28px;
+    cursor: pointer;
+  }
+  .range-labels { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.78rem; margin-top: 2px; }
+
+  .tent-toggles { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .tent-toggle {
+    background: var(--card-2);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .tent-toggle:hover { color: var(--text); border-color: var(--accent); }
+  .tent-toggle.active {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .tent-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+  }
+  .status .status-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .status.ok   { background: var(--ok-soft);   color: var(--ok);   border-color: rgba(34,197,94,0.35); }
+  .status.ok .status-dot   { background: var(--ok); }
+  .status.warn { background: var(--warn-soft); color: var(--warn); border-color: rgba(245,158,11,0.35); }
+  .status.warn .status-dot { background: var(--warn); }
+  .status.bad  { background: var(--alert-soft); color: var(--alert); border-color: rgba(244,63,94,0.35); }
+  .status.bad .status-dot  { background: var(--alert); }
+
+  .hand-figure { width: 100%; height: auto; display: block; }
+
+  /* ---------- Seção 4: slope ---------- */
+  .slope-card { text-align: center; }
+  .slope-card h3 { font-size: 1.05rem; margin-bottom: 4px; }
+  .slope-card .tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .slope-card .tag.ok   { background: var(--ok-soft);   color: var(--ok); }
+  .slope-card .tag.bad  { background: var(--alert-soft); color: var(--alert); }
+  .slope-card p { color: var(--muted); font-size: 0.88rem; margin-top: 12px; }
+  .slope-figure { width: 100%; height: auto; display: block; }
+
+  /* ---------- Seção 5: não fazer ---------- */
+  .dont-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .dont-card:hover { border-color: rgba(244, 63, 94, 0.5); transform: translateY(-2px); }
+  .dont-card h3 { font-size: 0.98rem; margin: 12px 0 6px; color: var(--alert); }
+  .dont-card p { color: var(--muted); font-size: 0.82rem; }
+  .dont-figure { width: 100%; height: auto; display: block; }
+
+  /* ---------- Seção 6: checklist ---------- */
+  .check-progress {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .check-progress .bar {
+    flex: 1;
+    height: 10px;
+    background: var(--card-2);
+    border-radius: 999px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .check-progress .bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), var(--ok));
+    border-radius: 999px;
+    transition: width 0.3s ease;
+  }
+  .check-progress .count { color: var(--muted); font-size: 0.85rem; font-weight: 600; white-space: nowrap; }
+
+  .check-list { list-style: none; display: grid; gap: 10px; }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--card-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .check-item:hover { border-color: var(--accent); }
+  .check-item input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    background: var(--card);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+  }
+  .check-item input[type="checkbox"]:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .check-item input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid #042f2e;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+  }
+  .check-item input[type="checkbox"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .check-item .check-text { font-size: 0.92rem; }
+  .check-item .check-text strong { color: var(--accent); font-weight: 700; }
+  .check-item.checked .check-text { color: var(--muted); }
+
+  .check-actions { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+  .btn {
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--card-2);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #042f2e; }
+  .btn.primary:hover { background: #2dd4bf; color: #042f2e; }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- Rodapé ---------- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 24px 56px;
+    background: #0b1222;
+  }
+  .footer-inner { max-width: 1040px; margin: 0 auto; }
+  footer h3 { font-size: 0.95rem; margin-bottom: 12px; }
+  .refs { list-style: none; display: grid; gap: 8px; }
+  .refs li { color: var(--muted); font-size: 0.85rem; }
+  .refs a { color: var(--accent); text-decoration: none; }
+  .refs a:hover { text-decoration: underline; }
+  .footer-note { margin-top: 20px; color: var(--muted); font-size: 0.8rem; }
+
+  /* ---------- Reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ---------- Responsivo ---------- */
+  @media (max-width: 860px) {
+    .grid-2, .tent-layout { grid-template-columns: 1fr; }
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .nav-brand span { display: none; }
+  }
+  @media (max-width: 520px) {
+    .grid-4 { grid-template-columns: 1fr; }
+    main { padding: 0 16px 60px; }
+    .hero { padding: 48px 16px 44px; }
+  }
+
+  /* ---------- Impressão ---------- */
+  @media print {
+    html { scroll-behavior: auto; }
+    body { background: #fff; color: #111; }
+    nav, .hero, footer, .section:not(#checklist) { display: none !important; }
+    main { padding: 0; max-width: none; }
+    #checklist { margin-top: 0; }
+    #checklist .card { background: #fff; border: 1px solid #bbb; box-shadow: none; }
+    #checklist .section-head h2, #checklist .section-head p { color: #111; }
+    #checklist .section-head .kicker { color: #0d9488; }
+    .check-item { background: #fff; border: 1px solid #bbb; break-inside: avoid; }
+    .check-item .check-text { color: #111; }
+    .check-progress .bar { border-color: #bbb; }
+    .check-actions { display: none; }
+  }
+
+  /* ---------- Reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#postura">Pular para o conteúdo</a>
+
+<nav aria-label="Navegação principal">
+  <div class="nav-brand">
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+      <rect x="1" y="4" width="10" height="18" rx="2.5" fill="#1e293b" stroke="#14b8a6" stroke-width="1.6"/>
+      <rect x="15" y="4" width="10" height="18" rx="2.5" fill="#1e293b" stroke="#14b8a6" stroke-width="1.6"/>
+      <rect x="3.5" y="7" width="5" height="3" rx="1" fill="#14b8a6"/>
+      <rect x="3.5" y="12" width="5" height="3" rx="1" fill="#14b8a6"/>
+      <rect x="17.5" y="7" width="5" height="3" rx="1" fill="#14b8a6"/>
+      <rect x="17.5" y="12" width="5" height="3" rx="1" fill="#14b8a6"/>
+    </svg>
+    <span>Silakka54 · Ergonomia</span>
+  </div>
+  <div class="nav-links">
+    <a href="#postura">Postura</a>
+    <a href="#topview">Visão de cima</a>
+    <a href="#tenting">Tenting</a>
+    <a href="#slope">Slope</a>
+    <a href="#nao-fazer">Não fazer</a>
+    <a href="#checklist">Checklist</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <svg class="hero-keyboard" viewBox="0 0 460 120" fill="none" aria-hidden="true">
+      <rect x="10" y="20" width="200" height="80" rx="14" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+      <rect x="250" y="20" width="200" height="80" rx="14" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+      <g fill="#334155">
+        <rect x="26" y="36" width="22" height="16" rx="4"/>
+        <rect x="54" y="36" width="22" height="16" rx="4"/>
+        <rect x="82" y="36" width="22" height="16" rx="4"/>
+        <rect x="110" y="36" width="22" height="16" rx="4"/>
+        <rect x="138" y="36" width="22" height="16" rx="4"/>
+        <rect x="40" y="60" width="22" height="16" rx="4"/>
+        <rect x="68" y="60" width="22" height="16" rx="4"/>
+        <rect x="96" y="60" width="22" height="16" rx="4"/>
+        <rect x="124" y="60" width="22" height="16" rx="4"/>
+        <rect x="152" y="60" width="22" height="16" rx="4"/>
+        <rect x="266" y="36" width="22" height="16" rx="4"/>
+        <rect x="294" y="36" width="22" height="16" rx="4"/>
+        <rect x="322" y="36" width="22" height="16" rx="4"/>
+        <rect x="350" y="36" width="22" height="16" rx="4"/>
+        <rect x="378" y="36" width="22" height="16" rx="4"/>
+        <rect x="280" y="60" width="22" height="16" rx="4"/>
+        <rect x="308" y="60" width="22" height="16" rx="4"/>
+        <rect x="336" y="60" width="22" height="16" rx="4"/>
+        <rect x="364" y="60" width="22" height="16" rx="4"/>
+        <rect x="392" y="60" width="22" height="16" rx="4"/>
+      </g>
+      <g fill="#14b8a6">
+        <rect x="26" y="84" width="34" height="10" rx="5"/>
+        <rect x="400" y="84" width="34" height="10" rx="5"/>
+      </g>
+      <path d="M 230 60 L 230 20" stroke="#334155" stroke-width="2" stroke-dasharray="4 4"/>
+      <path d="M 230 60 L 230 100" stroke="#334155" stroke-width="2" stroke-dasharray="4 4"/>
+    </svg>
+    <h1>Guia de Ergonomia — <span class="accent">Teclado Split Silakka54</span></h1>
+    <p class="lead">Seu teclado split colunar está chegando. Este guia visual mostra como posicionar mesa, monitor e corpo para digitar com pulsos neutros, ombros relaxados e cotovelos a 90° — antes mesmo de a primeira tecla ser pressionada.</p>
+    <div class="hero-badges">
+      <span class="badge"><span class="dot"></span>54 teclas</span>
+      <span class="badge"><span class="dot"></span>Split colunar</span>
+      <span class="badge"><span class="dot"></span>Thumb clusters</span>
+      <span class="badge"><span class="dot"></span>100% offline</span>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- ============ SEÇÃO 1: POSTURA COMPLETA ============ -->
+  <section class="section" id="postura" aria-labelledby="postura-titulo">
+    <div class="section-head reveal">
+      <span class="kicker">Seção 1</span>
+      <h2 id="postura-titulo">A postura completa na mesa</h2>
+      <p>Vista lateral. Cada marcador pulsante aponta para um ponto que você deve conferir antes de começar a digitar. A regra de ouro: <strong>cotovelo a 90°, pulsos retos, topo do monitor na altura dos olhos.</strong></p>
+    </div>
+
+    <div class="card reveal">
+      <svg class="posture-figure" viewBox="0 0 860 520" role="img" aria-label="Ilustração lateral de pessoa sentada em postura ergonômica: topo do monitor na altura dos olhos, cotovelo a 90 graus, pulsos retos, pés apoiados no chão.">
+        <!-- Chão -->
+        <line x1="0" y1="470" x2="860" y2="470" stroke="#334155" stroke-width="3"/>
+        <line x1="0" y1="474" x2="860" y2="474" stroke="#1e293b" stroke-width="8"/>
+
+        <!-- Cadeira -->
+        <rect x="250" y="200" width="14" height="130" rx="7" fill="#334155"/>
+        <rect x="250" y="330" width="130" height="16" rx="8" fill="#475569"/>
+        <rect x="280" y="346" width="10" height="124" rx="5" fill="#334155"/>
+        <rect x="360" y="346" width="10" height="124" rx="5" fill="#334155"/>
+
+        <!-- Pessoa -->
+        <g fill="#cbd5e1">
+          <circle cx="285" cy="200" r="30"/>
+          <rect x="270" y="235" width="30" height="105" rx="12"/>
+          <rect x="278" y="245" width="14" height="55" rx="7"/>
+          <rect x="285" y="293" width="145" height="14" rx="7"/>
+          <rect x="430" y="290" width="45" height="20" rx="6"/>
+          <rect x="270" y="340" width="150" height="16" rx="8"/>
+          <rect x="413" y="340" width="14" height="115" rx="7"/>
+          <rect x="413" y="455" width="55" height="15" rx="6"/>
+        </g>
+        <circle cx="295" cy="200" r="3.5" fill="#0f172a"/>
+
+        <!-- Mesa -->
+        <rect x="520" y="330" width="340" height="14" rx="4" fill="#475569"/>
+        <rect x="540" y="344" width="12" height="126" rx="5" fill="#334155"/>
+        <rect x="830" y="344" width="12" height="126" rx="5" fill="#334155"/>
+
+        <!-- Monitor -->
+        <rect x="600" y="200" width="150" height="130" rx="6" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+        <rect x="608" y="208" width="134" height="114" rx="3" fill="#0b1222"/>
+        <rect x="660" y="330" width="30" height="8" rx="3" fill="#334155"/>
+        <rect x="672" y="318" width="6" height="12" rx="2" fill="#334155"/>
+
+        <!-- Teclado -->
+        <rect x="430" y="300" width="130" height="30" rx="6" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5"/>
+        <g fill="#334155">
+          <rect x="438" y="304" width="14" height="8" rx="2"/>
+          <rect x="458" y="304" width="14" height="8" rx="2"/>
+          <rect x="478" y="304" width="14" height="8" rx="2"/>
+          <rect x="498" y="304" width="14" height="8" rx="2"/>
+          <rect x="518" y="304" width="14" height="8" rx="2"/>
+          <rect x="538" y="304" width="14" height="8" rx="2"/>
+        </g>
+
+        <!-- Marcadores pulsantes -->
+        <g>
+          <circle cx="600" cy="200" r="6" fill="#14b8a6"/>
+          <circle class="pulse-ring" cx="600" cy="200" r="6"/>
+        </g>
+        <g>
+          <circle cx="285" cy="300" r="6" fill="#14b8a6"/>
+          <circle class="pulse-ring" cx="285" cy="300" r="6"/>
+        </g>
+        <g>
+          <circle cx="430" cy="300" r="6" fill="#14b8a6"/>
+          <circle class="pulse-ring" cx="430" cy="300" r="6"/>
+        </g>
+        <g>
+          <circle cx="440" cy="462" r="6" fill="#14b8a6"/>
+          <circle class="pulse-ring" cx="440" cy="462" r="6"/>
+        </g>
+        <g>
+          <circle cx="345" cy="348" r="6" fill="#14b8a6"/>
+          <circle class="pulse-ring" cx="345" cy="348" r="6"/>
+        </g>
+
+        <!-- Labels -->
+        <g>
+          <line x1="600" y1="200" x2="470" y2="168" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <text class="svg-label" x="300" y="160">Topo do monitor = altura dos olhos</text>
+        </g>
+        <g>
+          <line x1="285" y1="300" x2="150" y2="292" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <text class="svg-label" x="40" y="288">Cotovelo ~90°</text>
+        </g>
+        <g>
+          <line x1="430" y1="300" x2="520" y2="282" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <text class="svg-label" x="470" y="276">Pulsos retos e neutros</text>
+        </g>
+        <g>
+          <line x1="440" y1="462" x2="560" y2="486" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <text class="svg-label" x="500" y="500">Pés apoiados no chão</text>
+        </g>
+        <g>
+          <line x1="345" y1="348" x2="150" y2="360" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <text class="svg-label" x="40" y="364">Coxas paralelas ao chão</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="grid-2" style="margin-top:20px;">
+      <div class="card reveal">
+        <h3 style="font-size:1.05rem; margin-bottom:8px;">Antebraços e ombros</h3>
+        <p style="color:var(--muted); font-size:0.92rem;">Cotovelos a aproximadamente 90°, antebraços apoiados ou levemente apoiados na mesa ou no apoio. Ombros relaxados, <strong>não elevados</strong> — evite encolher os ombros enquanto digita.</p>
+      </div>
+      <div class="card reveal">
+        <h3 style="font-size:1.05rem; margin-bottom:8px;">Mãos flutuando</h3>
+        <p style="color:var(--muted); font-size:0.92rem;">Pulsos neutros e retos (extensão menor que 15°), com as mãos <strong>flutuando sobre as teclas</strong>. Não apoie a palma ou o pulso duro na mesa — isso aumenta a pressão no túnel do carpo. O apoio (palmar rest) na altura das teclas é só para pausas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO 2: VISÃO DE CIMA ============ -->
+  <section class="section" id="topview" aria-labelledby="topview-titulo">
+    <div class="section-head reveal">
+      <span class="kicker">Seção 2</span>
+      <h2 id="topview-titulo">Visão de cima (top view)</h2>
+      <p>As duas metades do Silakka54 devem ficar na largura dos seus ombros, com os braços caindo retos. Cotovelos próximos ao tronco, sem abduzir os braços para alcançar as teclas.</p>
+    </div>
+
+    <div class="card reveal">
+      <svg class="posture-figure" viewBox="0 0 800 420" role="img" aria-label="Vista de cima: metades do teclado alinhadas à largura dos ombros, braços caindo retos.">
+        <!-- Guias verticais -->
+        <line x1="250" y1="110" x2="250" y2="300" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.6"/>
+        <line x1="550" y1="110" x2="550" y2="300" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.6"/>
+
+        <!-- Ombros e cabeça -->
+        <ellipse cx="400" cy="110" rx="150" ry="55" fill="#334155" stroke="#475569" stroke-width="2"/>
+        <circle cx="400" cy="55" r="30" fill="#cbd5e1"/>
+
+        <!-- Braços -->
+        <line x1="250" y1="110" x2="250" y2="300" stroke="#cbd5e1" stroke-width="26" stroke-linecap="round"/>
+        <line x1="550" y1="110" x2="550" y2="300" stroke="#cbd5e1" stroke-width="26" stroke-linecap="round"/>
+        <circle cx="250" cy="312" r="17" fill="#94a3b8"/>
+        <circle cx="550" cy="312" r="17" fill="#94a3b8"/>
+
+        <!-- Metades do teclado -->
+        <g>
+          <rect x="120" y="250" width="190" height="110" rx="14" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+          <g fill="#334155">
+            <rect x="136" y="266" width="20" height="14" rx="3"/>
+            <rect x="162" y="266" width="20" height="14" rx="3"/>
+            <rect x="188" y="266" width="20" height="14" rx="3"/>
+            <rect x="214" y="266" width="20" height="14" rx="3"/>
+            <rect x="240" y="266" width="20" height="14" rx="3"/>
+            <rect x="150" y="288" width="20" height="14" rx="3"/>
+            <rect x="176" y="288" width="20" height="14" rx="3"/>
+            <rect x="202" y="288" width="20" height="14" rx="3"/>
+            <rect x="228" y="288" width="20" height="14" rx="3"/>
+            <rect x="136" y="310" width="20" height="14" rx="3"/>
+            <rect x="162" y="310" width="20" height="14" rx="3"/>
+            <rect x="188" y="310" width="20" height="14" rx="3"/>
+            <rect x="214" y="310" width="20" height="14" rx="3"/>
+            <rect x="136" y="332" width="34" height="14" rx="3"/>
+            <rect x="176" y="332" width="34" height="14" rx="3"/>
+          </g>
+        </g>
+        <g>
+          <rect x="490" y="250" width="190" height="110" rx="14" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+          <g fill="#334155">
+            <rect x="506" y="266" width="20" height="14" rx="3"/>
+            <rect x="532" y="266" width="20" height="14" rx="3"/>
+            <rect x="558" y="266" width="20" height="14" rx="3"/>
+            <rect x="584" y="266" width="20" height="14" rx="3"/>
+            <rect x="610" y="266" width="20" height="14" rx="3"/>
+            <rect x="520" y="288" width="20" height="14" rx="3"/>
+            <rect x="546" y="288" width="20" height="14" rx="3"/>
+            <rect x="572" y="288" width="20" height="14" rx="3"/>
+            <rect x="598" y="288" width="20" height="14" rx="3"/>
+            <rect x="506" y="310" width="20" height="14" rx="3"/>
+            <rect x="532" y="310" width="20" height="14" rx="3"/>
+            <rect x="558" y="310" width="20" height="14" rx="3"/>
+            <rect x="584" y="310" width="20" height="14" rx="3"/>
+            <rect x="610" y="332" width="34" height="14" rx="3"/>
+            <rect x="570" y="332" width="34" height="14" rx="3"/>
+          </g>
+        </g>
+
+        <!-- Setas de largura -->
+        <g>
+          <line x1="310" y1="228" x2="490" y2="228" stroke="#14b8a6" stroke-width="2"/>
+          <path d="M 310 228 l 8 -5 v 10 z" fill="#14b8a6"/>
+          <path d="M 490 228 l -8 -5 v 10 z" fill="#14b8a6"/>
+          <text class="svg-label svg-label-sm" x="400" y="220" text-anchor="middle">largura dos ombros</text>
+        </g>
+
+        <!-- Labels -->
+        <g>
+          <circle cx="250" cy="110" r="5" fill="#14b8a6"/>
+          <circle class="pulse-ring" cx="250" cy="110" r="5"/>
+          <text class="svg-label svg-label-sm" x="60" y="100">cotovelos próximos ao tronco</text>
+        </g>
+        <g>
+          <circle cx="550" cy="110" r="5" fill="#14b8a6"/>
+          <circle class="pulse-ring" cx="550" cy="110" r="5"/>
+          <text class="svg-label svg-label-sm" x="600" y="100">cotovelos próximos ao tronco</text>
+        </g>
+        <g>
+          <text class="svg-label svg-label-sm" x="250" y="360" text-anchor="middle">braços caem retos</text>
+        </g>
+        <g>
+          <text class="svg-label svg-label-sm" x="550" y="360" text-anchor="middle">braços caem retos</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="card reveal" style="margin-top:20px;">
+      <p style="color:var(--muted); font-size:0.92rem;">Ajuste a distância entre as metades até que os braços caiam naturalmente, sem abrir os cotovelos para fora do tronco. Se o teclado for usado com mouse, mantenha o mouse ao lado da metade direita, na mesma altura, sem esticar o braço.</p>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO 3: TENTING ============ -->
+  <section class="section" id="tenting" aria-labelledby="tenting-titulo">
+    <div class="section-head reveal">
+      <span class="kicker">Seção 3</span>
+      <h2 id="tenting-titulo">Tenting 10°–15°</h2>
+      <p>Tenting é a inclinação das metades para dentro, como um livro aberto. Ele reduz a pronação do antebraço (a rotação que força a palma para baixo). O ideal fica entre 10° e 15°. Acima de 20°–30° começa a sobrecarregar ombro e pescoço.</p>
+    </div>
+
+    <div class="tent-layout">
+      <div class="card reveal">
+        <svg class="posture-figure" viewBox="0 0 400 240" role="img" aria-label="Diagrama frontal do teclado dividido, mostrando o ângulo de tenting das duas metades.">
+          <defs>
+            <marker id="arrow-teal" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#14b8a6"/>
+            </marker>
+          </defs>
+
+          <!-- Linha central -->
+          <line x1="200" y1="40" x2="200" y2="210" stroke="#334155" stroke-width="1.5" stroke-dasharray="5 5"/>
+
+          <!-- Base da mesa -->
+          <rect x="10" y="118" width="380" height="6" rx="3" fill="#475569"/>
+
+          <!-- Metade esquerda -->
+          <g id="halfLeft" style="transform-origin: 30px 118px;">
+            <rect x="30" y="88" width="150" height="30" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+            <g fill="#334155">
+              <rect x="42" y="94" width="16" height="9" rx="2"/>
+              <rect x="64" y="94" width="16" height="9" rx="2"/>
+              <rect x="86" y="94" width="16" height="9" rx="2"/>
+              <rect x="108" y="94" width="16" height="9" rx="2"/>
+              <rect x="130" y="94" width="16" height="9" rx="2"/>
+              <rect x="152" y="94" width="16" height="9" rx="2"/>
+            </g>
+          </g>
+
+          <!-- Metade direita -->
+          <g id="halfRight" style="transform-origin: 370px 118px;">
+            <rect x="220" y="88" width="150" height="30" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+            <g fill="#334155">
+              <rect x="232" y="94" width="16" height="9" rx="2"/>
+              <rect x="254" y="94" width="16" height="9" rx="2"/>
+              <rect x="276" y="94" width="16" height="9" rx="2"/>
+              <rect x="298" y="94" width="16" height="9" rx="2"/>
+              <rect x="320" y="94" width="16" height="9" rx="2"/>
+              <rect x="342" y="94" width="16" height="9" rx="2"/>
+            </g>
+          </g>
+
+          <!-- Arco do ângulo -->
+          <path id="tentArc" d="M 76 118 A 46 46 0 0 0 76 118" fill="none" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrow-teal)"/>
+          <text id="tentArcLabel" class="svg-label svg-label-sm" x="30" y="52">12°</text>
+        </svg>
+
+        <div class="tent-controls">
+          <div class="tent-readout">
+            <span class="value" id="tentAngle" aria-live="polite">12°</span>
+            <span class="unit">de tenting</span>
+            <span class="hint">arraste para simular</span>
+          </div>
+          <label for="tentSlider" class="visually-hidden" style="position:absolute;left:-9999px;">Ângulo de tenting</label>
+          <input type="range" id="tentSlider" min="0" max="30" step="1" value="12" aria-label="Ângulo de tenting em graus, de 0 a 30">
+          <div class="range-labels">
+            <span>0° (plano)</span>
+            <span>10°–15° (ideal)</span>
+            <span>30° (exagero)</span>
+          </div>
+          <div class="tent-toggles" role="group" aria-label="Predefinições de tenting">
+            <button class="tent-toggle" type="button" data-angle="0">0°</button>
+            <button class="tent-toggle active" type="button" data-angle="12">12°</button>
+            <button class="tent-toggle" type="button" data-angle="25">25°</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <h3 style="font-size:1.05rem; margin-bottom:6px;">Efeito no antebraço</h3>
+        <p style="color:var(--muted); font-size:0.85rem; margin-bottom:14px;">A mão acompanha a inclinação da metade. Quanto mais plano o teclado, mais o antebraço gira para baixo (pronação).</p>
+        <svg class="hand-figure" viewBox="0 0 260 150" role="img" aria-label="Mão e antebraço girando conforme o ângulo de tenting.">
+          <g id="handGroup" style="transform-origin: 60px 70px;">
+            <!-- Antebraço -->
+            <rect x="0" y="58" width="60" height="24" rx="10" fill="#475569"/>
+            <!-- Palma -->
+            <rect x="60" y="52" width="55" height="36" rx="8" fill="#94a3b8"/>
+            <!-- Dedos -->
+            <rect x="115" y="50" width="11" height="40" rx="5" fill="#cbd5e1"/>
+            <rect x="128" y="52" width="11" height="36" rx="5" fill="#cbd5e1"/>
+            <rect x="141" y="54" width="11" height="32" rx="5" fill="#cbd5e1"/>
+            <rect x="154" y="58" width="11" height="26" rx="5" fill="#cbd5e1"/>
+          </g>
+          <!-- Linha de referência -->
+          <line x1="0" y1="70" x2="260" y2="70" stroke="#334155" stroke-width="1.5" stroke-dasharray="4 4"/>
+        </svg>
+        <div class="status ok" id="tentStatus" role="status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="tentStatusText">Neutro: pronação reduzida, ombro relaxado.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO 4: SLOPE ============ -->
+  <section class="section" id="slope" aria-labelledby="slope-titulo">
+    <div class="section-head reveal">
+      <span class="kicker">Seção 4</span>
+      <h2 id="slope-titulo">Slope (inclinação) 0° a −4°</h2>
+      <p>Slope é a inclinação do teclado no eixo frente/trás. O ideal é de 0° a −4°: levemente negativo, com a frente do teclado mais alta que o fundo. Slope positivo força o pulso a estender — o movimento que mais comprime o túnel do carpo.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card slope-card reveal">
+        <h3>Slope −4° (correto)</h3>
+        <span class="tag ok">Pulso reto</span>
+        <svg class="slope-figure" viewBox="0 0 320 170" role="img" aria-label="Perfil lateral do teclado com slope negativo: frente mais alta, pulso reto.">
+          <!-- Mesa -->
+          <rect x="10" y="140" width="300" height="6" rx="3" fill="#475569"/>
+          <!-- Antebraço -->
+          <rect x="10" y="108" width="110" height="14" rx="7" fill="#475569"/>
+          <!-- Teclado com slope -4° -->
+          <g transform="rotate(-4 200 113)">
+            <rect x="120" y="100" width="160" height="26" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+            <g fill="#334155">
+              <rect x="132" y="106" width="14" height="8" rx="2"/>
+              <rect x="152" y="106" width="14" height="8" rx="2"/>
+              <rect x="172" y="106" width="14" height="8" rx="2"/>
+              <rect x="192" y="106" width="14" height="8" rx="2"/>
+              <rect x="212" y="106" width="14" height="8" rx="2"/>
+              <rect x="232" y="106" width="14" height="8" rx="2"/>
+              <rect x="252" y="106" width="14" height="8" rx="2"/>
+            </g>
+          </g>
+          <!-- Mão reta -->
+          <rect x="120" y="100" width="45" height="30" rx="6" fill="#94a3b8"/>
+          <!-- Seta: frente mais alta -->
+          <path d="M 120 88 l 0 -14 M 120 88 l -6 6 M 120 88 l 6 6" stroke="#22c55e" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="120" cy="115" r="5" fill="#22c55e"/>
+          <circle class="pulse-ring ok" cx="120" cy="115" r="5"/>
+          <text class="svg-label svg-label-sm" x="30" y="80">frente levemente mais alta</text>
+        </svg>
+        <p>Com a frente do teclado mais alta, o pulso permanece reto e neutro. Extensão menor que 15°.</p>
+      </div>
+
+      <div class="card slope-card reveal">
+        <h3>Slope positivo (errado)</h3>
+        <span class="tag bad">Pulso estendido</span>
+        <svg class="slope-figure" viewBox="0 0 320 170" role="img" aria-label="Perfil lateral do teclado com slope positivo: fundo mais alto, pulso estendido.">
+          <!-- Mesa -->
+          <rect x="10" y="140" width="300" height="6" rx="3" fill="#475569"/>
+          <!-- Antebraço -->
+          <rect x="10" y="108" width="110" height="14" rx="7" fill="#475569"/>
+          <!-- Teclado com slope +10° -->
+          <g transform="rotate(10 200 113)">
+            <rect x="120" y="100" width="160" height="26" rx="6" fill="#1e293b" stroke="#f43f5e" stroke-width="2"/>
+            <g fill="#334155">
+              <rect x="132" y="106" width="14" height="8" rx="2"/>
+              <rect x="152" y="106" width="14" height="8" rx="2"/>
+              <rect x="172" y="106" width="14" height="8" rx="2"/>
+              <rect x="192" y="106" width="14" height="8" rx="2"/>
+              <rect x="212" y="106" width="14" height="8" rx="2"/>
+              <rect x="232" y="106" width="14" height="8" rx="2"/>
+              <rect x="252" y="106" width="14" height="8" rx="2"/>
+            </g>
+          </g>
+          <!-- Mão estendida -->
+          <g transform="rotate(10 120 115)">
+            <rect x="120" y="100" width="45" height="30" rx="6" fill="#94a3b8"/>
+          </g>
+          <!-- Seta: fundo mais alto -->
+          <path d="M 280 88 l 0 -14 M 280 88 l -6 6 M 280 88 l 6 6" stroke="#f43f5e" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="120" cy="115" r="5" fill="#f43f5e"/>
+          <circle class="pulse-ring alert" cx="120" cy="115" r="5"/>
+          <text class="svg-label svg-label-sm" x="200" y="80">fundo mais alto</text>
+        </svg>
+        <p>O fundo do teclado mais alto faz o pulso dobrar para cima (extensão), comprimindo o túnel do carpo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO 5: NÃO FAZER ============ -->
+  <section class="section" id="nao-fazer" aria-labelledby="nao-fazer-titulo">
+    <div class="section-head reveal">
+      <span class="kicker">Seção 5</span>
+      <h2 id="nao-fazer-titulo">O que NÃO fazer</h2>
+      <p>Quatro erros clássicos que anulam todo o benefício do teclado split. Cada um deles aumenta a pressão no túnel do carpo ou a tensão em ombro e pescoço.</p>
+    </div>
+
+    <div class="grid-4">
+      <div class="dont-card reveal">
+        <svg class="dont-figure" viewBox="0 0 200 140" role="img" aria-label="Pulso apoiado na borda dura da mesa.">
+          <rect x="20" y="92" width="160" height="8" rx="3" fill="#475569"/>
+          <line x1="100" y1="92" x2="100" y2="140" stroke="#475569" stroke-width="6"/>
+          <rect x="60" y="70" width="80" height="22" rx="6" fill="#94a3b8"/>
+          <circle cx="100" cy="82" r="6" fill="#f43f5e"/>
+          <circle class="pulse-ring alert" cx="100" cy="82" r="6"/>
+          <text class="svg-label svg-label-sm" x="100" y="40" text-anchor="middle">borda dura pressiona o pulso</text>
+        </svg>
+        <h3>Pulso na borda dura</h3>
+        <p>A borda da mesa comprime o túnel do carpo. Mãos flutuando, sempre.</p>
+      </div>
+
+      <div class="dont-card reveal">
+        <svg class="dont-figure" viewBox="0 0 200 140" role="img" aria-label="Palma pressionando o apoio de pulso.">
+          <rect x="30" y="104" width="140" height="12" rx="6" fill="#475569"/>
+          <rect x="60" y="60" width="80" height="24" rx="6" fill="#94a3b8"/>
+          <path d="M 80 84 l 0 14 M 100 84 l 0 14 M 120 84 l 0 14" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="100" cy="92" r="6" fill="#f43f5e"/>
+          <circle class="pulse-ring alert" cx="100" cy="92" r="6"/>
+          <text class="svg-label svg-label-sm" x="100" y="40" text-anchor="middle">palma pressiona o apoio</text>
+        </svg>
+        <h3>Palma no apoio</h3>
+        <p>Apoio é para pausas, não para digitar. Pressão na palma aumenta a tensão no punho.</p>
+      </div>
+
+      <div class="dont-card reveal">
+        <svg class="dont-figure" viewBox="0 0 200 140" role="img" aria-label="Ombros encolhidos enquanto digita.">
+          <rect x="80" y="70" width="40" height="60" rx="10" fill="#cbd5e1"/>
+          <circle cx="100" cy="48" r="18" fill="#cbd5e1"/>
+          <circle cx="68" cy="62" r="12" fill="#94a3b8"/>
+          <circle cx="132" cy="62" r="12" fill="#94a3b8"/>
+          <circle cx="68" cy="62" r="5" fill="#f43f5e"/>
+          <circle class="pulse-ring alert" cx="68" cy="62" r="5"/>
+          <circle cx="132" cy="62" r="5" fill="#f43f5e"/>
+          <circle class="pulse-ring alert" cx="132" cy="62" r="5"/>
+          <text class="svg-label svg-label-sm" x="100" y="30" text-anchor="middle">ombros encolhidos</text>
+        </svg>
+        <h3>Ombros encolhidos</h3>
+        <p>Elevar os ombros tensiona trapézio e pescoço. Relaxe e deixe-os cair.</p>
+      </div>
+
+      <div class="dont-card reveal">
+        <svg class="dont-figure" viewBox="0 0 200 140" role="img" aria-label="Pescoço torto para enxergar a tela.">
+          <rect x="80" y="80" width="40" height="55" rx="10" fill="#cbd5e1"/>
+          <g transform="rotate(18 100 55)">
+            <circle cx="100" cy="55" r="18" fill="#cbd5e1"/>
+          </g>
+          <rect x="150" y="45" width="42" height="34" rx="4" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+          <circle cx="100" cy="80" r="6" fill="#f43f5e"/>
+          <circle class="pulse-ring alert" cx="100" cy="80" r="6"/>
+          <text class="svg-label svg-label-sm" x="100" y="30" text-anchor="middle">pescoço torto para a tela</text>
+        </svg>
+        <h3>Pescoço torto</h3>
+        <p>Girar o pescoço para ver a tela cansa a cervical. Centralize o monitor.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO 6: CHECKLIST ============ -->
+  <section class="section" id="checklist" aria-labelledby="checklist-titulo">
+    <div class="section-head reveal">
+      <span class="kicker">Seção 6</span>
+      <h2 id="checklist-titulo">Checklist rápido imprimível</h2>
+      <p>Confira cada item na primeira semana de uso. O progresso é salvo neste navegador. Use o botão <strong>Imprimir</strong> para levar a lista para a mesa.</p>
+    </div>
+
+    <div class="card reveal">
+      <div class="check-progress">
+        <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0" aria-label="Progresso do checklist" id="checkBar">
+          <div class="bar-fill" id="checkProgress"></div>
+        </div>
+        <span class="count" id="checkProgressText">0 de 12</span>
+      </div>
+
+      <ul class="check-list" id="checkList">
+        <li class="check-item"><input type="checkbox" id="c1" data-key="c1"><label class="check-text" for="c1"><strong>Cotovelos a ~90°</strong> com antebraços apoiados ou levemente apoiados na mesa.</label></li>
+        <li class="check-item"><input type="checkbox" id="c2" data-key="c2"><label class="check-text" for="c2"><strong>Ombros relaxados</strong>, sem encolher enquanto digita.</label></li>
+        <li class="check-item"><input type="checkbox" id="c3" data-key="c3"><label class="check-text" for="c3"><strong>Pulsos neutros e retos</strong>, extensão menor que 15°.</label></li>
+        <li class="check-item"><input type="checkbox" id="c4" data-key="c4"><label class="check-text" for="c4"><strong>Mãos flutuando</strong> sobre as teclas, sem apoiar palma ou pulso na mesa.</label></li>
+        <li class="check-item"><input type="checkbox" id="c5" data-key="c5"><label class="check-text" for="c5"><strong>Tenting entre 10° e 15°</strong> nas duas metades.</label></li>
+        <li class="check-item"><input type="checkbox" id="c6" data-key="c6"><label class="check-text" for="c6"><strong>Slope entre 0° e −4°</strong>, com a frente do teclado levemente mais alta.</label></li>
+        <li class="check-item"><input type="checkbox" id="c7" data-key="c7"><label class="check-text" for="c7"><strong>Keycaps na altura do cotovelo</strong> (cotovelo a 90° sentado).</label></li>
+        <li class="check-item"><input type="checkbox" id="c8" data-key="c8"><label class="check-text" for="c8"><strong>Pés apoiados no chão</strong> e coxas paralelas ao chão.</label></li>
+        <li class="check-item"><input type="checkbox" id="c9" data-key="c9"><label class="check-text" for="c9"><strong>Topo do monitor na altura dos olhos</strong>, a 50–70 cm de distância, sem girar o pescoço.</label></li>
+        <li class="check-item"><input type="checkbox" id="c10" data-key="c10"><label class="check-text" for="c10"><strong>Metades na largura dos ombros</strong>, cotovelos próximos ao tronco.</label></li>
+        <li class="check-item"><input type="checkbox" id="c11" data-key="c11"><label class="check-text" for="c11"><strong>Micro-pausas a cada 20–30 min</strong> de digitação.</label></li>
+        <li class="check-item"><input type="checkbox" id="c12" data-key="c12"><label class="check-text" for="c12"><strong>Alongamentos de punho e pescoço</strong> nas pausas.</label></li>
+      </ul>
+
+      <div class="check-actions">
+        <button class="btn primary" type="button" id="printBtn">Imprimir checklist</button>
+        <button class="btn" type="button" id="resetBtn">Limpar tudo</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <h3>Referências</h3>
+    <ul class="refs">
+      <li>Chen, C. et al. (2009). Efeito da força de acionamento das teclas na força aplicada e na atividade muscular dos flexores dos dedos — estudo NIOSH. <a href="https://www.cdc.gov/niosh/" rel="noopener">cdc.gov/niosh</a></li>
+      <li>Rempel, D. et al. (2007). Efeitos do tenting e da inclinação do teclado na postura do punho e na atividade muscular do antebraço. <a href="https://pubmed.ncbi.nlm.nih.gov/" rel="noopener">pubmed.ncbi.nlm.nih.gov</a></li>
+      <li>Rempel, D. et al. (2008). Altura do teclado e postura do punho em digitadores profissionais. <a href="https://pubmed.ncbi.nlm.nih.gov/" rel="noopener">pubmed.ncbi.nlm.nih.gov</a></li>
+      <li>CDC (2008). Recomendações de pausas e postura para trabalho com computador. <a href="https://www.cdc.gov/" rel="noopener">cdc.gov</a></li>
+      <li>Marklin, R. &amp; Simoneau, G. Estudos sobre postura do punho e design de teclados divididos. <a href="https://pubmed.ncbi.nlm.nih.gov/" rel="noopener">pubmed.ncbi.nlm.nih.gov</a></li>
+    </ul>
+    <p class="footer-note">Guia visual interativo para uso local. Nenhum dado sai do seu navegador. Valores baseados nas referências acima; ajuste fino conforme seu conforto.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- Reveal on scroll ---------- */
+  var revealEls = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add("visible"); });
+  }
+
+  /* ---------- Tenting ---------- */
+  var slider = document.getElementById("tentSlider");
+  var angleLabel = document.getElementById("tentAngle");
+  var halfLeft = document.getElementById("halfLeft");
+  var halfRight = document.getElementById("halfRight");
+  var arcPath = document.getElementById("tentArc");
+  var arcLabel = document.getElementById("tentArcLabel");
+  var handGroup = document.getElementById("handGroup");
+  var statusBox = document.getElementById("tentStatus");
+  var statusText = document.getElementById("tentStatusText");
+  var toggleBtns = Array.prototype.slice.call(document.querySelectorAll(".tent-toggle"));
+  var interacted = false;
+
+  function arcPathFor(angle) {
+    var cx = 30, cy = 118, r = 46;
+    var a = angle * Math.PI / 180;
+    var x2 = cx + r * Math.cos(a);
+    var y2 = cy - r * Math.sin(a);
+    return "M " + (cx + r) + " " + cy + " A " + r + " " + r + " 0 0 0 " + x2.toFixed(2) + " " + y2.toFixed(2);
+  }
+
+  function updateTent(raw) {
+    var angle = Math.max(0, Math.min(30, raw));
+    var rounded = Math.round(angle);
+
+    slider.value = rounded;
+    angleLabel.textContent = rounded + "\u00B0";
+    halfLeft.style.transform = "rotate(" + (-angle) + "deg)";
+    halfRight.style.transform = "rotate(" + angle + "deg)";
+    arcPath.setAttribute("d", arcPathFor(angle));
+    arcLabel.textContent = rounded + "\u00B0";
+    handGroup.style.transform = "rotate(" + angle + "deg)";
+
+    var cls, msg;
+    if (angle >= 8 && angle <= 18) {
+      cls = "ok";
+      msg = "Neutro: prona\u00E7\u00E3o reduzida, ombro relaxado.";
+    } else if (angle < 8) {
+      cls = "warn";
+      msg = "Prona\u00E7\u00E3o alta: antebra\u00E7o girado para baixo. Aumente o tenting.";
+    } else {
+      cls = "bad";
+      msg = "Acima de 20\u201330\u00B0: sobrecarga de ombro e pesco\u00E7o. Reduza.";
+    }
+    statusBox.className = "status " + cls;
+    statusText.textContent = msg;
+
+    toggleBtns.forEach(function (b) {
+      b.classList.toggle("active", parseInt(b.getAttribute("data-angle"), 10) === rounded);
+    });
+  }
+
+  slider.addEventListener("input", function () {
+    interacted = true;
+    updateTent(parseFloat(slider.value));
+  });
+
+  toggleBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      interacted = true;
+      updateTent(parseInt(b.getAttribute("data-angle"), 10));
+    });
+  });
+
+  /* Animação de entrada: 0° → 12° */
+  var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced) {
+    updateTent(12);
+  } else {
+    var start = null;
+    var duration = 1500;
+    function frame(now) {
+      if (interacted) return;
+      if (start === null) start = now;
+      var t = Math.min(1, (now - start) / duration);
+      var eased = 1 - Math.pow(1 - t, 3);
+      updateTent(eased * 12);
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* ---------- Checklist ---------- */
+  var checks = Array.prototype.slice.call(document.querySelectorAll(".check-item input[type=checkbox]"));
+  var progressFill = document.getElementById("checkProgress");
+  var progressText = document.getElementById("checkProgressText");
+  var progressBar = document.getElementById("checkBar");
+  var STORAGE_KEY = "silakka54-checklist";
+
+  function updateProgress() {
+    var total = checks.length;
+    var done = checks.filter(function (c) { return c.checked; }).length;
+    var pct = total ? Math.round((done / total) * 100) : 0;
+    progressFill.style.width = pct + "%";
+    progressText.textContent = done + " de " + total;
+    progressBar.setAttribute("aria-valuenow", String(done));
+    checks.forEach(function (c) {
+      c.closest(".check-item").classList.toggle("checked", c.checked);
+    });
+  }
+
+  function saveState() {
+    try {
+      var state = {};
+      checks.forEach(function (c) { state[c.getAttribute("data-key")] = c.checked; });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) { /* armazenamento indisponível: segue sem persistir */ }
+  }
+
+  function loadState() {
+    try {
+      var state = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      checks.forEach(function (c) {
+        var key = c.getAttribute("data-key");
+        if (typeof state[key] === "boolean") c.checked = state[key];
+      });
+    } catch (e) { /* estado inválido: ignora */ }
+  }
+
+  checks.forEach(function (c) {
+    c.addEventListener("change", function () { updateProgress(); saveState(); });
+  });
+
+  document.getElementById("resetBtn").addEventListener("click", function () {
+    checks.forEach(function (c) { c.checked = false; });
+    updateProgress();
+    saveState();
+  });
+
+  document.getElementById("printBtn").addEventListener("click", function () {
+    window.print();
+  });
+
+  loadState();
+  updateProgress();
+})();
+</script>
+</body>
+</html>
