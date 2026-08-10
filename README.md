@@ -3,6 +3,10 @@
 Pasta autocontida com todo o histórico do projeto: dos arquivos originais (zip) até a
 **versão final personalizada**, pronta para mandar imprimir.
 
+> 🌐 **Site com visualizador 3D interativo (GitHub Pages):**
+> **https://fabiobrasileiro.me/silakka54-pacote-impressao/**
+> (three.js via CDN + STLs servidos pelo jsDelivr; inclui guia de ergonomia)
+
 ## Estrutura
 
 ```
