@@ -1,0 +1,26 @@
+[project]
+name = "silakka54-pacote-impressao"
+version = "2.0.0"
+description = "Silakka54 cover engraver (F/B + lateral) — ferramentas de gravação de texto em STL"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy",
+    "shapely",
+    "trimesh>=4.0",
+    "matplotlib",
+    "mapbox-earcut",
+    "manifold3d",
+    "rtree",
+    "scipy",
+]
+
+[tool.poetry]
+packages = [{ include = "ferramentas" }]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+engrave-cover = "ferramentas.engrave_cover:main"

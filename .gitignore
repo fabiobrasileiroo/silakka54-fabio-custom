@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Saídas regeneráveis da ferramenta (os finais canonizados ficam em 01-final/)
+out/
+ferramentas/out/
+
+# SO / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Poetry
+.poetry/
