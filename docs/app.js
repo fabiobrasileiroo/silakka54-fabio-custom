@@ -2,19 +2,22 @@
 // Silakka54 — visualizador 3D (three.js via CDN)
 // STLs servidos pelo jsDelivr CDN a partir do próprio repositório.
 // ============================================================
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js';
+import * as THREE from 'three';
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/controls/OrbitControls.js';
 import { STLLoader } from 'https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/loaders/STLLoader.js';
 
-const REPO = 'fabiobrasileiroo/silakka54-pacote-impressao';
+const REPO = 'fabiobrasileiroo/silakka54-fabio-custom';
 const BRANCH = 'main';
 const CDN = (path) => `https://cdn.jsdelivr.net/gh/${REPO}@${BRANCH}/${path}`;
+
+const GRID_Y = 0.5;
 
 const PIECES = [
   {
     id: 'cover-F-LH',
     name: 'Cover F + linux (LH)',
     path: '01-final/LH/silakka54-chevron-cover-F-linux-LH.stl',
+    preview: '01-final/previews/preview-F-linux-LH.png',
     color: 0xf2a33c,
     desc: 'Capa superior (left half) com a tecla F gravada e o logo linux na face inferior. Derivada da full-mcu-cover-chevrons.',
   },
@@ -22,6 +25,7 @@ const PIECES = [
     id: 'cover-B-RH',
     name: 'Cover B + linux (RH)',
     path: '01-final/RH/silakka54-chevron-cover-B-linux-RH.stl',
+    preview: '01-final/previews/preview-B-linux-RH.png',
     color: 0x58a6ff,
     desc: 'Capa superior (right half) com a tecla B gravada e o logo linux na face inferior.',
   },
@@ -29,22 +33,81 @@ const PIECES = [
     id: 'base-js-LH',
     name: 'Baseplate JS (LH)',
     path: '01-final/LH/silakka54-baseplate-js-LH.stl',
+    preview: '01-final/previews/preview-js-LH.png',
     color: 0x3fb950,
-    desc: 'Base (left half) com a frase gravada na face inferior: “Isso também passará”.',
+    desc: 'Base (left half) com a frase gravada na face inferior: "Isso também passará".',
   },
   {
     id: 'base-java-RH',
     name: 'Baseplate Java (RH)',
     path: '01-final/RH/silakka54-baseplate-java-RH.stl',
+    preview: '01-final/previews/preview-java-RH.png',
     color: 0xbc8cff,
-    desc: 'Base (right half) com a frase gravada na face inferior: “Que a força esteja com vocês”.',
+    desc: 'Base (right half) com a frase gravada na face inferior: "Que a força esteja com vocês".',
   },
   {
     id: 'top-frame',
     name: 'Top frame (comum)',
     path: '01-final/comum/silakka54-top-frame-screwunderneath.stl',
+    preview: '01-final/previews/preview-top-frame.png',
     color: 0x9aa7b8,
-    desc: 'Peça comum a ambas as metades — a moldura que segura os switches. Não é preciso imprimir duas vezes.',
+    desc: 'Peça comum a ambas as metades — a moldura que segura os switches. Imprimir 1 direto + 1 espelhado.',
+  },
+  {
+    id: 'carry-case',
+    name: 'Carry case (proteção)',
+    path: '00-original/carry-case/silakka54-case.stl',
+    preview: '01-final/previews/preview-carry-case.png',
+    color: 0xe07b39,
+    desc: 'Maleta de transporte que guarda e protege o teclado montado (com a tenting platform inclusa).',
+  },
+  {
+    id: 'carry-67mm',
+    name: 'Carry case 67 mm (altura)',
+    path: '00-original/carry-case/silakka-case-67mm.stl',
+    preview: '01-final/previews/preview-carry-67mm.png',
+    color: 0xd4a373,
+    desc: 'Variação da maleta de transporte com altura de 67 mm — mais espaço interno para a case.',
+  },
+  {
+    id: 'shell-L',
+    name: 'Tent/tilt — side shell L',
+    path: '00-original/tent-tilt-kit/silakka54_left_side_shell.stl',
+    preview: '01-final/previews/preview-shell-L.png',
+    color: 0x7ee787,
+    desc: 'Kit ergonômico Tent & Tilt: lateral esquerda (159×127×7 mm) que eleva e inclina a metade esquerda.',
+  },
+  {
+    id: 'shell-R',
+    name: 'Tent/tilt — side shell R',
+    path: '00-original/tent-tilt-kit/silakka54_right_side_shell.stl',
+    preview: '01-final/previews/preview-shell-R.png',
+    color: 0x56d364,
+    desc: 'Kit ergonômico Tent & Tilt: lateral direita (gia 160×127×7 mm).',
+  },
+  {
+    id: 'base-L',
+    name: 'Tent/tilt — base support L',
+    path: '00-original/tent-tilt-kit/silakka54_left_base_support.stl',
+    preview: '01-final/previews/preview-base-L.png',
+    color: 0xa5d6ff,
+    desc: 'Kit ergonômico Tent & Tilt: apoio de base esquerdo (157×123×11 mm) que encaixa sob a metade esquerda.',
+  },
+  {
+    id: 'base-R',
+    name: 'Tent/tilt — base support R',
+    path: '00-original/tent-tilt-kit/silakka54_right_base_support.stl',
+    preview: '01-final/previews/preview-base-R.png',
+    color: 0x79c0ff,
+    desc: 'Kit ergonômico Tent & Tilt: apoio de base direito (157×123×11 mm).',
+  },
+  {
+    id: 'wedge',
+    name: 'Tent/tilt — tilt wedge',
+    path: '00-original/tent-tilt-kit/silakka54_tilt_wedge_xdeg.stl',
+    preview: '01-final/previews/preview-wedge.png',
+    color: 0xffd7a0,
+    desc: 'Kit ergonômico Tent & Tilt: cunha de teste para escolher a angulação (6×25×74 mm).',
   },
 ];
 
@@ -79,7 +142,7 @@ scene.add(fill);
 
 // Chão sutil para dar contexto de orientação
 const grid = new THREE.GridHelper(420, 20, 0x2d3648, 0x232b3d);
-grid.position.y = 0.5;
+grid.position.y = GRID_Y;
 scene.add(grid);
 
 let mesh = null;
@@ -120,6 +183,15 @@ function setPiece(piece) {
     (geometry) => {
       geometry.computeVertexNormals();
       mesh = new THREE.Mesh(geometry, materialFor(piece.color));
+      // STL z-up → y-up: deita a peça e apoia a base sobre o grid (acima dos quadradinhos).
+      mesh.rotation.x = -Math.PI / 2;
+      const box = new THREE.Box3().setFromObject(mesh);
+      const center = box.getCenter(new THREE.Vector3());
+      mesh.position.x -= center.x;
+      mesh.position.z -= center.z;
+      box.setFromObject(mesh);
+      mesh.position.y += GRID_Y - box.min.y;
+
       scene.add(mesh);
       fitCameraToMesh(new THREE.Box3().setFromObject(mesh));
       meta.innerHTML = `
@@ -190,14 +262,24 @@ const gridHost = document.getElementById('pecas-grid');
 PIECES.forEach((piece) => {
   const art = document.createElement('article');
   art.className = 'card';
-  const sizeKb = piece.path.endsWith('top-frame') ? '≈ ' : '';
+  const preview = piece.preview
+    ? `<img class="preview" src="${CDN(piece.preview)}" alt="Preview de ${piece.name}" loading="lazy" />`
+    : `<div class="preview preview-placeholder mono">sem preview<br />·<br />novo upload pendente</div>`;
   art.innerHTML = `
-    <h3>${piece.name}</h3>
-    <p>${piece.desc}</p>
-    <p class="hint mono">📁 ${piece.path}</p>
-    <p class="hint">
-      <a href="${CDN(piece.path)}" download target="_blank" rel="noopener">⬇ Download STL</a>
-      ${sizeKb}
-    </p>`;
+    ${preview}
+    <div class="card-body">
+      <h3>${piece.name}</h3>
+      <p>${piece.desc}</p>
+      <p class="hint mono">📁 ${piece.path}</p>
+      <div class="card-actions">
+        <button class="chip" data-view="${piece.id}">👁 Ver em 3D</button>
+        <a class="chip download" href="${CDN(piece.path)}" download target="_blank" rel="noopener">⬇ STL</a>
+      </div>
+    </div>`;
+  art.querySelector('[data-view]').addEventListener('click', () => {
+    const idx = PIECES.findIndex((p) => p.id === piece.id);
+    chips[idx].click();
+    document.getElementById('viewer').scrollIntoView({ behavior: 'smooth' });
+  });
   gridHost.appendChild(art);
 });

@@ -171,6 +171,43 @@ h1 .accent { color: var(--accent); }
 .badge-loading { color: var(--accent-2); font-weight: 600; }
 .badge-error { color: #f85149; font-weight: 600; }
 
+/* ---------- Gallery ---------- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.gallery-item {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-soft);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-3px);
+  border-color: #3d4a63;
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.gallery-item figcaption {
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.center { text-align: center; }
+.margin-top { margin-top: 18px; }
+
 /* ---------- Cards grid ---------- */
 .grid {
   display: grid;
@@ -182,12 +219,56 @@ h1 .accent { color: var(--accent); }
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 20px;
+  overflow: hidden;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  flex-direction: column;
 }
 
-.card h3 { font-size: 1.05rem; margin-bottom: 8px; }
-.card p { color: var(--muted); font-size: 0.94rem; }
-.card .hint { font-size: 0.85rem; margin-top: 10px; color: #b8c4d4; }
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #3d4a63;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.card .preview {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+}
+
+.preview-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+  aspect-ratio: 16 / 9;
+  background:
+    radial-gradient(400px 200px at 30% 20%, rgba(242, 163, 60, 0.08), transparent 60%),
+    var(--bg-soft);
+}
+
+.card-body { padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+
+.card h3 { font-size: 1.05rem; margin: 0; }
+.card p { color: var(--muted); font-size: 0.94rem; margin: 0; }
+.card .hint { font-size: 0.82rem; color: #b8c4d4; }
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.card-actions .chip { pointer-events: auto; }
+.chip.download { border-color: var(--border); color: var(--text); }
+.chip.download:hover { background: var(--bg-soft); color: var(--text); }
 
 ul.plain { list-style: none; }
 ul.plain li { padding: 4px 0; color: var(--muted); font-size: 0.94rem; }

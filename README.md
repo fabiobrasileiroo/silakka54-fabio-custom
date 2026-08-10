@@ -1,11 +1,22 @@
-# Silakka54 — Pacote de Impressão (versão final "FB + linux")
+# Silakka54 — Pacote de Impressão "Fabio custom" (versão final "FB + linux")
 
 Pasta autocontida com todo o histórico do projeto: dos arquivos originais (zip) até a
 **versão final personalizada**, pronta para mandar imprimir.
 
 > 🌐 **Site com visualizador 3D interativo (GitHub Pages):**
-> **https://fabiobrasileiro.me/silakka54-pacote-impressao/**
+> **https://fabiobrasileiro.me/silakka54-fabio-custom/**
 > (three.js via CDN + STLs servidos pelo jsDelivr; inclui guia de ergonomia)
+
+## Referências visuais
+
+![Silakka54 original — teclado montado](docs/img/silakka54-original.png)
+
+Fotos de referência (de terceiros, para demonstrar como o teclado fica montado):
+
+- **Original do autor** — [squalius-cephalus.github.io/silakka54](https://squalius-cephalus.github.io/silakka54/) (Patrick Faulkner)
+- **Exemplo real montado** — [Reddit r/ErgoMechKeyboards](https://www.reddit.com/r/ErgoMechKeyboards/comments/1nzly97/my_first_split_silakka54_from_aliexp_w_3d_printed/) (`docs/img/silakka54-assembled.jpg`)
+
+📸 A foto do meu teclado montado será adicionada quando chegar.
 
 ## Estrutura
 
