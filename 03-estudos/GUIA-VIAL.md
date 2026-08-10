@@ -99,7 +99,9 @@ metade) e tire a carga dos mindinhos. Exemplo de base:
 com suporte a LEDs de camada).
 
 1. **Backup primeiro**: Vial → `File` → `Save current layout` → salve seu `.vil` (o reflash
-   **apaga o layout**).
+   **apaga o layout**). Desde o Vial 0.7.5 o **web app** (vial.rocks) também salva/abre
+   `.vil` — Chrome/Edge: menu do layout (ou Ctrl+S / Ctrl+O). O firmware v1.4 do Silakka54
+   já vem com Vial 0.7.5.
 2. Baixe o **UF2** em https://github.com/Squalius-cephalus/silakka54/releases:
    - `silakka54_vial_LEFT.uf2` → metade esquerda
    - `silakka54_vial_RIGHT.uf2` → metade direita
@@ -125,6 +127,7 @@ com suporte a LEDs de camada).
 | Vial não conecta | Versão wireless (ZMK) ou firmware faltando | Verificar modelo; reflash UF2 |
 | Texto/tecla errada ao digitar | Layout do SO ≠ layout do teclado | Ajuste no sistema (ABNT2/US Intl) e remapeie |
 | Algumas teclas sem resposta | Pino de switch torto / socket | Tira e recoloca o switch (pinos retos) |
+| Vial Web mostra teclado "bloqueado" | Proteção de segurança do Vial Web | Digite o unlock combo **Esc + 1** (tecla de esc + tecla 1 juntas) para desbloquear |
 
 **Referências**: manual oficial Vial (https://get.vial.today/manual/) · firmware oficial
 Silakka54 (https://squalius-cephalus.github.io/silakka54/firmware.html) · repo
