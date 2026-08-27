@@ -3,19 +3,27 @@
 Ferramentas que **regeneram** os arquivos finalizados (`01-final/`). Use
 qualquer mudança futura nas gravações ou previews sem mexer à mão nos STLs.
 
-Dependências gerenciadas pelo Poetry (`poetry install` na raiz do projeto):
-`trimesh`, `numpy`, `shapely`, `matplotlib`, `pillow`.
+Dependências gerenciadas via `uv` / Python (`./ferramentas/uv run` ou `poetry run`):
+`trimesh`, `numpy`, `shapely`, `matplotlib`, `pillow`, `manifold3d`.
 
 ---
 
-## engrave_cover.py — gravações nos covers (F/B + texto lateral)
+## engrave_baseplate.py — gravações nas baseplates (face inferior corrigida)
 
-Reproduz o design atual da v2.1:
+Gera as baseplates com as frases gravadas na face inferior, com espelhamento 2D horizontal corrigido para visualização natural e legível por baixo do teclado:
 
 ```bash
-poetry run python engrave_cover.py --side LH --plaque-text F  --side-text linux
-poetry run python engrave_cover.py --side RH --plaque-text B  --side-text linux
-poetry run python engrave_cover.py --side BOTH     # = os dois acima
+./ferramentas/uv run python3 ferramentas/engrave_baseplate.py --side BOTH
+```
+
+---
+
+## engrave_cover.py — gravações nos covers (FB + Tux + linux)
+
+Reproduz o design atual da v3.0:
+
+```bash
+./ferramentas/uv run python3 ferramentas/engrave_cover.py --side BOTH --plaque-text FB --tux --side-text linux
 ```
 
 Saída: `silakka54-chevron-cover-<LETRA>[-<extra>][-<lateral>]-<LH|RH>.stl`

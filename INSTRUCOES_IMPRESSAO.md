@@ -1,29 +1,32 @@
-# Instruções de Impressão — Silakka54 personalizado (FB + linux)
+# Instruções de Impressão — Silakka54 personalizado (v3.0 Fabio: FB + Tux + linux + Kit 2-em-1)
 
 Guia para a pessoa/gráfica que vai imprimir. Teclado **split** = 2 metades (L = left,
-R = right). Total: **4 peças customizadas + 2 top frames + (opcional) carry case**.
+R = right). Total: **4 peças customizadas + 2 top frames + Kit 2-em-1 Carry Case & Tent**.
 
 ---
 
-## Lista de impressão (obrigatória — teclado completo)
+## Lista de impressão principal (teclado)
 
 | # | Arquivo | Qtd | Lado | Observação |
 |---|---|---|---|---|
-| 1 | `01-final/LH/silakka54-baseplate-js-LH.stl` | 1 | Esquerdo | Imprimir **direto** (frase "Foi o JavaScript..." por baixo) |
-| 2 | `01-final/RH/silakka54-baseplate-java-RH.stl` | 1 | Direito | Imprimir **direto** — JÁ vem espelhado (frase "Foi o Java..." por baixo) |
+| 1 | `01-final/LH/silakka54-baseplate-js-LH.stl` | 1 | Esquerdo | Imprimir **direto** (frase "Foi o JavaScript..." por baixo — orientação corrigida) |
+| 2 | `01-final/RH/silakka54-baseplate-java-RH.stl` | 1 | Direito | Imprimir **direto** — JÁ vem espelhado (frase "Foi o Java..." por baixo — orientação corrigida) |
 | 3 | `01-final/comum/silakka54-top-frame-screwunderneath.stl` | 2 | 1 esq. + 1 dir. | **Espelhar em X APENAS uma cópia** (a do lado direito) no fatiador |
-| 4 | `01-final/LH/silakka54-chevron-cover-F-linux-LH.stl` | 1 | Esquerdo | Imprimir **direto** (letra "F" + "linux" na lateral) |
-| 5 | `01-final/RH/silakka54-chevron-cover-B-linux-RH.stl` | 1 | Direito | Imprimir **direto** — JÁ vem espelhado ("B" + "linux" na lateral) |
+| 4 | `01-final/LH/silakka54-chevron-cover-FB-Tux-linux-LH.stl` | 1 | Esquerdo | Imprimir **direto** ("FB" + Logo Tux Linux + "linux" na lateral) |
+| 5 | `01-final/RH/silakka54-chevron-cover-FB-Tux-linux-RH.stl` | 1 | Direito | Imprimir **direto** — JÁ vem espelhado ("FB" + Tux + "linux" na lateral) |
 
-> ⚠️ **NUNCA espelhar os arquivos RH** (`*java-RH.stl`, `*B-linux-RH.stl`): eles já saíram
-> espelhados do modelo, com o texto re-gravado legível. Espelhamento duplo = texto invertido.
+> ⚠️ **NUNCA espelhar os arquivos RH** (`*java-RH.stl`, `*RH.stl`): eles já saíram
+> espelhados do modelo, com o texto e logos re-gravados legíveis. Espelhamento duplo = texto invertido.
 
-## Opcional
+## Kit 2-em-1 (Carry Case + Tenting Platform)
 
-| Arquivo | Quando imprimir |
+| Arquivo | Papel |
 |---|---|
-| `00-original/carry-case/silakka54-case.stl` | Para transportar o teclado montado (com tenting platform) |
-| `00-original/carry-case/silakka-case-67mm.stl` | Variante 67 mm do carry case |
+| `01-final/carry-tent-2em1/silakka-case-67mm.stl` | Estojo de transporte que acomoda o teclado montado com a plataforma de tenting |
+| `01-final/carry-tent-2em1/silakka54-case.stl` | Variante padrão do carry case |
+| `01-final/carry-tent-2em1/silakka54_left_side_shell.stl` / `silakka54_right_side_shell.stl` | Shells laterais de apoio ergonômico |
+| `01-final/carry-tent-2em1/silakka54_left_base_support.stl` / `silakka54_right_base_support.stl` | Suportes de base com elevação/tenting |
+| `01-final/carry-tent-2em1/silakka54_tilt_wedge_xdeg.stl` | Cunha de inclinação (tilt wedge) |
 | `00-original/case-keyboard/full-mcu-cover.stl` ou `75pct-mcu-cover.stl` / `50pct-mcu-cover.stl` | Covers alternativos (liso / parciais) caso não queira o chevron |
 | `00-original/case-keyboard/no-cover-top-frame.stl` | Top frame sem recorte de cover |
 

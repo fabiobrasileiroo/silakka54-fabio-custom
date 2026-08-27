@@ -41,6 +41,7 @@ PLAQUE = dict(x0=149.0, x1=171.0, y0=-49.5, y1=-34.5, r=2.0,
 GAP = 1.5          # espaço entre linha principal e secundária na plaqueta
 SIDE_Z_TOP = 22.30  # topo da crista da faixa lateral (medido do mesh original)
 SIDE_Y_LO, SIDE_Y_HI = -105.0, -55.0   # janela vertical disponível no corpo
+ENGRAVE_DEPTH = 0.55
 
 
 def flatten_mpath(path, n_curve=48):
@@ -136,6 +137,26 @@ def make_text_polygon(text, cap, font):
     if not p.is_valid:
         p = p.buffer(0)
     return p
+
+
+def load_tux_polygon(height=5.0, tux_path=None):
+    from PIL import Image
+    import matplotlib.pyplot as plt
+    if tux_path is None:
+        tux_path = os.path.join(SCRIPT_DIR, "tux.png")
+    if not os.path.exists(tux_path):
+        tux_path = os.path.join(SCRIPT_DIR, "..", "02-superseded", "tux.png")
+    img = Image.open(tux_path).convert("L")
+    arr = np.flipud(np.array(img) < 128)
+    fig, ax = plt.subplots()
+    cs = ax.contour(arr, levels=[0.5])
+    plt.close(fig)
+    paths = cs.get_paths()
+    polys = [Polygon(p.vertices) for p in paths if len(p.vertices) >= 4]
+    tux_poly = unary_union(polys).simplify(0.3, preserve_topology=True).buffer(0)
+    h = tux_poly.bounds[3] - tux_poly.bounds[1]
+    tux_scaled = shapely.affinity.scale(tux_poly, xfact=height / h, yfact=height / h, origin=(0, 0))
+    return tux_scaled
 
 
 def extrude_any(poly, height):
@@ -332,9 +353,11 @@ def main():
     ap.add_argument("--base", default=DEFAULT_BASE)
     ap.add_argument("--fonts-dir", default=DEFAULT_FONTS)
     ap.add_argument("--out-dir", default="out")
-    ap.add_argument("--plaque-text", default=None, help="letra da plaqueta (default: F p/ LH, B p/ RH)")
+    ap.add_argument("--plaque-text", default=None, help="texto na plaqueta (ex: Fabio, F, FB)")
     ap.add_argument("--plaque-bottom", default="", help="texto secundário na plaqueta (ex: vim)")
-    ap.add_argument("--plaque-cap", type=float, default=5.0)
+    ap.add_argument("--tux", action="store_true", help="inclui o logo Tux (Linux) na plaqueta")
+    ap.add_argument("--tux-size", type=float, default=5.0, help="altura do logo Tux em mm")
+    ap.add_argument("--plaque-cap", type=float, default=3.8)
     ap.add_argument("--plaque-font", default="audiowide.ttf")
     ap.add_argument("--side-text", default="linux", help="texto lateral ('' para remover)")
     ap.add_argument("--side-cap", type=float, default=2.6)
@@ -360,20 +383,26 @@ def main():
 
     sides = ["LH", "RH"] if args.side == "BOTH" else [args.side]
     for side in sides:
-        letter = args.plaque_text or ("F" if side == "LH" else "B")
+        letter = args.plaque_text or ("Fabio" if side == "LH" else "Fabio")
         mirrored = (side == "RH")
         base = mirror_x(cover, xc) if mirrored else cover
         tag = f"{letter}"
-        if args.plaque_bottom:
+        if args.tux:
+            tag += "-Tux"
+        elif args.plaque_bottom:
             tag += f"-{args.plaque_bottom}"
         if args.side_text:
             tag += f"-{args.side_text}"
         name = f"silakka54-chevron-cover-{tag}-{side}.stl"
-        print(f"== {side}: placa '{letter}' + lateral '{args.side_text}' -> {name}")
+        print(f"== {side}: placa '{letter}' + {'Tux + ' if args.tux else ''}lateral '{args.side_text}' -> {name}")
 
         top_poly = make_text_polygon(letter, args.plaque_cap, font_plaque)
-        bottom_poly = (make_text_polygon(args.plaque_bottom, 4.0, font_side)
-                       if args.plaque_bottom else None)
+        if args.tux:
+            bottom_poly = load_tux_polygon(height=args.tux_size)
+        elif args.plaque_bottom:
+            bottom_poly = make_text_polygon(args.plaque_bottom, 4.0, font_side)
+        else:
+            bottom_poly = None
 
         plaque, eng = build_plaque(top_poly, bottom_poly,
                                    mirror_x_center=xc if mirrored else None)

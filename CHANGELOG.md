@@ -149,21 +149,37 @@ Pasta de origem: `ferramentas/out/` (cópias em `01-final/`); v2 antiga → `02-
 
 ---
 
+## v3.0 — VERSÃO ATUAL — Correção de Inversão + Tux + Kit 2-em-1 Carry & Tent
+
+Pasta de origem: `01-final/`
+
+### 3.1 Correção de Espelhamento nas Baseplates (Visão Inferior)
+- `silakka54-baseplate-js-LH.stl`: Frase *"Foi o JavaScript que me deu"* gravada na face inferior com rotação 90° e **espelhamento 2D no eixo X**, corrigindo o problema de texto invertido ao virar o teclado por baixo.
+- `silakka54-baseplate-java-RH.stl`: Frase *"Foi o Java que me deu"* gravada na face inferior, também com orientação corrigida e 100% legível por baixo.
+- Criado script automatizado [`engrave_baseplate.py`](file:///home/fabiominsait/estudos/silakka54-fabio-custom/ferramentas/engrave_baseplate.py) para regeneração precisa e sem erros manuais.
+
+### 3.2 Covers dos Chevrons (FB + Tux + linux)
+- `silakka54-chevron-cover-FB-Tux-linux-LH.stl` (LH) e `silakka54-chevron-cover-FB-Tux-linux-RH.stl` (RH):
+  - Plaqueta no topo com **"FB"** + **silhueta oficial do Tux (Linux)**.
+  - Gravação vertical **"linux"** na crista lateral.
+  - Malhas 100% estanques (*watertight*), com volume exato de 13786.4 mm³.
+
+### 3.3 Kit 2-em-1 (Carry Case + Tent)
+- Organizado na pasta `01-final/carry-tent-2em1/`:
+  - `silakka-case-67mm.stl` e `silakka54-case.stl` (estojos de transporte projetados para comportar o teclado montado junto à plataforma de elevação ergonômica tent/tilt).
+  - Componentes do Tent & Tilt Kit: side shells, base supports e tilt wedge.
+
+---
+
 ## O que NÃO foi modificado (decisões conscientes)
 
 - **Top frame** (`silakka54-top-frame-screwunderneath.stl`): original, sem gravações.
   Imprimir 2× — uma direta (esquerda) e uma espelhada em X (direita).
-- **Carry case** (`silakka54-case.stl` / `silakka-case-67mm.stl`): original, sem
-  modificação. (Usuário cogitou adaptar depois — pendente, não feito.)
-- **Tenting à la "Tent & Tilt Ergonomic Kit"** (Douglas Serrão): **INCLUÍDO** em
-  `00-original/tent-tilt-kit/` (sem modificação — original). Recomendação ergonômica:
-  10–15° de tenting + slope 0° a −4° para postura ideal (ver README.md).
 
 ---
 
 ## Regenerar / modificar depois
 
-Os STLs finais foram gerados por script (gravação de texto em mesh). Para alterar textos,
-fontes, tamanhos ou posições: pedir a regeneração (o workflow está documentado nas
-sessões de IA). Regra prática: **LH nunca espelha; RH já vem espelhado com texto
+Os STLs finais foram gerados por script (`engrave_baseplate.py` e `engrave_cover.py`). Para alterar textos,
+fontes, tamanhos ou posições: executar os scripts em `ferramentas/`. Regra prática: **LH nunca espelha; RH já vem espelhado com texto
 re-gravado** — nunca aplicar espelhamento duplo.

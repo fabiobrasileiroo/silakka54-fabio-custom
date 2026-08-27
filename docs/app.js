@@ -14,20 +14,20 @@ const GRID_Y = 0.5;
 
 const PIECES = [
   {
-    id: 'cover-F-LH',
-    name: 'Cover F + linux (LH)',
-    path: '01-final/LH/silakka54-chevron-cover-F-linux-LH.stl',
-    preview: '01-final/previews/preview-F-linux-LH.png',
+    id: 'cover-FB-LH',
+    name: 'Cover FB + Tux + linux (LH)',
+    path: '01-final/LH/silakka54-chevron-cover-FB-Tux-linux-LH.stl',
+    preview: '01-final/previews/preview-FB-Tux-linux-LH.png',
     color: 0xf2a33c,
-    desc: 'Capa superior (left half) com a tecla F gravada e o logo linux na face inferior. Derivada da full-mcu-cover-chevrons.',
+    desc: 'Capa superior (left half) com plaqueta "FB" + silhueta oficial do Tux (Linux) e gravação lateral "linux".',
   },
   {
-    id: 'cover-B-RH',
-    name: 'Cover B + linux (RH)',
-    path: '01-final/RH/silakka54-chevron-cover-B-linux-RH.stl',
-    preview: '01-final/previews/preview-B-linux-RH.png',
+    id: 'cover-FB-RH',
+    name: 'Cover FB + Tux + linux (RH)',
+    path: '01-final/RH/silakka54-chevron-cover-FB-Tux-linux-RH.stl',
+    preview: '01-final/previews/preview-FB-Tux-linux-RH.png',
     color: 0x58a6ff,
-    desc: 'Capa superior (right half) com a tecla B gravada e o logo linux na face inferior.',
+    desc: 'Capa superior (right half) com plaqueta "FB" + silhueta oficial do Tux (Linux) e gravação lateral "linux".',
   },
   {
     id: 'base-js-LH',
@@ -35,7 +35,7 @@ const PIECES = [
     path: '01-final/LH/silakka54-baseplate-js-LH.stl',
     preview: '01-final/previews/preview-js-LH.png',
     color: 0x3fb950,
-    desc: 'Base (left half) com a frase gravada na face inferior: "Isso também passará".',
+    desc: 'Baseplate esquerda (LH) com a frase "Foi o JavaScript que me deu" gravada na face inferior com orientação corrigida (100% legível por baixo).',
   },
   {
     id: 'base-java-RH',
@@ -43,7 +43,7 @@ const PIECES = [
     path: '01-final/RH/silakka54-baseplate-java-RH.stl',
     preview: '01-final/previews/preview-java-RH.png',
     color: 0xbc8cff,
-    desc: 'Base (right half) com a frase gravada na face inferior: "Que a força esteja com vocês".',
+    desc: 'Baseplate direita (RH) com a frase "Foi o Java que me deu" gravada na face inferior com orientação corrigida (100% legível por baixo).',
   },
   {
     id: 'top-frame',
@@ -112,13 +112,14 @@ const PIECES = [
 ];
 
 // ------------------------------------------------------------
+// ------------------------------------------------------------
 // Cena
 // ------------------------------------------------------------
 const host = document.getElementById('canvas-host');
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x161b22);
 
-const camera = new THREE.PerspectiveCamera(45, host.clientWidth / host.clientHeight, 0.1, 5000);
+const camera = new THREE.PerspectiveCamera(45, host.clientWidth / host.clientHeight, 0.01, 8000);
 camera.position.set(240, 160, 260);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -130,13 +131,15 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.08;
 controls.target.set(0, 30, 0);
+controls.minDistance = 0.5;
+controls.maxDistance = 3000;
 
 // Luzes
-scene.add(new THREE.AmbientLight(0xffffff, 0.55));
-const key = new THREE.DirectionalLight(0xffffff, 2.2);
+scene.add(new THREE.AmbientLight(0xffffff, 0.65));
+const key = new THREE.DirectionalLight(0xffffff, 2.4);
 key.position.set(200, 400, 260);
 scene.add(key);
-const fill = new THREE.DirectionalLight(0x88aaff, 0.7);
+const fill = new THREE.DirectionalLight(0x88aaff, 0.8);
 fill.position.set(-300, 120, -200);
 scene.add(fill);
 
@@ -156,12 +159,12 @@ const materialFor = (hex) =>
     side: THREE.DoubleSide,
   });
 
-function fitCameraToMesh(box) {
+function fitCameraToMesh(box, zoomFactor = 1.0) {
   const size = new THREE.Vector3();
   box.getSize(size);
   const maxDim = Math.max(size.x, size.y, size.z);
   const fov = camera.fov * (Math.PI / 180);
-  const dist = maxDim / (2 * Math.tan(fov / 2));
+  const dist = (maxDim / (2 * Math.tan(fov / 2))) * zoomFactor;
   camera.position.set(dist * 1.1, dist * 0.7, dist * 1.3);
   controls.target.copy(box.getCenter(new THREE.Vector3()));
   controls.update();
@@ -228,7 +231,7 @@ chips[0].classList.add('active');
 setPiece(PIECES[0]);
 
 // ------------------------------------------------------------
-// Controles overlays
+// Controles overlays & Zoom
 // ------------------------------------------------------------
 const autoRotate = document.getElementById('btn-autorotate');
 autoRotate.addEventListener('click', () => {
@@ -238,7 +241,48 @@ autoRotate.addEventListener('click', () => {
 controls.autoRotate = true;
 
 document.getElementById('btn-reset').addEventListener('click', () => {
-  if (mesh) fitCameraToMesh(new THREE.Box3().setFromObject(mesh));
+  if (mesh) fitCameraToMesh(new THREE.Box3().setFromObject(mesh), 1.0);
+});
+
+const zoomInBtn = document.getElementById('btn-zoom-in');
+if (zoomInBtn) {
+  zoomInBtn.addEventListener('click', () => {
+    camera.position.sub(controls.target).multiplyScalar(0.7).add(controls.target);
+    controls.update();
+  });
+}
+
+const zoomOutBtn = document.getElementById('btn-zoom-out');
+if (zoomOutBtn) {
+  zoomOutBtn.addEventListener('click', () => {
+    camera.position.sub(controls.target).multiplyScalar(1.4).add(controls.target);
+    controls.update();
+  });
+}
+
+const zoomDetailBtn = document.getElementById('btn-zoom-detail');
+if (zoomDetailBtn) {
+  zoomDetailBtn.addEventListener('click', () => {
+    if (mesh) fitCameraToMesh(new THREE.Box3().setFromObject(mesh), 0.35);
+  });
+}
+
+// Duplo clique na peça foca e aproxima a câmera
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+host.addEventListener('dblclick', (event) => {
+  if (!mesh) return;
+  const rect = host.getBoundingClientRect();
+  mouse.x = ((event.clientX - rect.left) / host.clientWidth) * 2 - 1;
+  mouse.y = -((event.clientY - rect.top) / host.clientHeight) * 2 + 1;
+  raycaster.setFromCamera(mouse, camera);
+  const intersects = raycaster.intersectObject(mesh);
+  if (intersects.length > 0) {
+    const p = intersects[0].point;
+    controls.target.copy(p);
+    camera.position.sub(p).multiplyScalar(0.4).add(p);
+    controls.update();
+  }
 });
 
 // ------------------------------------------------------------
@@ -256,6 +300,16 @@ window.addEventListener('resize', () => {
 });
 
 // ------------------------------------------------------------
+// Lightbox para imagens de preview
+// ------------------------------------------------------------
+const lightbox = document.createElement('div');
+lightbox.className = 'lightbox';
+lightbox.innerHTML = '<div class="lightbox-content"><img src="" alt="" /><button class="lightbox-close">✕ fechar</button></div>';
+document.body.appendChild(lightbox);
+const lightboxImg = lightbox.querySelector('img');
+lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+
+// ------------------------------------------------------------
 // Grid de peças (seção abaixo do viewer)
 // ------------------------------------------------------------
 const gridHost = document.getElementById('pecas-grid');
@@ -263,7 +317,7 @@ PIECES.forEach((piece) => {
   const art = document.createElement('article');
   art.className = 'card';
   const preview = piece.preview
-    ? `<img class="preview" src="${CDN(piece.preview)}" alt="Preview de ${piece.name}" loading="lazy" />`
+    ? `<div class="preview-wrap" title="Clique para ampliar"><img class="preview" src="${CDN(piece.preview)}" alt="Preview de ${piece.name}" loading="lazy" /><span class="zoom-hint">🔍 Ampliar</span></div>`
     : `<div class="preview preview-placeholder mono">sem preview<br />·<br />novo upload pendente</div>`;
   art.innerHTML = `
     ${preview}
@@ -276,6 +330,17 @@ PIECES.forEach((piece) => {
         <a class="chip download" href="${CDN(piece.path)}" download target="_blank" rel="noopener">⬇ STL</a>
       </div>
     </div>`;
+  
+  const previewWrap = art.querySelector('.preview-wrap');
+  if (previewWrap && piece.preview) {
+    previewWrap.addEventListener('click', (e) => {
+      e.stopPropagation();
+      lightboxImg.src = CDN(piece.preview);
+      lightboxImg.alt = piece.name;
+      lightbox.classList.add('active');
+    });
+  }
+
   art.querySelector('[data-view]').addEventListener('click', () => {
     const idx = PIECES.findIndex((p) => p.id === piece.id);
     chips[idx].click();

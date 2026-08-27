@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Silakka54 personalizada por Fabio — case F/B + linux</title>
-<meta name="description" content="Pacote de impressão 3D do teclado ergonômico split Silakka54: covers customizados F/B + linux, baseplates com frases, visualizador 3D interativo e guia de ergonomia." />
+<title>Silakka54 personalizada por Fabio — v3.0 (FB + Tux + linux + Kit 2-em-1)</title>
+<meta name="description" content="Pacote de impressão 3D do teclado ergonômico split Silakka54 v3.0: covers customizados FB + Tux + linux, baseplates com frases e orientação corrigida, kit 2-em-1 carry & tent, visualizador 3D interativo com super-zoom." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -21,15 +21,16 @@
 
 <header class="hero">
   <div class="hero-inner">
-    <p class="kicker">Keyboard case · STL · GitHub Pages</p>
+    <p class="kicker">Keyboard case · STL · GitHub Pages · v3.0 Final</p>
     <h1>Silakka54 <span class="accent">personalizada</span><br />por Fabio</h1>
     <p class="sub">
       Teclado ergonômico split (40% colunar) — case impresso em 3D com covers
-      <strong>“F + linux”</strong> e <strong>“B + linux”</strong>, baseplates com frases
-      gravadas na face inferior e as 4 peças prontas para imprimir.
+      <strong>“FB + Tux (Linux) + linux”</strong>, baseplates com frases
+      gravadas na face inferior (orientação corrigida para leitura direta), e o
+      <strong>Kit 2-em-1 Carry Case + Tenting Platform</strong>.
     </p>
     <div class="hero-actions">
-      <a class="btn primary" href="#viewer">Ver em 3D</a>
+      <a class="btn primary" href="#viewer">Ver em 3D (com Zoom)</a>
       <a class="btn ghost" href="#pecas">Peças e arquivos</a>
       <a class="btn ghost" href="#ergonomia">Guia de ergonomia</a>
     </div>
@@ -60,14 +61,19 @@
 
   <!-- ===================== VISUALIZADOR 3D ===================== -->
   <section id="viewer" class="section">
-    <h2>Visualizador 3D interativo</h2>
-    <p class="muted">Arraste para girar · scroll para zoom · botão direito para pan. As 4 peças finalizadas.</p>
+    <h2>Visualizador 3D interativo (com Super-Zoom)</h2>
+    <p class="muted">Arraste para girar · scroll / botões para zoom · clique duplo na peça para focar de perto · botão direito para pan.</p>
 
     <div class="viewer-wrap">
       <div id="canvas-host"></div>
       <div class="viewer-overlay">
-        <button id="btn-autorotate" class="chip active" title="Rotação automática">⟳ auto-rotate</button>
-        <button id="btn-reset" class="chip" title="Resetar câmera">⤾ reset</button>
+        <div class="viewer-controls-group">
+          <button id="btn-autorotate" class="chip active" title="Rotação automática">⟳ auto-rotate</button>
+          <button id="btn-reset" class="chip" title="Resetar câmera">⤾ reset</button>
+          <button id="btn-zoom-in" class="chip" title="Aproximar zoom">🔍 +</button>
+          <button id="btn-zoom-out" class="chip" title="Afastar zoom">🔍 −</button>
+          <button id="btn-zoom-detail" class="chip highlight" title="Zoom super próximo no detalhe">🔬 Zoom Detalhe</button>
+        </div>
         <div id="piece-tabs" class="tabs"></div>
       </div>
     </div>
@@ -77,10 +83,8 @@
 
   <!-- ===================== PEÇAS ===================== -->
   <section id="pecas" class="section">
-    <h2>Peças e arquivos</h2>
-    <p class="muted">Base do projeto: <code>full-mcu-cover-chevrons.stl</code> (Patrick Faulkner, GPL v2) +
-      plaqueta 22×15 mm + gravações com profundidade 0,55 mm. Regra de ouro: <strong>imprimir RH direto,
-      nunca espelhar de novo</strong>.</p>
+    <h2>Peças e arquivos (v3.0 Final)</h2>
+    <p class="muted">Base do projeto: <code>full-mcu-cover-chevrons.stl</code> + baseplate screwunderneath + kit tent/tilt. Regra de ouro: <strong>imprimir RH direto, nunca espelhar de novo</strong>.</p>
     <div id="pecas-grid" class="grid"></div>
   </section>
 

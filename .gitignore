@@ -3,6 +3,8 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+ferramentas/uv
+.uv/
 
 # Saídas regeneráveis da ferramenta (os finais canonizados ficam em 01-final/)
 out/
