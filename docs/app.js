@@ -173,12 +173,12 @@ const PIECES = [
   // --- TIER 3: CARRY CASE TRANSPORTE 2-EM-1 ---
   {
     id: 'carry-67mm',
-    name: '3. Carry Case 67 mm (Para Keycaps XDA)',
+    name: '3. Carry Case 67 mm (FábioHMB + Tux)',
     path: '01-final/carry-tent-2em1/silakka-case-67mm.stl',
     preview: '01-final/previews/preview-carry-67mm.png',
     color: 0xd4a373,
     category: '3. Carry Case 2-em-1',
-    desc: '⭐ Recomendado para suas Keycaps XDA Graffiti: estojo de 67mm de altura para transportar o teclado montado com a plataforma de tenting.',
+    desc: '⭐ Personalizado com "FábioHMB" + "silakka54" (fonte cursiva) + ícone do Tux (Linux) na parede frontal. Altura de 67mm para suas Keycaps XDA.',
   },
   {
     id: 'carry-case',

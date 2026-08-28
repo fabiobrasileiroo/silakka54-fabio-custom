@@ -32,14 +32,15 @@ ff6c67ac3c038301d47581fd293f653eda96ddf28c9e2cd5f87744e27d51c95d  ./01-final/car
 4063df1867d65dd2a357b29cb291cb6af4f645d81e934ec7a9544bbafa42c262  ./01-final/carry-tent-2em1/silakka54-tented-palm-rest-LH.stl
 ed5f381f7f54a60b779295c61c0726b51e92f991e5b81b3088cb22543345b2aa  ./01-final/carry-tent-2em1/silakka54-tented-palm-rest-RH.stl
 b375142192cd986c5b51d0610e592ed75bb9e28372291476d0005d06778c6039  ./01-final/carry-tent-2em1/silakka54_tilt_wedge_xdeg.stl
-cb805e60ef8feec6d6ea5c932eea6750e6676aa5c588ebf36ddd737cb12eb198  ./01-final/carry-tent-2em1/silakka-case-67mm.stl
+542acd7c5fa7a7f1153f8d92e40323976d83d2e22d8e1779d28552031cfda846  ./01-final/carry-tent-2em1/silakka-case-67mm.stl
 f5debe9c59a0d1a41b206ebdc3a294ec22b18821600c8a62b5ebbbcda58e0374  ./01-final/comum/silakka54-top-frame-screwunderneath.stl
 7b6056ea770e1dbea46b50bd892f9e95e809ed750b8def84ea411cf62fd6eefd  ./01-final/LH/silakka54-baseplate-js-LH.stl
 0c172f5cf98d6a46c58219bab22cd2779b25c5c1f882c1343c6ce9561d5dea5a  ./01-final/LH/silakka54-chevron-cover-FB-Tux-linux-LH.stl
 793fadcb8ca5ad5c80310b5f600e9bfdcb05880d4bf07ffb08561a7462a3f128  ./01-final/previews/preview-base-L.png
 93dd29b37c36501e8807aad9e49b04649bfa8b015b090fa1724a59e2e2c1297d  ./01-final/previews/preview-base-R.png
 87b3d0c46f08f40c6b0e0af8a616253fbe4d1bb800e89e9ecf5a4ff441cd0d78  ./01-final/previews/preview-B-linux-RH.png
-b49d20db9abaf2d36ab0914d438b5ba181344fd15e727957e77a9cb8c2813837  ./01-final/previews/preview-carry-67mm.png
+6c0c7e0cfc2ef5f850bcc64c409e4ff21a7c680d54e2b9fbbbfa173a69f5de1a  ./01-final/previews/preview-carry-67mm.png
+e239db6c8b40a3c963b5c041255bc39cc515b385aa72de6eb5afe87a38ab89ab  ./01-final/previews/preview-carry-badge.png
 39d9746ccb3c3c2f9ad17ab9150012c9a2a854628f94d4475ff9a66243c77a10  ./01-final/previews/preview-carry-case.png
 0d7472f5fd4db79362e3eb6ccbf26b507d932df698337761913d8dfe4dcf1093  ./01-final/previews/preview-cover-plaque-LH.png
 36263b77a2f92b28297842cd7de0e6839e58e9434f5087f9024c86c73eb92e93  ./01-final/previews/preview-cover-plaque-RH.png
@@ -98,4 +99,6 @@ e4f4c8010312078a37ca1797a8c9eaa5156d0fec407d7875522ca31a3d78c586  ./02-supersede
 39e54f5d80e152e4b11e324c74a3f23b3de46871ebfe588f808ef63d7dc1c1fa  ./03-estudos/GUIA-VIAL.md
 3cebacb9eac80c6fefa66dfa5d52732b476d1f6576a87611bfbc63c1003951bf  ./03-estudos/REPORT-ERGONOMIA.md
 c7c0f2b0f6fad8c623e31772ce79f94a4edb9321ffce9fce978ea892d20ae730  ./ferramentas/fonts/audiowide.ttf
+0bdb6b660482d31531b3945849fba5916b3ef8695da7024a9e6b9ee3c4157988  ./ferramentas/fonts/caveat.ttf
+21808625578fe8d8cd10cb684be546dca077b27cd03a53a2f1ec11dc743c924c  ./ferramentas/fonts/dancing-script.ttf
 d22c4f3821d725eb01210d278d95dfcfcaadc34699a06658d47c8a5cc5830ada  ./ferramentas/fonts/jetbrains-mono-bold.ttf
