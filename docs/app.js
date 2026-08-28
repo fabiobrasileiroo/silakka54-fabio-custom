@@ -158,7 +158,7 @@ const PIECES = [
     preview: '01-final/previews/preview-palm-rest-LH.png',
     color: 0x48bb78,
     category: '2. Ergonomia Tent/Tilt',
-    desc: '⭐ Apoio de Palma Ergonômico com Tenting (LH): inclinação de 12.4°, concavidade anatômica para repouso da palma e alívio do túnel do carpo.',
+    desc: '⭐ Apoio de Palma Ergonômico com Tenting (LH): rampa 100% lisa e contínua com inclinação de 12.4° e borda suave em cascata (waterfall).',
   },
   {
     id: 'palm-rest-R',
@@ -167,7 +167,7 @@ const PIECES = [
     preview: '01-final/previews/preview-palm-rest-RH.png',
     color: 0x38a169,
     category: '2. Ergonomia Tent/Tilt',
-    desc: '⭐ Apoio de Palma Ergonômico com Tenting (RH): inclinação de 12.4°, sólido e resistente com encaixe para pés de borracha.',
+    desc: '⭐ Apoio de Palma Ergonômico com Tenting (RH): rampa 100% lisa e contínua com inclinação de 12.4°, sólido com encaixe para pés de borracha.',
   },
 
   // --- TIER 3: CARRY CASE TRANSPORTE 2-EM-1 ---

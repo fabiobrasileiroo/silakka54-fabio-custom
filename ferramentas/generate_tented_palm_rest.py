@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """generate_tented_palm_rest.py — Gerador do Apoio de Palma Ergonômico com Tenting (10–15°).
 
-Projetado especificamente como módulo complementar para o Tent & Tilt Kit do Silakka54:
-  - Inclinação anatômica de 12.4° (acompanha perfeitamente a plataforma de tenting de 10–15°)
-  - Superfície côncava anatômica para repouso da eminência hipotenar (palma) sem comprimir o túnel do carpo
-  - Borda frontal em cascata (waterfall) com raio suave para não marcar os braços
+Superfície 100% lisa, contínua e plana com inclinação pura de 12.4° (tenting):
+  - Rampa uniforme e suave (sem covas ou depressões circulares)
+  - Transição frontal arredondada em cascata (waterfall smooth bevel)
   - Recortes na base para 4 pés de borracha/silicone antiderrapantes (8.5mm x 1.2mm)
   - Estrutura 100% sólida e resistente para impressão 3D (watertight manifold)
 """
@@ -53,19 +52,13 @@ def build_tented_palm_rest(side="LH", out_path=None):
 
     m_tented = m_body - cutter
 
-    # 3. Concavidade anatômica suave da palma (elipsoide côncavo)
-    scoop_mesh = trimesh.creation.icosphere(radius=34.0, subdivisions=3)
-    scoop_mesh.apply_scale([1.45, 1.0, 0.22])
-    scoop_mesh.apply_translation([72.5, 42.0, 16.5 + 34.0 * 0.22 - 2.2])
-    m_tented = m_tented - to_manifold(scoop_mesh)
-
-    # 4. Borda frontal em cascata (waterfall smooth bevel)
+    # 3. Borda frontal suave em cascata (waterfall smooth bevel)
     front_cyl = trimesh.creation.cylinder(radius=14.0, height=200, sections=64)
     front_cyl.apply_transform(trimesh.transformations.rotation_matrix(np.pi / 2, [0, 1, 0]))
     front_cyl.apply_translation([72.5, -4.0, 14.0 + 3.2])
     m_tented = m_tented - to_manifold(front_cyl)
 
-    # 5. Encaixes na base para pés de borracha antiderrapantes (4x diâmetro 8.5mm, profundidade 1.2mm)
+    # 4. Encaixes na base para pés de borracha antiderrapantes (4x diâmetro 8.5mm, profundidade 1.2mm)
     feet = [(16, 14), (129, 14), (16, 66), (126, 66)]
     for fx, fy in feet:
         cyl = trimesh.creation.cylinder(radius=4.25, height=2.4, sections=32)
@@ -74,7 +67,7 @@ def build_tented_palm_rest(side="LH", out_path=None):
 
     tri = from_manifold(m_tented)
 
-    # 6. Espelhamento perfeito para o lado direito (RH)
+    # 5. Espelhamento perfeito para o lado direito (RH)
     if side == "RH":
         xc = 72.5
         tri.apply_transform([[-1, 0, 0, 2 * xc], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
@@ -84,7 +77,7 @@ def build_tented_palm_rest(side="LH", out_path=None):
         os.makedirs(os.path.dirname(out_path), exist_ok=True)
         tri.export(out_path)
 
-    print(f"Generated {side} Tented Palm Rest: wt={tri.is_watertight}, vol={tri.volume:.1f} mm³, bounds={tri.bounds.tolist()}")
+    print(f"Generated {side} Smooth Tented Palm Rest: wt={tri.is_watertight}, vol={tri.volume:.1f} mm³, bounds={tri.bounds.tolist()}")
     return tri
 
 

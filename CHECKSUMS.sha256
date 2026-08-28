@@ -29,8 +29,8 @@ ff6c67ac3c038301d47581fd293f653eda96ddf28c9e2cd5f87744e27d51c95d  ./01-final/car
 87d378ae3e2f975446e0daf3eeba8f961ffbdd100c80a9b5197bc5e2dbe1e525  ./01-final/carry-tent-2em1/silakka54_left_side_shell.stl
 662b0c5f3a03bccb4b58ad289b72d58b6dea19fe13f33605445a3234856b5620  ./01-final/carry-tent-2em1/silakka54_right_base_support.stl
 2760a2340d45d95d119a2f46b4ba12ae459d4a6a328124e9e918116da1156872  ./01-final/carry-tent-2em1/silakka54_right_side_shell.stl
-4063df1867d65dd2a357b29cb291cb6af4f645d81e934ec7a9544bbafa42c262  ./01-final/carry-tent-2em1/silakka54-tented-palm-rest-LH.stl
-ed5f381f7f54a60b779295c61c0726b51e92f991e5b81b3088cb22543345b2aa  ./01-final/carry-tent-2em1/silakka54-tented-palm-rest-RH.stl
+4b6ed73efdb99c0136149cd504a4bdaf84eb1a3b09745c9b839455deb6c0ff98  ./01-final/carry-tent-2em1/silakka54-tented-palm-rest-LH.stl
+cc5d9e8d8b710985921bcdb54f310c24b8490a4fa02b105204cdd29457fc9d03  ./01-final/carry-tent-2em1/silakka54-tented-palm-rest-RH.stl
 b375142192cd986c5b51d0610e592ed75bb9e28372291476d0005d06778c6039  ./01-final/carry-tent-2em1/silakka54_tilt_wedge_xdeg.stl
 ebf5b1ffb3810b8a2a496e20ddef0e886c14868902706a3d4da0060f3bc6244f  ./01-final/carry-tent-2em1/silakka-case-67mm.stl
 f5debe9c59a0d1a41b206ebdc3a294ec22b18821600c8a62b5ebbbcda58e0374  ./01-final/comum/silakka54-top-frame-screwunderneath.stl
@@ -52,8 +52,8 @@ f228410237725f283239d89eb80854ebc76c1a1a0e0dff124f6495abcbdcc707  ./01-final/pre
 e91ead8412eae00a662b66585192e60ea94aee6d5dae1ce9e6ffe8e93edcd0ea  ./01-final/previews/preview-inner-frame.png
 8cbb72fddbc98074b73beadbc95fb750b21ab063be623873db203a1f0f8b47ad  ./01-final/previews/preview-java-RH.png
 adf5116fb68b492918be33d665299113034512ee3e6021256ddf91ddaa734379  ./01-final/previews/preview-js-LH.png
-ad2441d3e0a6a175c3cd742943dfa354df97905ffe870b9662fa9423f9c19b5c  ./01-final/previews/preview-palm-rest-LH.png
-6b1113133e161649c25949378911a623d7b064270f88404e3a1ea5c39d9367b2  ./01-final/previews/preview-palm-rest-RH.png
+158aefd58f6d1e325e90077e7bd46e92e2fe4650f6bbceb9982d9f9761e0e35e  ./01-final/previews/preview-palm-rest-LH.png
+503623523b15adc678c227d81bbcc29043c84c9e5b3718dec7e1b83b4dff88f3  ./01-final/previews/preview-palm-rest-RH.png
 00be34f31b6f11e64a1c5ac95f40fc40a2a758126828c0af23d9f6d6ac91403a  ./01-final/previews/preview-shell-L.png
 4f14c2a80d6c7664d804317b3769c254d7a93af4f62d405bb9128550d4f0423a  ./01-final/previews/preview-shell-R.png
 e8a1ad74d1ee344b9e5fcbc174b7eb87a5cc02204213727944c6174b0aa55b8b  ./01-final/previews/preview-slim-bottom-LH.png
