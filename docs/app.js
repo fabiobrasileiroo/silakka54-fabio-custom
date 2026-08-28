@@ -39,7 +39,7 @@ const PIECES = [
     preview: '01-final/previews/preview-js-LH.png',
     color: 0x3fb950,
     category: '1. Teclado Base',
-    desc: 'Baseplate esquerda com frase "Foi o JavaScript que me deu" gravada na face inferior (orientação corrigida).',
+    desc: 'Baseplate esquerda com frase "foi javascript que me deu" (fonte IntelliJ JetBrains Mono) gravada na face inferior com margens seguras.',
   },
   {
     id: 'base-java-RH',
@@ -48,7 +48,7 @@ const PIECES = [
     preview: '01-final/previews/preview-java-RH.png',
     color: 0xbc8cff,
     category: '1. Teclado Base',
-    desc: 'Baseplate direita com frase "Foi o Java que me deu" gravada na face inferior (orientação corrigida).',
+    desc: 'Baseplate direita com frase "foi java que me deu" (fonte IntelliJ JetBrains Mono) gravada na face inferior com margens seguras.',
   },
   {
     id: 'top-frame',
@@ -66,7 +66,7 @@ const PIECES = [
     preview: '01-final/previews/preview-slim-case-js-LH.png',
     color: 0x38d39f,
     category: '1. Slim Screwless',
-    desc: 'Case slim sem parafusos (esquerda): fundo sólido com "Foi o JavaScript que me deu" gravado na face inferior.',
+    desc: 'Case slim sem parafusos (esquerda): fundo sólido com "foi javascript que me deu" (fonte IntelliJ) com margens confortáveis.',
   },
   {
     id: 'slim-case-R',
@@ -75,7 +75,7 @@ const PIECES = [
     preview: '01-final/previews/preview-slim-case-java-RH.png',
     color: 0x2bb886,
     category: '1. Slim Screwless',
-    desc: 'Case slim sem parafusos (direita): fundo sólido com "Foi o Java que me deu" gravado na face inferior.',
+    desc: 'Case slim sem parafusos (direita): fundo sólido com "foi java que me deu" (fonte IntelliJ) com margens confortáveis.',
   },
   {
     id: 'slim-mcu-L',

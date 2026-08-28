@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""engrave_slim_case.py — Gravação das frases na base sólida da Slim Screwless Case (Johnny5iv).
+"""engrave_slim_case.py — Gravação das frases com fonte JetBrains Mono (IntelliJ)
+e margens seguras na base sólida da Slim Screwless Case (Johnny5iv).
 
 Gera:
-  - LH: silakka54-slim-case-js-LH.stl ("Foi o JavaScript que me deu" gravado na face inferior)
-  - RH: silakka54-slim-case-java-RH.stl ("Foi o Java que me deu" gravado na face inferior)
+  - LH: silakka54-slim-case-js-LH.stl ("foi javascript que me deu")
+  - RH: silakka54-slim-case-java-RH.stl ("foi java que me deu")
 """
 import os
 import sys
@@ -35,38 +36,39 @@ def from_manifold(mani):
     return trimesh.Trimesh(vertices=mesh_out.vert_properties[:, :3], faces=mesh_out.tri_verts)
 
 
-def engrave_slim_case(side="LH", text="Foi o JavaScript que me deu", out_path=None):
+def engrave_slim_case(side="LH", text="foi javascript que me deu", out_path=None):
+    # Fonte oficial do IntelliJ (JetBrains Mono Bold)
     font = os.path.join(FONTS_DIR, "jetbrains-mono-bold.ttf")
 
     if side == "LH":
         in_stl = os.path.join(SLIM_ORIG_DIR, "silakka54_top_bottom_left.stl")
-        # Posição central na faixa sólida inferior
-        xc = 25.5
-        yc = -70.0
+        # Posição central na faixa sólida com margem confortável de 6.5mm das bordas
+        xc = 31.5
+        yc = -75.0
         rot = 90.0
     else:
         in_stl = os.path.join(SLIM_ORIG_DIR, "silakka54_top_bottom_right.stl")
-        xc = -25.5
-        yc = -70.0
+        xc = -31.5
+        yc = -75.0
         rot = -90.0
 
     base_m = trimesh.load(in_stl)
 
-    # 1. Cria o polígono do texto com altura de letra 4.8mm
-    p = eb.make_text_polygon(text, cap=4.8, font=font)
+    # 1. Cria o polígono do texto com altura de letra 3.8mm (JetBrains Mono)
+    p = eb.make_text_polygon(text, cap=3.8, font=font)
 
-    # 2. Espelhamento 2D em X para leitura correta na face inferior (bottom view)
+    # 2. Espelhamento 2D no eixo X (xfact=-1) para leitura direta por baixo
     p = shapely.affinity.scale(p, xfact=-1, yfact=1, origin="center")
 
-    # 3. Rotaciona e translada para a posição
+    # 3. Rotaciona e translada para a posição com margens generosas
     p = shapely.affinity.rotate(p, rot, origin="center")
     tb = p.bounds
     txc = (tb[0] + tb[2]) / 2.0
     tyc = (tb[1] + tb[3]) / 2.0
     p = shapely.affinity.translate(p, xoff=xc - txc, yoff=yc - tyc)
 
-    # 4. Extrusão do corte (profundidade 0.50mm, face z=0.60 até z=1.10)
-    text_solid = eb.extrude_any(p, height=0.50)
+    # 4. Extrusão do corte (profundidade 0.45mm na face z=0.60..1.05)
+    text_solid = eb.extrude_any(p, height=0.45)
     text_solid.apply_translation([0, 0, 0.60])
 
     # 5. Diferença booleana com Manifold3D
@@ -86,9 +88,9 @@ def engrave_slim_case(side="LH", text="Foi o JavaScript que me deu", out_path=No
 
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
-    engrave_slim_case("LH", "Foi o JavaScript que me deu",
+    engrave_slim_case("LH", "foi javascript que me deu",
                       os.path.join(OUT_DIR, "silakka54-slim-case-js-LH.stl"))
-    engrave_slim_case("RH", "Foi o Java que me deu",
+    engrave_slim_case("RH", "foi java que me deu",
                       os.path.join(OUT_DIR, "silakka54-slim-case-java-RH.stl"))
 
 
