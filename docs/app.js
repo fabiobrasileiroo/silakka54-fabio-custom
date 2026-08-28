@@ -377,7 +377,7 @@ function setComboScene() {
             <div class="desc">
               <strong>1. Esquerda:</strong> Slim Case LH com gravação "foi javascript que me deu" e tampa MCU "F + linux"<br />
               <strong>2. Centro:</strong> Plataforma Tent &amp; Tilt (10–15°) com Apoio de Palma anatômico acoplado<br />
-              <strong>3. Direita:</strong> Carry Case 67mm personalizado (FábioHMB + Tux)
+              <strong>3. Direita:</strong> Carry Case 67mm personalizado (FHMB + silakka54)
             </div>`;
         }
       },
