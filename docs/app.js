@@ -297,6 +297,9 @@ function setPiece(piece) {
       mesh = new THREE.Mesh(geometry, materialFor(piece.color));
       // STL z-up → y-up: deita a peça e apoia a base sobre o grid.
       mesh.rotation.x = -Math.PI / 2;
+      if (piece.id === 'carry-67mm') {
+        mesh.rotation.z = Math.PI;
+      }
       const box = new THREE.Box3().setFromObject(mesh);
       const center = box.getCenter(new THREE.Vector3());
       mesh.position.x -= center.x;
@@ -361,6 +364,9 @@ function setComboScene() {
         geo.computeVertexNormals();
         const m = new THREE.Mesh(geo, materialFor(part.color));
         m.rotation.x = -Math.PI / 2;
+        if (part.path.includes('silakka-case-67mm')) {
+          m.rotation.z = Math.PI;
+        }
         const b = new THREE.Box3().setFromObject(m);
         const c = b.getCenter(new THREE.Vector3());
         m.position.x = part.offset[0] - c.x;
