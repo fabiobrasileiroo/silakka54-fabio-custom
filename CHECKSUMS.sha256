@@ -25,6 +25,8 @@ d95a4baa44619ec22aaa5d00bbf9b27a7fc8e8947b81b22778a2907d3bdc3e52  ./00-original/
 2760a2340d45d95d119a2f46b4ba12ae459d4a6a328124e9e918116da1156872  ./00-original/tent-tilt-kit/silakka54_right_side_shell.stl
 b375142192cd986c5b51d0610e592ed75bb9e28372291476d0005d06778c6039  ./00-original/tent-tilt-kit/silakka54_tilt_wedge_xdeg.stl
 ff6c67ac3c038301d47581fd293f653eda96ddf28c9e2cd5f87744e27d51c95d  ./01-final/carry-tent-2em1/silakka54-case.stl
+e9a959e7eaa655e0af11cf87dd6ef494a695220eb9601705c34beb24140d9cc4  ./01-final/carry-tent-2em1/silakka54-flat-palm-rest-LH.stl
+734e3fdb6df2fe3c243b86fd229e4cd920b48f8fba66490f0892b65682e04e00  ./01-final/carry-tent-2em1/silakka54-flat-palm-rest-RH.stl
 04f47d219e2602a3ada4dc647f22c7b6af5920c6f161415820ec4328f73cfb13  ./01-final/carry-tent-2em1/silakka54_left_base_support.stl
 87d378ae3e2f975446e0daf3eeba8f961ffbdd100c80a9b5197bc5e2dbe1e525  ./01-final/carry-tent-2em1/silakka54_left_side_shell.stl
 662b0c5f3a03bccb4b58ad289b72d58b6dea19fe13f33605445a3234856b5620  ./01-final/carry-tent-2em1/silakka54_right_base_support.stl
@@ -86,6 +88,7 @@ c03d69ebf29964bf806d6c78bbc214b29dc98d9cd02d0cd1ae50021a17ca583d  ./01-final/pre
 7eda44d98f040b25f44390a1c318384c046216e0662ea40fc4dcebfaaaff1fe8  ./01-final/previews/tux-vector-perfect.png
 72c8d6a850304c7cd8609744d0e2d22d33513672c90afcb1131c200b2ef0db4c  ./01-final/RH/silakka54-baseplate-java-RH.stl
 16c30775fe78f7758af56f438af05a9fdcdbf54ac51ba374db6720b0259fef2b  ./01-final/RH/silakka54-chevron-cover-FB-Tux-linux-RH.stl
+adb9663bbd949cb2e230fd10a7203d9424c11a4062a8ca1a04f60f27145383c8  ./01-final/silakka54-fabio-pacote-completo.zip
 173a40709f821a70740c476f184771347919de312ec809b1fa29d70d449b70c3  ./01-final/slim-screwless-case/silakka54_inner_frame.stl
 340ceec9f5d783415f1c8c0ec8c31c657e2f9741e678b56610047475505f69cb  ./01-final/slim-screwless-case/silakka54_mcu_left.stl
 875dce16605edb272802220dd88f36b5061474793739500f3c2b7a60b72c18dd  ./01-final/slim-screwless-case/silakka54_mcu_right.stl
