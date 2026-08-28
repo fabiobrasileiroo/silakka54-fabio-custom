@@ -3,7 +3,7 @@
 
 Gera:
   - silakka-case-67mm.stl com gravação 100% legível (não-espelhada):
-      - Tux (Linux) à esquerda
+      - Tux (Linux oficial vetorial com pezinhos anatômicos limpos e suaves) à esquerda
       - "FHMB" no topo direito
       - "silakka54" (cursiva) embaixo à direita
 """
@@ -21,6 +21,7 @@ import trimesh
 
 import ferramentas.engrave_cover as ec
 import ferramentas.engrave_baseplate as eb
+from ferramentas.parse_tux import load_vector_tux
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 FONTS_DIR = os.path.join(SCRIPT_DIR, "fonts")
@@ -52,8 +53,8 @@ def engrave_carry_case_67mm(name="FHMB", subtitle="silakka54", out_path=None):
     # 2. Subtítulo cursivo elegante
     p_sub = ec.make_text_polygon(subtitle, cap=6.8, font=font_script)
 
-    # 3. Ícone Tux do Linux
-    p_tux = ec.load_tux_polygon(height=18.0).simplify(0.08, preserve_topology=True).buffer(0)
+    # 3. Ícone Tux do Linux oficial com pezinhos perfeitos e suaves
+    p_tux = load_vector_tux(height=18.0)
     w_tux = p_tux.bounds[2] - p_tux.bounds[0]
 
     # Arranjo 2D: Tux à esquerda, Nome no topo direito, Subtítulo embaixo à direita
@@ -97,7 +98,7 @@ def engrave_carry_case_67mm(name="FHMB", subtitle="silakka54", out_path=None):
         os.makedirs(os.path.dirname(out_path), exist_ok=True)
         tri.export(out_path)
 
-    print(f"Generated Carry Case 67mm ({name} + {subtitle} + Tux un-mirrored): faces={len(tri.faces)}, vol={tri.volume:.1f} mm³")
+    print(f"Generated Carry Case 67mm ({name} + {subtitle} + Vector Tux): faces={len(tri.faces)}, vol={tri.volume:.1f} mm³")
     return tri
 
 
