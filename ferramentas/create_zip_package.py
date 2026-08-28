@@ -26,7 +26,7 @@ files_to_pack = [
     ("00-original/tent-tilt-kit/silakka54_tilt_wedge_xdeg.stl", "2-Ergonomia-Tenting/silakka54-tilt-wedge-ajuste.stl"),
 
     # 3. Carry Case 2-em-1 (Transporte)
-    ("01-final/carry-tent-2em1/silakka-case-67mm.stl", "3-Carry-Case-Transporte/silakka-case-67mm-keycaps-xda.stl"),
+    ("01-final/carry-tent-2em1/silakka-case-67mm.stl", "3-Carry-Case-Transporte/silakka-case-67mm-FHMB.stl"),
     ("01-final/carry-tent-2em1/silakka54-case.stl", "3-Carry-Case-Transporte/silakka-case-50mm-padrao.stl"),
 ]
 
@@ -59,7 +59,7 @@ CONTEÚDO DO PACOTE:
   └── silakka54-tilt-wedge-ajuste.stl     (Cunha para ajuste fino de inclinação)
 
 📂 3-Carry-Case-Transporte/
-  ├── silakka-case-67mm-keycaps-xda.stl   (Estojo Carry Case 67mm 100% liso e limpo para Keycaps XDA + Tenting)
+  ├── silakka-case-67mm-FHMB.stl          (Estojo Carry Case 67mm personalizado com "FHMB" e "silakka54")
   └── silakka-case-50mm-padrao.stl        (Estojo Carry Case 50mm padrão)
 
 DICAS DE IMPRESSÃO 3D & ESTABILIDADE NA MESA:
