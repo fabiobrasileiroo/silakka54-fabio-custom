@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""engrave_carry_case.py — Gravação personalizada na parede principal do Carry Case (67mm).
+"""engrave_carry_case.py — Gravação personalizada nas duas paredes principais do Carry Case (67mm).
 
 Gera:
-  - silakka-case-67mm.stl com gravação 100% limpa e elegante:
+  - silakka-case-67mm.stl com gravação nas duas faces externas:
       - "FHMB" no topo (fonte Audiowide)
       - "silakka54" embaixo (fonte cursiva Dancing Script)
-      - Centralizado na parede externa frontal (sem ícones).
+      - Visível imediatamente em qualquer ângulo de visualização 3D.
 """
 import argparse
 import os
@@ -47,54 +47,55 @@ def engrave_carry_case_67mm(name="FHMB", subtitle="silakka54", out_path=None):
     font_script = os.path.join(FONTS_DIR, "dancing-script.ttf")
 
     # 1. Nome principal
-    p_name = ec.make_text_polygon(name, cap=10.5, font=font_name)
+    p_name = ec.make_text_polygon(name, cap=11.0, font=font_name)
     b_name = p_name.bounds
 
     # 2. Subtítulo cursivo elegante
-    p_sub = ec.make_text_polygon(subtitle, cap=7.5, font=font_script)
+    p_sub = ec.make_text_polygon(subtitle, cap=8.0, font=font_script)
     b_sub = p_sub.bounds
 
-    # Centraliza horizontalmente cada linha
-    p_name = shapely.affinity.translate(p_name, xoff=-(b_name[0] + b_name[2]) / 2.0, yoff=-(b_name[1] + b_name[3]) / 2.0 + 6.5)
-    p_sub = shapely.affinity.translate(p_sub, xoff=-(b_sub[0] + b_sub[2]) / 2.0, yoff=-(b_sub[1] + b_sub[3]) / 2.0 - 5.5)
+    # Centraliza cada linha
+    p_name = shapely.affinity.translate(p_name, xoff=-(b_name[0] + b_name[2]) / 2.0, yoff=-(b_name[1] + b_name[3]) / 2.0 + 7.0)
+    p_sub = shapely.affinity.translate(p_sub, xoff=-(b_sub[0] + b_sub[2]) / 2.0, yoff=-(b_sub[1] + b_sub[3]) / 2.0 - 6.0)
 
     badge_2d = unary_union([p_name, p_sub])
     bb = badge_2d.bounds
     badge_2d = shapely.affinity.translate(badge_2d, xoff=-(bb[0] + bb[2]) / 2.0, yoff=-(bb[1] + bb[3]) / 2.0)
 
-    # Desespelha horizontalmente (xfact = -1) para leitura direta da esquerda para a direita na parede externa
-    badge_2d = shapely.affinity.scale(badge_2d, xfact=-1, yfact=1, origin="center")
+    # 1. Parede 1 (X = 45.88, voltada para -X)
+    badge_w1_2d = shapely.affinity.scale(badge_2d, xfact=-1, yfact=1, origin="center")
+    solid_w1 = eb.extrude_any(badge_w1_2d, height=2.0)
+    M_w1 = np.array([[0, 0, 1, 0], [1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1]], dtype=float)
+    solid_w1.apply_transform(M_w1)
+    b_curr1 = solid_w1.bounds
+    solid_w1.apply_translation([
+        46.43 - b_curr1[1][0],
+        110.0 - (b_curr1[0][1] + b_curr1[1][1]) / 2.0,
+        33.5 - (b_curr1[0][2] + b_curr1[1][2]) / 2.0
+    ])
 
-    # Extrude badge em Z por 2.0mm
-    badge_solid = eb.extrude_any(badge_2d, height=2.0)
-
-    # 2D X -> +Y, 2D Y -> +Z, 2D Z -> +X
-    M = np.array([
-        [0, 0, 1, 0],
-        [1, 0, 0, 0],
-        [0, 1, 0, 0],
-        [0, 0, 0, 1]
-    ], dtype=float)
-    badge_solid.apply_transform(M)
-
-    # Parede externa está em X = 45.88. Profundidade 0.55mm -> corte atinge X = 46.43
-    b_curr = badge_solid.bounds
-    badge_solid.apply_translation([
-        46.43 - b_curr[1][0],
-        110.0 - (b_curr[0][1] + b_curr[1][1]) / 2.0,
-        33.5 - (b_curr[0][2] + b_curr[1][2]) / 2.0
+    # 2. Parede 2 (X = 161.70, voltada para +X / câmera padrão do 3D)
+    badge_w2_2d = badge_2d
+    solid_w2 = eb.extrude_any(badge_w2_2d, height=2.0)
+    M_w2 = np.array([[0, 0, -1, 0], [1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1]], dtype=float)
+    solid_w2.apply_transform(M_w2)
+    b_curr2 = solid_w2.bounds
+    solid_w2.apply_translation([
+        161.15 - b_curr2[0][0],
+        110.0 - (b_curr2[0][1] + b_curr2[1][1]) / 2.0,
+        33.5 - (b_curr2[0][2] + b_curr2[1][2]) / 2.0
     ])
 
     m_case = to_manifold(case_m)
-    m_badge = to_manifold(badge_solid)
-    m_final = m_case - m_badge
+    m_cut = to_manifold(solid_w1) + to_manifold(solid_w2)
+    m_final = m_case - m_cut
 
     tri = from_manifold(m_final)
     if out_path:
         os.makedirs(os.path.dirname(out_path), exist_ok=True)
         tri.export(out_path)
 
-    print(f"Generated Carry Case 67mm ({name} + {subtitle} - No Tux): faces={len(tri.faces)}, vol={tri.volume:.1f} mm³")
+    print(f"Generated Double-Sided Carry Case 67mm: wt={tri.is_watertight}, faces={len(tri.faces)}, vol={tri.volume:.1f} mm³")
     return tri
 
 
