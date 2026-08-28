@@ -26,12 +26,12 @@ files_to_pack = [
     ("00-original/tent-tilt-kit/silakka54_tilt_wedge_xdeg.stl", "2-Ergonomia-Tenting/silakka54-tilt-wedge-ajuste.stl"),
 
     # 3. Carry Case 2-em-1 (Transporte)
-    ("01-final/carry-tent-2em1/silakka-case-67mm.stl", "3-Carry-Case-Transporte/silakka-case-67mm-FHMB.stl"),
+    ("01-final/carry-tent-2em1/silakka-case-67mm.stl", "3-Carry-Case-Transporte/silakka-case-67mm-keycaps-xda.stl"),
     ("01-final/carry-tent-2em1/silakka54-case.stl", "3-Carry-Case-Transporte/silakka-case-50mm-padrao.stl"),
 ]
 
 readme_txt = """================================================================================
-SILAKKA54 CUSTOM — PACOTE COMPLETO DE ARQUIVOS STL PARA IMPRESSÃO 3D (FHMB)
+SILAKKA54 CUSTOM — PACOTE COMPLETO DE ARQUIVOS STL PARA IMPRESSÃO 3D (FABIO)
 ================================================================================
 
 HARDWARE COMPRADO:
@@ -59,7 +59,7 @@ CONTEÚDO DO PACOTE:
   └── silakka54-tilt-wedge-ajuste.stl     (Cunha para ajuste fino de inclinação)
 
 📂 3-Carry-Case-Transporte/
-  ├── silakka-case-67mm-FHMB.stl          (Estojo Carry Case 67mm personalizado com "FHMB" e "silakka54")
+  ├── silakka-case-67mm-keycaps-xda.stl   (Estojo Carry Case 67mm 100% liso e limpo para Keycaps XDA + Tenting)
   └── silakka-case-50mm-padrao.stl        (Estojo Carry Case 50mm padrão)
 
 DICAS DE IMPRESSÃO 3D & ESTABILIDADE NA MESA:
@@ -71,7 +71,7 @@ DICAS DE IMPRESSÃO 3D & ESTABILIDADE NA MESA:
    - Apoios de Palma: 25% a 35% Gyroid para excelente solidez e peso (150g a 180g cada lado).
 4. Estabilidade & Pés Antiderrapantes (Bumpons):
    - Cada apoio e suporte possui 4 cavidades de 8.5 mm x 1.2 mm na base.
-   - Cole pés adesivos de silicone/borracha de 8mm a 8.5mm. O silicone tem aderência enorme em mesas de madeira, vidro e deskpads, travando o apoio no lugar mesmo sob apoio do braço!
+   - Cole pés adesivos de silicone/borracha de 8mm a 8.5mm para travar o teclado e apoios na mesa.
 ================================================================================
 """
 

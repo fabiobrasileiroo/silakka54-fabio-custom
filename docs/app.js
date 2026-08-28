@@ -174,12 +174,12 @@ const PIECES = [
   // --- TIER 3: CARRY CASE TRANSPORTE 2-EM-1 ---
   {
     id: 'carry-67mm',
-    name: '3. Carry Case 67 mm (FHMB)',
+    name: '3. Carry Case 67 mm (Keycaps XDA)',
     path: '01-final/carry-tent-2em1/silakka-case-67mm.stl',
     preview: '01-final/previews/preview-carry-67mm.png',
     color: 0xd4a373,
     category: '3. Carry Case 2-em-1',
-    desc: '⭐ Personalizado com "FHMB" + "silakka54" (fonte cursiva elegante) centralizado na parede principal externa. Altura de 67mm para suas Keycaps XDA.',
+    desc: '⭐ Estojo de transporte com altura estendida de 67mm (100% liso e limpo) para acomodar o teclado montado com a plataforma de tenting e Keycaps XDA.',
   },
   {
     id: 'carry-case',
@@ -377,7 +377,7 @@ function setComboScene() {
             <div class="desc">
               <strong>1. Esquerda:</strong> Slim Case LH com gravação "foi javascript que me deu" e tampa MCU "F + linux"<br />
               <strong>2. Centro:</strong> Plataforma Tent &amp; Tilt (10–15°) com Apoio de Palma anatômico acoplado<br />
-              <strong>3. Direita:</strong> Carry Case 67mm personalizado (FHMB + silakka54)
+              <strong>3. Direita:</strong> Carry Case 67mm (Estojo de Transporte 100% liso para Keycaps XDA)
             </div>`;
         }
       },
