@@ -250,31 +250,48 @@ function fitCameraToMesh(box, zoomFactor = 1.0) {
   controls.update();
 }
 
+let currentLoadId = 0;
+
 function clearSceneMesh() {
-  if (mesh) {
-    scene.remove(mesh);
-    if (mesh.traverse) {
-      mesh.traverse((child) => {
+  const toRemove = [];
+  scene.traverse((obj) => {
+    if (obj !== scene && obj !== key && obj !== fill && obj !== grid && !obj.isLight) {
+      if (obj.parent === scene) {
+        toRemove.push(obj);
+      }
+    }
+  });
+  toRemove.forEach((obj) => {
+    scene.remove(obj);
+    if (obj.traverse) {
+      obj.traverse((child) => {
         if (child.geometry) child.geometry.dispose();
         if (child.material) child.material.dispose();
       });
     } else {
-      if (mesh.geometry) mesh.geometry.dispose();
-      if (mesh.material) mesh.material.dispose();
+      if (obj.geometry) obj.geometry.dispose();
+      if (obj.material) obj.material.dispose();
     }
-    mesh = null;
-  }
+  });
+  mesh = null;
 }
 
 function setPiece(piece) {
   const meta = document.getElementById('piece-meta');
   meta.innerHTML = '<span class="badge-loading">Carregando STL do CDN…</span>';
 
+  currentLoadId++;
+  const thisLoadId = currentLoadId;
   clearSceneMesh();
 
   new STLLoader().load(
     CDN(piece.path),
     (geometry) => {
+      if (thisLoadId !== currentLoadId) {
+        geometry.dispose();
+        return;
+      }
+      clearSceneMesh();
       geometry.computeVertexNormals();
       mesh = new THREE.Mesh(geometry, materialFor(piece.color));
       // STL z-up → y-up: deita a peça e apoia a base sobre o grid.
@@ -296,6 +313,7 @@ function setPiece(piece) {
     },
     undefined,
     (err) => {
+      if (thisLoadId !== currentLoadId) return;
       console.error(err);
       meta.innerHTML = '<span class="badge-error">Falha ao carregar STL.</span>';
     }
@@ -309,6 +327,8 @@ function setComboScene() {
   const meta = document.getElementById('piece-meta');
   meta.innerHTML = '<span class="badge-loading">Montando os 3 Modelos lado a lado no 3D…</span>';
 
+  currentLoadId++;
+  const thisLoadId = currentLoadId;
   clearSceneMesh();
 
   const group = new THREE.Group();
@@ -333,6 +353,10 @@ function setComboScene() {
     loader.load(
       CDN(part.path),
       (geo) => {
+        if (thisLoadId !== currentLoadId) {
+          geo.dispose();
+          return;
+        }
         geo.computeVertexNormals();
         const m = new THREE.Mesh(geo, materialFor(part.color));
         m.rotation.x = -Math.PI / 2;
@@ -350,14 +374,17 @@ function setComboScene() {
           meta.innerHTML = `
             <span class="name">🌟 Combo 3-em-1 Completo (3 Modelos Lado a Lado)</span>
             <div class="desc">
-              <strong>1. Esquerda:</strong> Slim Case LH com gravação "Foi o JavaScript..." e tampa MCU "F + linux"<br />
+              <strong>1. Esquerda:</strong> Slim Case LH com gravação "foi javascript que me deu" e tampa MCU "F + linux"<br />
               <strong>2. Centro:</strong> Plataforma Tent &amp; Tilt (10–15°) com Apoio de Palma anatômico acoplado<br />
-              <strong>3. Direita:</strong> Carry Case 67mm para transportar o teclado montado com as Keycaps XDA
+              <strong>3. Direita:</strong> Carry Case 67mm personalizado (FábioHMB + Tux)
             </div>`;
         }
       },
       undefined,
-      (err) => console.error(err)
+      (err) => {
+        if (thisLoadId !== currentLoadId) return;
+        console.error(err);
+      }
     );
   });
 }
