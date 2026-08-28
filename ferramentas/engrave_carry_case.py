@@ -2,7 +2,7 @@
 """engrave_carry_case.py — Gravação personalizada na parede principal do Carry Case (67mm).
 
 Gera:
-  - silakka-case-67mm.stl com gravação nítida na parede principal visível:
+  - silakka-case-67mm.stl com gravação 100% legível (não-espelhada):
       - Tux (Linux) à esquerda
       - "FHMB" no topo direito
       - "silakka54" (cursiva) embaixo à direita
@@ -48,26 +48,25 @@ def engrave_carry_case_67mm(name="FHMB", subtitle="silakka54", out_path=None):
 
     # 1. Nome principal
     p_name = ec.make_text_polygon(name, cap=9.0, font=font_name)
-    b_name = p_name.bounds
-    w_name = b_name[2] - b_name[0]
 
     # 2. Subtítulo cursivo elegante
     p_sub = ec.make_text_polygon(subtitle, cap=6.8, font=font_script)
-    b_sub = p_sub.bounds
 
     # 3. Ícone Tux do Linux
     p_tux = ec.load_tux_polygon(height=18.0).simplify(0.08, preserve_topology=True).buffer(0)
-    b_tux = p_tux.bounds
-    w_tux = b_tux[2] - b_tux[0]
+    w_tux = p_tux.bounds[2] - p_tux.bounds[0]
 
     # Arranjo 2D: Tux à esquerda, Nome no topo direito, Subtítulo embaixo à direita
-    p_tux = shapely.affinity.translate(p_tux, xoff=-b_tux[0], yoff=-b_tux[1])
-    p_name = shapely.affinity.translate(p_name, xoff=-b_name[0] + w_tux + 5.0, yoff=-b_name[1] + 9.5)
-    p_sub = shapely.affinity.translate(p_sub, xoff=-b_sub[0] + w_tux + 6.0, yoff=-b_sub[1] + 0.0)
+    p_tux = shapely.affinity.translate(p_tux, xoff=-p_tux.bounds[0], yoff=-p_tux.bounds[1])
+    p_name = shapely.affinity.translate(p_name, xoff=-p_name.bounds[0] + w_tux + 5.0, yoff=-p_name.bounds[1] + 9.5)
+    p_sub = shapely.affinity.translate(p_sub, xoff=-p_sub.bounds[0] + w_tux + 6.0, yoff=-p_sub.bounds[1] + 0.0)
 
     badge_2d = unary_union([p_tux, p_name, p_sub])
     bb = badge_2d.bounds
     badge_2d = shapely.affinity.translate(badge_2d, xoff=-(bb[0] + bb[2]) / 2.0, yoff=-(bb[1] + bb[3]) / 2.0)
+
+    # Desespelha horizontalmente (xfact = -1) para leitura direta da esquerda para a direita na parede externa
+    badge_2d = shapely.affinity.scale(badge_2d, xfact=-1, yfact=1, origin="center")
 
     # Extrude badge em Z por 2.0mm
     badge_solid = eb.extrude_any(badge_2d, height=2.0)
@@ -98,7 +97,7 @@ def engrave_carry_case_67mm(name="FHMB", subtitle="silakka54", out_path=None):
         os.makedirs(os.path.dirname(out_path), exist_ok=True)
         tri.export(out_path)
 
-    print(f"Generated Carry Case 67mm ({name} + {subtitle} + Tux): faces={len(tri.faces)}, vol={tri.volume:.1f} mm³")
+    print(f"Generated Carry Case 67mm ({name} + {subtitle} + Tux un-mirrored): faces={len(tri.faces)}, vol={tri.volume:.1f} mm³")
     return tri
 
 
