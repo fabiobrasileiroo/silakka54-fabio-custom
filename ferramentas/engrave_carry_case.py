@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""engrave_carry_case.py — Gravação personalizada do Carry Case (67mm e 50mm).
+"""engrave_carry_case.py — Gravação personalizada na parede principal do Carry Case (67mm).
 
 Personalização solicitada:
-  - Nome principal: "FábioHMB" (fonte Audiowide)
-  - Subtexto: "silakka54" (fonte cursiva de escrita bonita - Dancing Script)
+  - Nome principal: "FHMB" (fonte Audiowide)
+  - Subtexto: "silakka54" (fonte cursiva elegante - Dancing Script)
   - Ícone do Linux (Tux) posicionado ao lado esquerdo do texto.
+  - Parede principal externa visível (X = 45.0, Y = 110.0, Z = 33.5).
 """
 import argparse
 import os
@@ -48,7 +49,7 @@ def poly_to_manifold_extrusion(poly, height=1.0):
     return manifold3d.Manifold.extrude(cs, height=height)
 
 
-def engrave_carry_case_67mm(name="FábioHMB", subtitle="silakka54", out_path=None):
+def engrave_carry_case_67mm(name="FHMB", subtitle="silakka54", out_path=None):
     in_stl = os.path.join(CARRY_ORIG_DIR, "silakka-case-67mm.stl")
     case_m = trimesh.load(in_stl)
 
@@ -56,38 +57,36 @@ def engrave_carry_case_67mm(name="FábioHMB", subtitle="silakka54", out_path=Non
     font_script = os.path.join(FONTS_DIR, "dancing-script.ttf")
 
     # 1. Nome principal
-    # Remove acento se a fonte Audiowide não tiver glyph de 'á' nativo
-    clean_name = "FabioHMB" if name in ("FábioHMB", "FabioHMB") else name
-    p_name = ec.make_text_polygon(clean_name, cap=6.5, font=font_name)
+    p_name = ec.make_text_polygon(name, cap=9.0, font=font_name)
     b_name = p_name.bounds
     w_name = b_name[2] - b_name[0]
 
-    # 2. Subtítulo cursivo bonito
-    p_sub = ec.make_text_polygon(subtitle, cap=5.2, font=font_script)
+    # 2. Subtítulo cursivo elegante
+    p_sub = ec.make_text_polygon(subtitle, cap=6.8, font=font_script)
     b_sub = p_sub.bounds
 
     # 3. Ícone Tux do Linux
-    p_tux = ec.load_tux_polygon(height=13.5).simplify(0.08, preserve_topology=True).buffer(0)
+    p_tux = ec.load_tux_polygon(height=18.0).simplify(0.08, preserve_topology=True).buffer(0)
     b_tux = p_tux.bounds
     w_tux = b_tux[2] - b_tux[0]
 
     # Arranjo 2D: Tux à esquerda, Nome no topo direito, Subtítulo embaixo à direita
     p_tux = shapely.affinity.translate(p_tux, xoff=-b_tux[0], yoff=-b_tux[1])
-    p_name = shapely.affinity.translate(p_name, xoff=-b_name[0] + w_tux + 4.5, yoff=-b_name[1] + 7.0)
-    p_sub = shapely.affinity.translate(p_sub, xoff=-b_sub[0] + w_tux + 5.5, yoff=-b_sub[1] + 0.0)
+    p_name = shapely.affinity.translate(p_name, xoff=-b_name[0] + w_tux + 5.0, yoff=-b_name[1] + 9.5)
+    p_sub = shapely.affinity.translate(p_sub, xoff=-b_sub[0] + w_tux + 6.0, yoff=-b_sub[1] + 0.0)
 
     badge_2d = unary_union([p_tux, p_name, p_sub])
     bb = badge_2d.bounds
     badge_2d = shapely.affinity.translate(badge_2d, xoff=-(bb[0] + bb[2]) / 2.0, yoff=-(bb[1] + bb[3]) / 2.0)
 
-    # Extrude badge (profundidade 2.0mm para o corte)
+    # Extrude badge em Z por 2.0mm
     m_badge = poly_to_manifold_extrusion(badge_2d, height=2.0)
 
-    # Rotaciona para a parede frontal (XZ facing -Y)
-    m_badge = m_badge.rotate([90, 0, 0])
+    # Rotaciona para a parede principal externa X = 45.0 (2D X -> +Y, 2D Y -> +Z, depth -> +X)
+    m_badge = m_badge.rotate([0, 90, 0]).rotate([0, 0, 90])
 
-    # Posiciona na face frontal: X=110.0, Z=33.5, Y=20.83 + 0.50 (profundidade de corte 0.50mm)
-    m_badge = m_badge.translate([110.0, 20.83 + 0.50, 33.5])
+    # Posiciona na parede externa: X = 45.0 (sink 0.50mm), Y = 110.0 (centro do case), Z = 33.5 (centro da altura)
+    m_badge = m_badge.translate([45.0 - 0.50, 110.0, 33.5])
 
     m_case = to_manifold(case_m)
     m_final = m_case - m_badge
@@ -97,13 +96,13 @@ def engrave_carry_case_67mm(name="FábioHMB", subtitle="silakka54", out_path=Non
         os.makedirs(os.path.dirname(out_path), exist_ok=True)
         tri.export(out_path)
 
-    print(f"Generated Carry Case 67mm ({name} + {subtitle} + Tux): vol={m_final.volume():.1f} mm³, faces={len(tri.faces)}")
+    print(f"Generated Carry Case 67mm ({name} + {subtitle} + Tux na parede externa): wt={tri.is_watertight}, vol={tri.volume:.1f} mm³, faces={len(tri.faces)}")
     return tri
 
 
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
-    engrave_carry_case_67mm("FábioHMB", "silakka54",
+    engrave_carry_case_67mm("FHMB", "silakka54",
                             os.path.join(OUT_DIR, "silakka-case-67mm.stl"))
 
 
