@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """engrave_carry_case.py — Gravação personalizada na parede principal do Carry Case (67mm).
 
-Personalização solicitada:
-  - Nome principal: "FHMB" (fonte Audiowide)
-  - Subtexto: "silakka54" (fonte cursiva elegante - Dancing Script)
-  - Ícone do Linux (Tux) posicionado ao lado esquerdo do texto.
-  - Parede principal externa visível (X = 45.0, Y = 110.0, Z = 33.5).
+Gera:
+  - silakka-case-67mm.stl com gravação nítida na parede principal visível:
+      - Tux (Linux) à esquerda
+      - "FHMB" no topo direito
+      - "silakka54" (cursiva) embaixo à direita
 """
 import argparse
 import os
@@ -20,6 +20,7 @@ from shapely.ops import unary_union
 import trimesh
 
 import ferramentas.engrave_cover as ec
+import ferramentas.engrave_baseplate as eb
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 FONTS_DIR = os.path.join(SCRIPT_DIR, "fonts")
@@ -36,17 +37,6 @@ def to_manifold(m):
 def from_manifold(mani):
     mesh_out = mani.to_mesh()
     return trimesh.Trimesh(vertices=mesh_out.vert_properties[:, :3], faces=mesh_out.tri_verts)
-
-
-def poly_to_manifold_extrusion(poly, height=1.0):
-    polys = poly.geoms if poly.geom_type == "MultiPolygon" else [poly]
-    paths = []
-    for g in polys:
-        paths.append(np.array(g.exterior.coords)[:, :2].tolist())
-        for hole in g.interiors:
-            paths.append(np.array(hole.coords)[:, :2].tolist())
-    cs = manifold3d.CrossSection(paths, manifold3d.FillRule.EvenOdd)
-    return manifold3d.Manifold.extrude(cs, height=height)
 
 
 def engrave_carry_case_67mm(name="FHMB", subtitle="silakka54", out_path=None):
@@ -80,15 +70,27 @@ def engrave_carry_case_67mm(name="FHMB", subtitle="silakka54", out_path=None):
     badge_2d = shapely.affinity.translate(badge_2d, xoff=-(bb[0] + bb[2]) / 2.0, yoff=-(bb[1] + bb[3]) / 2.0)
 
     # Extrude badge em Z por 2.0mm
-    m_badge = poly_to_manifold_extrusion(badge_2d, height=2.0)
+    badge_solid = eb.extrude_any(badge_2d, height=2.0)
 
-    # Rotaciona para a parede principal externa X = 45.0 (2D X -> +Y, 2D Y -> +Z, depth -> +X)
-    m_badge = m_badge.rotate([0, 90, 0]).rotate([0, 0, 90])
+    # 2D X -> +Y, 2D Y -> +Z, 2D Z -> +X
+    M = np.array([
+        [0, 0, 1, 0],
+        [1, 0, 0, 0],
+        [0, 1, 0, 0],
+        [0, 0, 0, 1]
+    ], dtype=float)
+    badge_solid.apply_transform(M)
 
-    # Posiciona na parede externa: X = 45.0 (sink 0.50mm), Y = 110.0 (centro do case), Z = 33.5 (centro da altura)
-    m_badge = m_badge.translate([45.0 - 0.50, 110.0, 33.5])
+    # Parede externa está em X = 45.88. Profundidade 0.55mm -> corte atinge X = 46.43
+    b_curr = badge_solid.bounds
+    badge_solid.apply_translation([
+        46.43 - b_curr[1][0],
+        110.0 - (b_curr[0][1] + b_curr[1][1]) / 2.0,
+        33.5 - (b_curr[0][2] + b_curr[1][2]) / 2.0
+    ])
 
     m_case = to_manifold(case_m)
+    m_badge = to_manifold(badge_solid)
     m_final = m_case - m_badge
 
     tri = from_manifold(m_final)
@@ -96,7 +98,7 @@ def engrave_carry_case_67mm(name="FHMB", subtitle="silakka54", out_path=None):
         os.makedirs(os.path.dirname(out_path), exist_ok=True)
         tri.export(out_path)
 
-    print(f"Generated Carry Case 67mm ({name} + {subtitle} + Tux na parede externa): wt={tri.is_watertight}, vol={tri.volume:.1f} mm³, faces={len(tri.faces)}")
+    print(f"Generated Carry Case 67mm ({name} + {subtitle} + Tux): faces={len(tri.faces)}, vol={tri.volume:.1f} mm³")
     return tri
 
 
