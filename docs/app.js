@@ -151,6 +151,24 @@ const PIECES = [
     category: '2. Ergonomia Tent/Tilt',
     desc: 'Cunha de inclinação para ajuste fino da inclinação negativa/positiva.',
   },
+  {
+    id: 'palm-rest-L',
+    name: '2. Tented Palm Rest (LH)',
+    path: '01-final/carry-tent-2em1/silakka54-tented-palm-rest-LH.stl',
+    preview: '01-final/previews/preview-palm-rest-LH.png',
+    color: 0x48bb78,
+    category: '2. Ergonomia Tent/Tilt',
+    desc: '⭐ Apoio de Palma Ergonômico com Tenting (LH): inclinação de 12.4°, concavidade anatômica para repouso da palma e alívio do túnel do carpo.',
+  },
+  {
+    id: 'palm-rest-R',
+    name: '2. Tented Palm Rest (RH)',
+    path: '01-final/carry-tent-2em1/silakka54-tented-palm-rest-RH.stl',
+    preview: '01-final/previews/preview-palm-rest-RH.png',
+    color: 0x38a169,
+    category: '2. Ergonomia Tent/Tilt',
+    desc: '⭐ Apoio de Palma Ergonômico com Tenting (RH): inclinação de 12.4°, sólido e resistente com encaixe para pés de borracha.',
+  },
 
   // --- TIER 3: CARRY CASE TRANSPORTE 2-EM-1 ---
   {

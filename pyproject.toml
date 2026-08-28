@@ -13,6 +13,7 @@ dependencies = [
     "manifold3d",
     "rtree",
     "scipy",
+    "networkx>=3.6.1",
 ]
 
 [tool.poetry]
