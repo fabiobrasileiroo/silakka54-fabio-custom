@@ -66,7 +66,7 @@ const PIECES = [
     preview: '01-final/previews/preview-slim-case-js-LH.png',
     color: 0x38d39f,
     category: '1. Slim Screwless',
-    desc: 'Case slim sem parafusos (esquerda): fundo sólido com "foi javascript que me deu" (fonte IntelliJ) com margens confortáveis.',
+    desc: 'Case slim sem parafusos (esquerda): frase "foi javascript que me deu" (fonte IntelliJ) gravada na lateral externa com leitura direta.',
   },
   {
     id: 'slim-case-R',
@@ -75,7 +75,7 @@ const PIECES = [
     preview: '01-final/previews/preview-slim-case-java-RH.png',
     color: 0x2bb886,
     category: '1. Slim Screwless',
-    desc: 'Case slim sem parafusos (direita): fundo sólido com "foi java que me deu" (fonte IntelliJ) com margens confortáveis.',
+    desc: 'Case slim sem parafusos (direita): frase "foi java que me deu" (fonte IntelliJ) gravada na lateral externa com leitura direta.',
   },
   {
     id: 'slim-mcu-L',

@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""engrave_slim_case.py — Gravação das frases com fonte JetBrains Mono (IntelliJ)
-e margens seguras na base sólida da Slim Screwless Case (Johnny5iv).
+"""engrave_slim_case.py — Gravação das frases na parede LATERAL externa da Slim Screwless Case (Johnny5iv).
 
 Gera:
-  - LH: silakka54-slim-case-js-LH.stl ("foi javascript que me deu")
-  - RH: silakka54-slim-case-java-RH.stl ("foi java que me deu")
+  - LH: silakka54-slim-case-js-LH.stl ("foi javascript que me deu" gravado na lateral externa)
+  - RH: silakka54-slim-case-java-RH.stl ("foi java que me deu" gravado na lateral externa)
 """
 import os
 import sys
@@ -37,43 +36,40 @@ def from_manifold(mani):
 
 
 def engrave_slim_case(side="LH", text="foi javascript que me deu", out_path=None):
-    # Fonte oficial do IntelliJ (JetBrains Mono Bold)
     font = os.path.join(FONTS_DIR, "jetbrains-mono-bold.ttf")
 
     if side == "LH":
         in_stl = os.path.join(SLIM_ORIG_DIR, "silakka54_top_bottom_left.stl")
-        # Posição central na faixa sólida com margem confortável de 6.5mm das bordas
-        xc = 31.5
-        yc = -75.0
-        rot = 90.0
+        base_m = trimesh.load(in_stl)
+        # Altura da letra 3.6mm, centralizada na parede lateral externa (X = 22.98, Z = 7.0, Y = -78.0)
+        p = eb.make_text_polygon(text, cap=3.6, font=font)
+        s = eb.extrude_any(p, height=1.0)
+        # Transformação: 2D X -> +Y, 2D Y -> +Z, 2D Z -> +X
+        M = np.array([[0, 0, 1, 0], [1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1]], dtype=float)
+        s.apply_transform(M)
+        b_curr = s.bounds
+        s.apply_translation([
+            22.98 - b_curr[0][0] - 0.55 + 0.45,
+            -78.0 - (b_curr[0][1] + b_curr[1][1]) / 2.0,
+            7.0 - (b_curr[0][2] + b_curr[1][2]) / 2.0
+        ])
     else:
         in_stl = os.path.join(SLIM_ORIG_DIR, "silakka54_top_bottom_right.stl")
-        xc = -31.5
-        yc = -75.0
-        rot = -90.0
+        base_m = trimesh.load(in_stl)
+        p = eb.make_text_polygon(text, cap=3.6, font=font)
+        s = eb.extrude_any(p, height=1.0)
+        # Transformação RH: 2D X -> -Y (leitura da esq p/ dir ao olhar de fora), 2D Y -> +Z, 2D Z -> -X
+        M = np.array([[0, 0, -1, 0], [-1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1]], dtype=float)
+        s.apply_transform(M)
+        b_curr = s.bounds
+        s.apply_translation([
+            -22.98 - b_curr[1][0] + 0.55 - 0.45,
+            -78.0 - (b_curr[0][1] + b_curr[1][1]) / 2.0,
+            7.0 - (b_curr[0][2] + b_curr[1][2]) / 2.0
+        ])
 
-    base_m = trimesh.load(in_stl)
-
-    # 1. Cria o polígono do texto com altura de letra 3.8mm (JetBrains Mono)
-    p = eb.make_text_polygon(text, cap=3.8, font=font)
-
-    # 2. Espelhamento 2D no eixo X (xfact=-1) para leitura direta por baixo
-    p = shapely.affinity.scale(p, xfact=-1, yfact=1, origin="center")
-
-    # 3. Rotaciona e translada para a posição com margens generosas
-    p = shapely.affinity.rotate(p, rot, origin="center")
-    tb = p.bounds
-    txc = (tb[0] + tb[2]) / 2.0
-    tyc = (tb[1] + tb[3]) / 2.0
-    p = shapely.affinity.translate(p, xoff=xc - txc, yoff=yc - tyc)
-
-    # 4. Extrusão do corte (profundidade 0.45mm na face z=0.60..1.05)
-    text_solid = eb.extrude_any(p, height=0.45)
-    text_solid.apply_translation([0, 0, 0.60])
-
-    # 5. Diferença booleana com Manifold3D
     m_base = to_manifold(base_m)
-    m_text = to_manifold(text_solid)
+    m_text = to_manifold(s)
     m_final = m_base - m_text
 
     tri_out = from_manifold(m_final)
@@ -82,7 +78,7 @@ def engrave_slim_case(side="LH", text="foi javascript que me deu", out_path=None
         os.makedirs(os.path.dirname(out_path), exist_ok=True)
         tri_out.export(out_path)
 
-    print(f"Generated Slim Case {side} ({text}): wt={tri_out.is_watertight}, vol={tri_out.volume:.1f} mm³, faces={len(tri_out.faces)}")
+    print(f"Generated Slim Case {side} ({text} na lateral): wt={tri_out.is_watertight}, vol={tri_out.volume:.1f} mm³, faces={len(tri_out.faces)}")
     return tri_out
 
 
