@@ -163,10 +163,56 @@ h1 .accent { color: var(--accent); }
 .chip.highlight { color: #58a6ff; border-color: rgba(88, 166, 255, 0.4); background: rgba(88, 166, 255, 0.1); }
 .chip.highlight:hover { background: rgba(88, 166, 255, 0.25); color: #ffffff; }
 
+.viewer-nav-panel {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cat-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 9px 16px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: all 0.15s ease;
+}
+.cat-btn:hover {
+  color: var(--text);
+  border-color: #3d4a63;
+  background: #222b3d;
+}
+.cat-btn.active {
+  color: #1a1206;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.piece-selector-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
 .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
 
 .piece-meta {
-  margin-top: 14px;
+  margin-top: 12px;
   padding: 14px 18px;
   border: 1px solid var(--border);
   border-radius: 10px;

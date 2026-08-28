@@ -245,28 +245,39 @@ function fitCameraToMesh(box, zoomFactor = 1.0) {
   const maxDim = Math.max(size.x, size.y, size.z);
   const fov = camera.fov * (Math.PI / 180);
   const dist = (maxDim / (2 * Math.tan(fov / 2))) * zoomFactor;
-  camera.position.set(dist * 1.1, dist * 0.7, dist * 1.3);
+  camera.position.set(dist * 0.9, dist * 0.7, dist * 1.2);
   controls.target.copy(box.getCenter(new THREE.Vector3()));
   controls.update();
+}
+
+function clearSceneMesh() {
+  if (mesh) {
+    scene.remove(mesh);
+    if (mesh.traverse) {
+      mesh.traverse((child) => {
+        if (child.geometry) child.geometry.dispose();
+        if (child.material) child.material.dispose();
+      });
+    } else {
+      if (mesh.geometry) mesh.geometry.dispose();
+      if (mesh.material) mesh.material.dispose();
+    }
+    mesh = null;
+  }
 }
 
 function setPiece(piece) {
   const meta = document.getElementById('piece-meta');
   meta.innerHTML = '<span class="badge-loading">Carregando STL do CDN…</span>';
 
-  if (mesh) {
-    scene.remove(mesh);
-    mesh.geometry.dispose();
-    mesh.material.dispose();
-    mesh = null;
-  }
+  clearSceneMesh();
 
   new STLLoader().load(
     CDN(piece.path),
     (geometry) => {
       geometry.computeVertexNormals();
       mesh = new THREE.Mesh(geometry, materialFor(piece.color));
-      // STL z-up → y-up: deita a peça e apoia a base sobre o grid (acima dos quadradinhos).
+      // STL z-up → y-up: deita a peça e apoia a base sobre o grid.
       mesh.rotation.x = -Math.PI / 2;
       const box = new THREE.Box3().setFromObject(mesh);
       const center = box.getCenter(new THREE.Vector3());
@@ -292,26 +303,110 @@ function setPiece(piece) {
 }
 
 // ------------------------------------------------------------
-// Tabs
+// Visualização Combo 3-em-1 (3 Modelos Lado a Lado)
 // ------------------------------------------------------------
-const tabsHost = document.getElementById('piece-tabs');
-const chips = PIECES.map((piece) => {
-  const btn = document.createElement('button');
-  btn.className = 'chip';
-  btn.textContent = piece.name;
-  btn.onclick = () => {
-    chips.forEach((c) => c.classList.remove('active'));
-    btn.classList.add('active');
-    setPiece(piece);
-  };
-  tabsHost.appendChild(btn);
-  return btn;
-});
-chips[0].classList.add('active');
-setPiece(PIECES[0]);
+function setComboScene() {
+  const meta = document.getElementById('piece-meta');
+  meta.innerHTML = '<span class="badge-loading">Montando os 3 Modelos lado a lado no 3D…</span>';
+
+  clearSceneMesh();
+
+  const group = new THREE.Group();
+  mesh = group;
+  scene.add(group);
+
+  const loader = new STLLoader();
+  const comboParts = [
+    // 1. Slim Case (Esquerda, X = -200)
+    { path: '01-final/slim-screwless-case/silakka54-slim-case-js-LH.stl', color: 0x38d39f, offset: [-200, 0, 0] },
+    { path: '01-final/slim-screwless-case/silakka54-slim-mcu-cover-F-linux-LH.stl', color: 0xf2a33c, offset: [-200, 0, 0] },
+    // 2. Plataforma Tent & Tilt + Palm Rest (Centro, X = 0)
+    { path: '01-final/carry-tent-2em1/silakka54_left_base_support.stl', color: 0xa5d6ff, offset: [0, 0, 40] },
+    { path: '01-final/carry-tent-2em1/silakka54_left_side_shell.stl', color: 0x7ee787, offset: [0, 0, 40] },
+    { path: '01-final/carry-tent-2em1/silakka54-tented-palm-rest-LH.stl', color: 0x48bb78, offset: [-50, 0, -80] },
+    // 3. Carry Case 67mm (Direita, X = +200)
+    { path: '01-final/carry-tent-2em1/silakka-case-67mm.stl', color: 0xd4a373, offset: [200, 0, 0] },
+  ];
+
+  let loadedCount = 0;
+  comboParts.forEach((part) => {
+    loader.load(
+      CDN(part.path),
+      (geo) => {
+        geo.computeVertexNormals();
+        const m = new THREE.Mesh(geo, materialFor(part.color));
+        m.rotation.x = -Math.PI / 2;
+        const b = new THREE.Box3().setFromObject(m);
+        const c = b.getCenter(new THREE.Vector3());
+        m.position.x = part.offset[0] - c.x;
+        m.position.z = part.offset[2] - c.z;
+        b.setFromObject(m);
+        m.position.y = GRID_Y - b.min.y + part.offset[1];
+
+        group.add(m);
+        loadedCount++;
+        if (loadedCount === comboParts.length) {
+          fitCameraToMesh(new THREE.Box3().setFromObject(group), 1.05);
+          meta.innerHTML = `
+            <span class="name">🌟 Combo 3-em-1 Completo (3 Modelos Lado a Lado)</span>
+            <div class="desc">
+              <strong>1. Esquerda:</strong> Slim Case LH com gravação "Foi o JavaScript..." e tampa MCU "F + linux"<br />
+              <strong>2. Centro:</strong> Plataforma Tent &amp; Tilt (10–15°) com Apoio de Palma anatômico acoplado<br />
+              <strong>3. Direita:</strong> Carry Case 67mm para transportar o teclado montado com as Keycaps XDA
+            </div>`;
+        }
+      },
+      undefined,
+      (err) => console.error(err)
+    );
+  });
+}
 
 // ------------------------------------------------------------
-// Controles overlays & Zoom
+// Categorias & Navegação Externa (FORA do 3D)
+// ------------------------------------------------------------
+const pieceTabsHost = document.getElementById('piece-tabs');
+const catButtons = document.querySelectorAll('.cat-btn');
+
+function renderCategoryPieces(category) {
+  pieceTabsHost.innerHTML = '';
+  if (category === 'combo') {
+    pieceTabsHost.innerHTML = '<span class="muted small">Exibindo os 3 modelos montados lado a lado no espaço 3D.</span>';
+    setComboScene();
+    return;
+  }
+
+  const filtered = PIECES.filter((p) => p.category === category);
+  filtered.forEach((piece, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'chip';
+    btn.textContent = piece.name;
+    btn.onclick = () => {
+      pieceTabsHost.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+      btn.classList.add('active');
+      setPiece(piece);
+    };
+    if (idx === 0) {
+      btn.classList.add('active');
+      setPiece(piece);
+    }
+    pieceTabsHost.appendChild(btn);
+  });
+}
+
+catButtons.forEach((btn) => {
+  btn.onclick = () => {
+    catButtons.forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCategoryPieces(btn.getAttribute('data-cat'));
+  };
+});
+
+// Inicia com o Combo 3-em-1 Completo Lado a Lado
+renderCategoryPieces('combo');
+
+// ------------------------------------------------------------
+// Controles overlays & Zoom (Super-Zoom)
 // ------------------------------------------------------------
 const autoRotate = document.getElementById('btn-autorotate');
 autoRotate.addEventListener('click', () => {
@@ -356,7 +451,7 @@ host.addEventListener('dblclick', (event) => {
   mouse.x = ((event.clientX - rect.left) / host.clientWidth) * 2 - 1;
   mouse.y = -((event.clientY - rect.top) / host.clientHeight) * 2 + 1;
   raycaster.setFromCamera(mouse, camera);
-  const intersects = raycaster.intersectObject(mesh);
+  const intersects = raycaster.intersectObjects(mesh.children && mesh.children.length ? mesh.children : [mesh], true);
   if (intersects.length > 0) {
     const p = intersects[0].point;
     controls.target.copy(p);
