@@ -3,7 +3,7 @@
 
 Gera:
   - silakka-case-67mm.stl com gravação 100% legível (não-espelhada):
-      - Tux (Linux oficial vetorial com pezinhos anatômicos limpos e suaves) à esquerda
+      - Tux clássico original (Larry Ewing) com patinhas arredondadas e definidas à esquerda
       - "FHMB" no topo direito
       - "silakka54" (cursiva) embaixo à direita
 """
@@ -15,13 +15,12 @@ import manifold3d
 import numpy as np
 import shapely
 import shapely.affinity
-from shapely.geometry import Polygon, MultiPolygon
+from shapely.geometry import Polygon, MultiPolygon, Point
 from shapely.ops import unary_union
 import trimesh
 
 import ferramentas.engrave_cover as ec
 import ferramentas.engrave_baseplate as eb
-from ferramentas.parse_tux import load_vector_tux
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 FONTS_DIR = os.path.join(SCRIPT_DIR, "fonts")
@@ -40,6 +39,42 @@ def from_manifold(mani):
     return trimesh.Trimesh(vertices=mesh_out.vert_properties[:, :3], faces=mesh_out.tri_verts)
 
 
+def create_classic_tux_polygon(height=18.0):
+    head = Point(7.5, 14.2).buffer(3.0)
+    body_base = Point(7.5, 6.2).buffer(5.2)
+    neck = Polygon([(4.2, 11.5), (10.8, 11.5), (12.2, 7.0), (2.8, 7.0)]).buffer(0.8)
+
+    wing_l = shapely.affinity.rotate(Point(2.4, 7.8).buffer(1.4), -22, origin=(2.4, 7.8))
+    wing_l = shapely.affinity.scale(wing_l, xfact=1.2, yfact=2.6, origin=(2.4, 7.8))
+
+    wing_r = shapely.affinity.rotate(Point(12.6, 7.8).buffer(1.4), 22, origin=(12.6, 7.8))
+    wing_r = shapely.affinity.scale(wing_r, xfact=1.2, yfact=2.6, origin=(12.6, 7.8))
+
+    # 2 Patinhas clássicas de pinguim bem definidas e arredondadas
+    foot_l = unary_union([
+        Point(1.2, 1.0).buffer(1.2),
+        Point(2.8, 0.8).buffer(1.3),
+        Point(4.5, 1.1).buffer(1.2),
+        Point(3.8, 2.5).buffer(1.8)
+    ]).buffer(0.15)
+
+    foot_r = unary_union([
+        Point(13.8, 1.0).buffer(1.2),
+        Point(12.2, 0.8).buffer(1.3),
+        Point(10.5, 1.1).buffer(1.2),
+        Point(11.2, 2.5).buffer(1.8)
+    ]).buffer(0.15)
+
+    tux_outer = unary_union([head, neck, body_base, wing_l, wing_r, foot_l, foot_r]).buffer(0)
+    tux_poly = tux_outer.buffer(0.3).buffer(-0.3).simplify(0.04, preserve_topology=True)
+
+    h = tux_poly.bounds[3] - tux_poly.bounds[1]
+    tux_final = shapely.affinity.scale(tux_poly, xfact=height / h, yfact=height / h, origin=(0, 0))
+    tb = tux_final.bounds
+    tux_final = shapely.affinity.translate(tux_final, xoff=-tb[0], yoff=-tb[1])
+    return tux_final
+
+
 def engrave_carry_case_67mm(name="FHMB", subtitle="silakka54", out_path=None):
     in_stl = os.path.join(CARRY_ORIG_DIR, "silakka-case-67mm.stl")
     case_m = trimesh.load(in_stl)
@@ -53,8 +88,8 @@ def engrave_carry_case_67mm(name="FHMB", subtitle="silakka54", out_path=None):
     # 2. Subtítulo cursivo elegante
     p_sub = ec.make_text_polygon(subtitle, cap=6.8, font=font_script)
 
-    # 3. Ícone Tux do Linux oficial com pezinhos perfeitos e suaves
-    p_tux = load_vector_tux(height=18.0)
+    # 3. Ícone Tux do Linux clássico com patinhas perfeitas
+    p_tux = create_classic_tux_polygon(height=18.0)
     w_tux = p_tux.bounds[2] - p_tux.bounds[0]
 
     # Arranjo 2D: Tux à esquerda, Nome no topo direito, Subtítulo embaixo à direita
@@ -98,7 +133,7 @@ def engrave_carry_case_67mm(name="FHMB", subtitle="silakka54", out_path=None):
         os.makedirs(os.path.dirname(out_path), exist_ok=True)
         tri.export(out_path)
 
-    print(f"Generated Carry Case 67mm ({name} + {subtitle} + Vector Tux): faces={len(tri.faces)}, vol={tri.volume:.1f} mm³")
+    print(f"Generated Carry Case 67mm ({name} + {subtitle} + Classic Tux): faces={len(tri.faces)}, vol={tri.volume:.1f} mm³")
     return tri
 
 
