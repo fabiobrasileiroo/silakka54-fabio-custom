@@ -51,8 +51,12 @@ e91ead8412eae00a662b66585192e60ea94aee6d5dae1ce9e6ffe8e93edcd0ea  ./01-final/pre
 4f14c2a80d6c7664d804317b3769c254d7a93af4f62d405bb9128550d4f0423a  ./01-final/previews/preview-shell-R.png
 804dc4ee5061b481bbf9cb6d9c978c965c17c70bb4771aee2a4bf89c7169ad19  ./01-final/previews/preview-slim-case-L.png
 da5f01bc730739237c127855533df8ff2cdfaa5b8eab573db58b4755a57cf68d  ./01-final/previews/preview-slim-case-R.png
+23fa1650fa4c333f1666ec8e4f4d1c2bc36a4d572f7f0222ea581cdfe69af267  ./01-final/previews/preview-slim-cover-B-linux-RH.png
+e7349d3adcf8845c2af1bf13634c833ed36daa83725cc716bb913c00d61f8588  ./01-final/previews/preview-slim-cover-F-linux-LH.png
 9dcaa692b719c2a18407f459349a63e522c704ed91ad6c4357dc5ec719a2e36a  ./01-final/previews/preview-slim-mcu-L.png
 11c11c3482c1b6ad3d2762e061da9ac1df32d5e2ecf4a44ad88c3196f0f0a095  ./01-final/previews/preview-slim-mcu-R.png
+5ed4adcb452cfecbb5295edce24b6b8bed26b7c6224a2124f7412bc897e1f866  ./01-final/previews/preview-slim-plaque-LH.png
+ffb4a61dfcbd7450a4217d70b7cac180278b69dc2e9432d1f750309abd077bc5  ./01-final/previews/preview-slim-plaque-RH.png
 c127bba5ff237d098efbaf68ef8cbe36e38c8cfc0f1a6d9aa4413e688ea4cba2  ./01-final/previews/preview-top-frame.png
 765e37703a30f4c9fdd80c442076b09a521d45050c95e858354ae345d10acddf  ./01-final/previews/preview-wedge.png
 6e71aaf57deb5c0568b3a5ea8d77666fca5e284c84a8f26d378cca79bb0dd628  ./01-final/RH/silakka54-baseplate-java-RH.stl
@@ -60,6 +64,10 @@ c127bba5ff237d098efbaf68ef8cbe36e38c8cfc0f1a6d9aa4413e688ea4cba2  ./01-final/pre
 173a40709f821a70740c476f184771347919de312ec809b1fa29d70d449b70c3  ./01-final/slim-screwless-case/silakka54_inner_frame.stl
 340ceec9f5d783415f1c8c0ec8c31c657e2f9741e678b56610047475505f69cb  ./01-final/slim-screwless-case/silakka54_mcu_left.stl
 875dce16605edb272802220dd88f36b5061474793739500f3c2b7a60b72c18dd  ./01-final/slim-screwless-case/silakka54_mcu_right.stl
+0c90e7bca7169215a971245fcd8ccabbafd33c1cfbf5440425f3ad87d1700816  ./01-final/slim-screwless-case/silakka54-slim-mcu-cover-B-linux-RH.stl
+ab9067c921a637846aee0f1c121ee2e44beacea46a117533fafdfcd20536dd2b  ./01-final/slim-screwless-case/silakka54-slim-mcu-cover-FB-Tux-linux-LH.stl
+d7c3aae73971153ee9df7ef537bc18d327d79e598b3068e27830d9647ab8b4b6  ./01-final/slim-screwless-case/silakka54-slim-mcu-cover-FB-Tux-linux-RH.stl
+ef2694face4d05c2c932439e521af998f212119b2659508f0b60d4f77c47ec6c  ./01-final/slim-screwless-case/silakka54-slim-mcu-cover-F-linux-LH.stl
 aaa84260e10d020e84d14a82d5b2fc9cd380f0cfa07d33bd93f341ec9571eeb9  ./01-final/slim-screwless-case/silakka54_top_bottom_left.stl
 cb30b2d0f9f03a69a768da1967a1724f43ea43622aec0d6907157e6054088aeb  ./01-final/slim-screwless-case/silakka54_top_bottom_mcu_left.stl
 cd979728096588824b03b991965a5664ffacd8a12a29c4df0a2bbb0c2e591c87  ./01-final/slim-screwless-case/silakka54_top_bottom_mcu_right.stl
