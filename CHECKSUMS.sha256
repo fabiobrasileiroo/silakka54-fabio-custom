@@ -34,7 +34,7 @@ e9a959e7eaa655e0af11cf87dd6ef494a695220eb9601705c34beb24140d9cc4  ./01-final/car
 4b6ed73efdb99c0136149cd504a4bdaf84eb1a3b09745c9b839455deb6c0ff98  ./01-final/carry-tent-2em1/silakka54-tented-palm-rest-LH.stl
 cc5d9e8d8b710985921bcdb54f310c24b8490a4fa02b105204cdd29457fc9d03  ./01-final/carry-tent-2em1/silakka54-tented-palm-rest-RH.stl
 b375142192cd986c5b51d0610e592ed75bb9e28372291476d0005d06778c6039  ./01-final/carry-tent-2em1/silakka54_tilt_wedge_xdeg.stl
-8408f896b69f46914ff654939e945080f00e72bab991afd52ce3d7e3dba2b000  ./01-final/carry-tent-2em1/silakka-case-67mm.stl
+e2a538361edf60f7742f43530ff18e714050f1dd3e0253ccc993cef689924acc  ./01-final/carry-tent-2em1/silakka-case-67mm.stl
 f5debe9c59a0d1a41b206ebdc3a294ec22b18821600c8a62b5ebbbcda58e0374  ./01-final/comum/silakka54-top-frame-screwunderneath.stl
 7b6056ea770e1dbea46b50bd892f9e95e809ed750b8def84ea411cf62fd6eefd  ./01-final/LH/silakka54-baseplate-js-LH.stl
 0c172f5cf98d6a46c58219bab22cd2779b25c5c1f882c1343c6ce9561d5dea5a  ./01-final/LH/silakka54-chevron-cover-FB-Tux-linux-LH.stl
@@ -90,7 +90,7 @@ c03d69ebf29964bf806d6c78bbc214b29dc98d9cd02d0cd1ae50021a17ca583d  ./01-final/pre
 7eda44d98f040b25f44390a1c318384c046216e0662ea40fc4dcebfaaaff1fe8  ./01-final/previews/tux-vector-perfect.png
 72c8d6a850304c7cd8609744d0e2d22d33513672c90afcb1131c200b2ef0db4c  ./01-final/RH/silakka54-baseplate-java-RH.stl
 16c30775fe78f7758af56f438af05a9fdcdbf54ac51ba374db6720b0259fef2b  ./01-final/RH/silakka54-chevron-cover-FB-Tux-linux-RH.stl
-fdd7c024641b5af9a385ec2839a1aa07a5e33e1904a68a8c5d3c472736d0ea90  ./01-final/silakka54-fabio-pacote-completo.zip
+10b07332049942f516ca47d1ffc8794a2c3be80d5237aae96da1a64f6ee40b41  ./01-final/silakka54-fabio-pacote-completo.zip
 173a40709f821a70740c476f184771347919de312ec809b1fa29d70d449b70c3  ./01-final/slim-screwless-case/silakka54_inner_frame.stl
 340ceec9f5d783415f1c8c0ec8c31c657e2f9741e678b56610047475505f69cb  ./01-final/slim-screwless-case/silakka54_mcu_left.stl
 875dce16605edb272802220dd88f36b5061474793739500f3c2b7a60b72c18dd  ./01-final/slim-screwless-case/silakka54_mcu_right.stl

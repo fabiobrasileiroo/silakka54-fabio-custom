@@ -9,7 +9,7 @@ import { STLLoader } from 'https://cdn.jsdelivr.net/npm/three@0.164.1/examples/j
 const REPO = 'fabiobrasileiroo/silakka54-fabio-custom';
 const BRANCH = 'main';
 const BUILD_TS = Date.now();
-const CDN = (path) => `https://cdn.jsdelivr.net/gh/${REPO}@${BRANCH}/${path}?v=${BUILD_TS}`;
+const CDN = (path) => `./${path}?v=${BUILD_TS}`;
 
 const GRID_Y = 0.5;
 
