@@ -58,8 +58,8 @@ adf5116fb68b492918be33d665299113034512ee3e6021256ddf91ddaa734379  ./01-final/pre
 4f14c2a80d6c7664d804317b3769c254d7a93af4f62d405bb9128550d4f0423a  ./01-final/previews/preview-shell-R.png
 e8a1ad74d1ee344b9e5fcbc174b7eb87a5cc02204213727944c6174b0aa55b8b  ./01-final/previews/preview-slim-bottom-LH.png
 5b30107afcbb602d382711795b620be035e5b8785e452e1a13662336864973e8  ./01-final/previews/preview-slim-bottom-RH.png
-5cf3984dfb3e9b0e6e59cfe3fb96e2658c38c69a8f0752fa40ac78e4fc44074d  ./01-final/previews/preview-slim-case-java-RH.png
-31328da2e5541d20df70ba6a6ebf2735f3a28df3efd2d1e9fa1c36c8fd85502f  ./01-final/previews/preview-slim-case-js-LH.png
+af5930961d8561cc236e1632d768819a07eabf59b17256499f2431018d10260e  ./01-final/previews/preview-slim-case-java-RH.png
+c1cab535d992d5a0b11c64ea91fde8253112c25dd5060896d80126ad1ed8e44c  ./01-final/previews/preview-slim-case-js-LH.png
 804dc4ee5061b481bbf9cb6d9c978c965c17c70bb4771aee2a4bf89c7169ad19  ./01-final/previews/preview-slim-case-L.png
 da5f01bc730739237c127855533df8ff2cdfaa5b8eab573db58b4755a57cf68d  ./01-final/previews/preview-slim-case-R.png
 a1450df4dae9b7ac63a6e3629d88c4c71afc774629cc3ece62cd58763488e465  ./01-final/previews/preview-slim-cover-B-linux-RH.png
@@ -70,8 +70,8 @@ a1450df4dae9b7ac63a6e3629d88c4c71afc774629cc3ece62cd58763488e465  ./01-final/pre
 5ed4adcb452cfecbb5295edce24b6b8bed26b7c6224a2124f7412bc897e1f866  ./01-final/previews/preview-slim-plaque-LH.png
 ffb4a61dfcbd7450a4217d70b7cac180278b69dc2e9432d1f750309abd077bc5  ./01-final/previews/preview-slim-plaque-RH.png
 5c8b38896be90447cfa2193c03a37969613ff24b6895d3f4d55cd6094fc43d7d  ./01-final/previews/preview-slim-side-check.png
-074bb7961b6e2253371cd978e6c8c7a057383e8bcc90ca3e5d4e9c6d7cc39d31  ./01-final/previews/preview-slim-side-LH.png
-ae66ea982cd254b32bbc28ea94eabb986531799ab61d75b65a97e8d501500374  ./01-final/previews/preview-slim-side-RH.png
+52cd6d01fcf3194cdb64bf2691dad2c6e7f904924d562567ff684cb8c7b2d61c  ./01-final/previews/preview-slim-side-LH.png
+c4604fde0f947599121ea3ebbdcc8b992b897e7944880b337b442580dca8921a  ./01-final/previews/preview-slim-side-RH.png
 c127bba5ff237d098efbaf68ef8cbe36e38c8cfc0f1a6d9aa4413e688ea4cba2  ./01-final/previews/preview-top-frame.png
 765e37703a30f4c9fdd80c442076b09a521d45050c95e858354ae345d10acddf  ./01-final/previews/preview-wedge.png
 72c8d6a850304c7cd8609744d0e2d22d33513672c90afcb1131c200b2ef0db4c  ./01-final/RH/silakka54-baseplate-java-RH.stl
@@ -79,8 +79,8 @@ c127bba5ff237d098efbaf68ef8cbe36e38c8cfc0f1a6d9aa4413e688ea4cba2  ./01-final/pre
 173a40709f821a70740c476f184771347919de312ec809b1fa29d70d449b70c3  ./01-final/slim-screwless-case/silakka54_inner_frame.stl
 340ceec9f5d783415f1c8c0ec8c31c657e2f9741e678b56610047475505f69cb  ./01-final/slim-screwless-case/silakka54_mcu_left.stl
 875dce16605edb272802220dd88f36b5061474793739500f3c2b7a60b72c18dd  ./01-final/slim-screwless-case/silakka54_mcu_right.stl
-8f18bbcc0964316a045696422ceb2d7fa4a511394f2e5ae3267a7293611f58f7  ./01-final/slim-screwless-case/silakka54-slim-case-java-RH.stl
-ffcbe141fc69dcab2341acd651337071e6106f0f938c46e476d60e48ce07c4de  ./01-final/slim-screwless-case/silakka54-slim-case-js-LH.stl
+da5d2d830c0e7039c8425ca625034a9f4314bdd3f0f3f5ae88cd8002171f106c  ./01-final/slim-screwless-case/silakka54-slim-case-java-RH.stl
+c8df3982d47eaaf3abefc6ee77e88e6ae0adc0fa2a2c7e6653bc7735381f5b92  ./01-final/slim-screwless-case/silakka54-slim-case-js-LH.stl
 13ad37bb817b26ef01faffd83c2bb476a8ef2ed1952dccdfdc51d5cab9b54572  ./01-final/slim-screwless-case/silakka54-slim-mcu-cover-B-linux-RH.stl
 ab9067c921a637846aee0f1c121ee2e44beacea46a117533fafdfcd20536dd2b  ./01-final/slim-screwless-case/silakka54-slim-mcu-cover-FB-Tux-linux-LH.stl
 d7c3aae73971153ee9df7ef537bc18d327d79e598b3068e27830d9647ab8b4b6  ./01-final/slim-screwless-case/silakka54-slim-mcu-cover-FB-Tux-linux-RH.stl
