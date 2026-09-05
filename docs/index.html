@@ -88,9 +88,27 @@
       </button>
     </div>
 
+    <!-- Banner de Camada Ativa e Dica Dinâmica -->
+    <div class="layer-active-banner">
+      <div id="layer-badge-pill" class="layer-badge-pill layer-badge-0">
+        <span class="pulse-dot"></span>
+        <span>Layer 0: Base QWERTY (Padrão)</span>
+      </div>
+      <div class="layer-quick-hint">
+        💡 <span>Dica: Clique ou segure <kbd>MO(1)</kbd> no polegar esquerdo ou <kbd>MO(2)</kbd> no direito para alternar as camadas!</span>
+      </div>
+    </div>
+
     <!-- Descrição da Camada -->
     <div id="layer-desc-target" class="layer-desc-box">
       Carregando informações da camada...
+    </div>
+
+    <!-- Teste de Digitação ao Vivo -->
+    <div class="live-test-box">
+      <span style="font-size: 1.2rem;">⌨️</span>
+      <input type="text" id="live-keyboard-input" placeholder="Experimente clicar nas teclas abaixo ou digite aqui para testar..." autocomplete="off">
+      <span class="mono small" style="color: var(--muted); font-size: 0.75rem;">(Alt+0..3 muda camada)</span>
     </div>
 
     <!-- Teclado Split Visual (Metade Esquerda e Metade Direita) -->

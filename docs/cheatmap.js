@@ -6,83 +6,85 @@ const LAYERS_DATA = {
   0: {
     id: 0,
     title: "Layer 0: BASE (QWERTY US-Intl)",
-    desc: "Camada principal de digitação com compatibilidade total com Português (US-Intl), DWM e Vim.",
+    badgeText: "Layer 0: Base QWERTY (Padrão)",
+    badgeClass: "layer-badge-0",
+    desc: "Camada padrão: Digitação fluida em Português (US-Intl), DWM no polegar e Vim no CapsLock.",
     keysLeft: [
-      // Row 0
-      { p: "` / ~", s: "KC_GRAVE", t: "key-accent", title: "Crase e Til (`~`)", desc: "Acesso imediato para acentos em Português: ~ + a = ã, ` + a = à.", qmk: "KC_GRAVE" },
-      { p: "1", s: "Super+1", t: "key-alpha", title: "Número 1 / Tag 1", desc: "No DWM: Super+1 muda para Tag 1. Super+Shift+1 move a janela.", qmk: "KC_1" },
-      { p: "2", s: "Super+2", t: "key-alpha", title: "Número 2 / Tag 2", desc: "No DWM: Super+2 muda para Tag 2.", qmk: "KC_2" },
-      { p: "3", s: "Super+3", t: "key-alpha", title: "Número 3 / Tag 3", desc: "No DWM: Super+3 muda para Tag 3.", qmk: "KC_3" },
-      { p: "4", s: "Super+4", t: "key-alpha", title: "Número 4 / Tag 4", desc: "No DWM: Super+4 muda para Tag 4.", qmk: "KC_4" },
-      { p: "5", s: "", t: "key-alpha", title: "Número 5", desc: "Tecla numérica 5.", qmk: "KC_5" },
-      // Row 1
-      { p: "Tab", s: "", t: "key-mod", title: "Tab", desc: "Tabulação padrão. No DWM: Super+Tab alterna layout anterior.", qmk: "KC_TAB" },
-      { p: "Q", s: "", t: "key-alpha", title: "Letra Q", desc: "No DWM: Super+Shift+Q fecha a janela atual (killclient).", qmk: "KC_Q" },
-      { p: "W", s: "", t: "key-alpha", title: "Letra W", desc: "No Vim: w pula para a próxima palavra.", qmk: "KC_W" },
-      { p: "E", s: "", t: "key-alpha", title: "Letra E", desc: "No Vim: e vai para o fim da palavra.", qmk: "KC_E" },
-      { p: "R", s: "", t: "key-alpha", title: "Letra R", desc: "No DWM: Super+Shift+R reinicia o DWM.", qmk: "KC_R" },
-      { p: "T", s: "", t: "key-alpha", title: "Letra T", desc: "No DWM: Super+T ativa o layout Tiling.", qmk: "KC_T" },
-      // Row 2 (Home Row)
-      { p: "Esc", s: "Ctrl", t: "key-mod", title: "CapsLock Dual-Role: Esc (Tap) / Ctrl (Hold)", desc: "✨ Chave Mestra para Vim & Terminal: Toque rápido = ESC (sair do modo insert no Vim). Segure = CTRL (atalhos como Ctrl+C, Ctrl+R, etc.).", qmk: "LCTL_T(KC_ESC)" },
-      { p: "A", s: "", t: "key-alpha", title: "Letra A", desc: "No DWM: Super+A abre menu de áudio. Super+Shift+A menu bluetooth.", qmk: "KC_A" },
-      { p: "S", s: "", t: "key-alpha", title: "Letra S", desc: "No Vim: s substitui caractere.", qmk: "KC_S" },
-      { p: "D", s: "dmenu", t: "key-alpha", title: "Letra D", desc: "No DWM: Super+D abre o dmenu!", qmk: "KC_D" },
-      { p: "F", s: "", t: "key-alpha", title: "Letra F", desc: "No DWM: Super+F layout monocle/floating.", qmk: "KC_F" },
-      { p: "G", s: "", t: "key-alpha", title: "Letra G", desc: "No Vim: G vai para o fim do arquivo.", qmk: "KC_G" },
-      // Row 3
-      { p: "Shift", s: "", t: "key-mod", title: "Shift Esquerdo", desc: "Modificador Shift.", qmk: "KC_LSFT" },
-      { p: "Z", s: "print", t: "key-alpha", title: "Letra Z", desc: "No DWM: Super+Z tira screenshot com gnome-screenshot!", qmk: "KC_Z" },
-      { p: "X", s: "", t: "key-alpha", title: "Letra X", desc: "No Vim: x apaga caractere sob o cursor.", qmk: "KC_X" },
-      { p: "C", s: "", t: "key-alpha", title: "Letra C", desc: "No DWM: Super+C atalho para VSCode.", qmk: "KC_C" },
-      { p: "V", s: "", t: "key-alpha", title: "Letra V", desc: "No Vim: v inicia modo visual de seleção.", qmk: "KC_V" },
-      { p: "B", s: "bar", t: "key-alpha", title: "Letra B", desc: "No DWM: Super+B esconde/mostra a barra de status.", qmk: "KC_B" }
+      { p: "` / ~", s: "KC_GRAVE", t: "key-accent", title: "Crase e Til (`~`)", desc: "Acesso imediato para acentos em Português: ~ + a = ã, ` + a = à.", qmk: "KC_GRAVE", code: "Backquote" },
+      { p: "1", s: "Tag 1", t: "key-alpha", title: "Número 1 / Tag 1", desc: "No DWM: Super+1 muda para Tag 1. Super+Shift+1 move a janela.", qmk: "KC_1", code: "Digit1" },
+      { p: "2", s: "Tag 2", t: "key-alpha", title: "Número 2 / Tag 2", desc: "No DWM: Super+2 muda para Tag 2.", qmk: "KC_2", code: "Digit2" },
+      { p: "3", s: "Tag 3", t: "key-alpha", title: "Número 3 / Tag 3", desc: "No DWM: Super+3 muda para Tag 3.", qmk: "KC_3", code: "Digit3" },
+      { p: "4", s: "Tag 4", t: "key-alpha", title: "Número 4 / Tag 4", desc: "No DWM: Super+4 muda para Tag 4.", qmk: "KC_4", code: "Digit4" },
+      { p: "5", s: "", t: "key-alpha", title: "Número 5", desc: "Tecla numérica 5.", qmk: "KC_5", code: "Digit5" },
+
+      { p: "Tab", s: "", t: "key-mod", title: "Tab", desc: "Tabulação padrão. No DWM: Super+Tab alterna layout anterior.", qmk: "KC_TAB", code: "Tab" },
+      { p: "Q", s: "kill", t: "key-alpha", title: "Letra Q", desc: "No DWM: Super+Shift+Q fecha a janela atual (killclient).", qmk: "KC_Q", code: "KeyQ" },
+      { p: "W", s: "", t: "key-alpha", title: "Letra W", desc: "No Vim: w pula para a próxima palavra.", qmk: "KC_W", code: "KeyW" },
+      { p: "E", s: "", t: "key-alpha", title: "Letra E", desc: "No Vim: e vai para o fim da palavra.", qmk: "KC_E", code: "KeyE" },
+      { p: "R", s: "restart", t: "key-alpha", title: "Letra R", desc: "No DWM: Super+Shift+R reinicia o DWM.", qmk: "KC_R", code: "KeyR" },
+      { p: "T", s: "tiling", t: "key-alpha", title: "Letra T", desc: "No DWM: Super+T ativa o layout Tiling.", qmk: "KC_T", code: "KeyT" },
+
+      { p: "Esc", s: "Ctrl", t: "key-mod", title: "CapsLock Dual-Role: Esc (Tap) / Ctrl (Hold)", desc: "✨ Chave Mestra para Vim & Terminal: Toque rápido = ESC (sair do modo insert no Vim). Segure = CTRL (atalhos como Ctrl+C, Ctrl+R, etc.).", qmk: "LCTL_T(KC_ESC)", code: "Capslock" },
+      { p: "A", s: "audio", t: "key-alpha", title: "Letra A", desc: "No DWM: Super+A abre menu de áudio. Super+Shift+A menu bluetooth.", qmk: "KC_A", code: "KeyA" },
+      { p: "S", s: "", t: "key-alpha", title: "Letra S", desc: "No Vim: s substitui caractere.", qmk: "KC_S", code: "KeyS" },
+      { p: "D", s: "dmenu", t: "key-alpha", title: "Letra D", desc: "No DWM: Super+D abre o dmenu!", qmk: "KC_D", code: "KeyD" },
+      { p: "F", s: "float", t: "key-alpha", title: "Letra F", desc: "No DWM: Super+F layout monocle/floating.", qmk: "KC_F", code: "KeyF" },
+      { p: "G", s: "", t: "key-alpha", title: "Letra G", desc: "No Vim: G vai para o fim do arquivo.", qmk: "KC_G", code: "KeyG" },
+
+      { p: "Shift", s: "", t: "key-mod", title: "Shift Esquerdo", desc: "Modificador Shift.", qmk: "KC_LSFT", code: "ShiftLeft" },
+      { p: "Z", s: "scrot", t: "key-alpha", title: "Letra Z", desc: "No DWM: Super+Z tira screenshot com gnome-screenshot!", qmk: "KC_Z", code: "KeyZ" },
+      { p: "X", s: "", t: "key-alpha", title: "Letra X", desc: "No Vim: x apaga caractere sob o cursor.", qmk: "KC_X", code: "KeyX" },
+      { p: "C", s: "code", t: "key-alpha", title: "Letra C", desc: "No DWM: Super+C abre o VSCode.", qmk: "KC_C", code: "KeyC" },
+      { p: "V", s: "ranger", t: "key-alpha", title: "Letra V", desc: "No Vim: v entra no modo visual. No DWM: Super+V abre o ranger.", qmk: "KC_V", code: "KeyV" },
+      { p: "B", s: "bar", t: "key-alpha", title: "Letra B", desc: "No DWM: Super+B esconde/mostra a barra de status.", qmk: "KC_B", code: "KeyB" }
     ],
     thumbsLeft: [
-      { p: "Super", s: "DWM", t: "key-mod", title: "Tecla Windows / Super (DWM Master)", desc: "🚀 Modificador Mestre do DWM no polegar esquerdo! Super+Enter = Terminal, Super+D = dmenu, Super+J/K = janelas.", qmk: "KC_LGUI" },
-      { p: "MO(1)", s: "NAV", t: "key-layer", title: "Ativador de Navegação (Layer 1)", desc: "Segure com o polegar para transformar a mão direita em setas Vim (HJKL), Home, End, PgUp, PgDn e controles de áudio.", qmk: "MO(1)" },
-      { p: "Space", s: "", t: "key-alpha", title: "Barra de Espaço", desc: "Espaço no polegar esquerdo. Dead keys: ' + espaço = ' literal.", qmk: "KC_SPC" }
+      { p: "Super", s: "DWM", t: "key-mod", title: "Tecla Windows / Super (DWM Master)", desc: "🚀 Modificador Mestre do DWM no polegar esquerdo! Super+Enter = Terminal, Super+D = dmenu, Super+J/K = janelas.", qmk: "KC_LGUI", code: "MetaLeft" },
+      { p: "MO(1)", s: "👉 NAV", t: "key-layer", title: "Ativador de Navegação (Layer 1)", desc: "⚡ CLIQUE OU SEGURE para ver e ativar a Layer 1 (Setas Vim HJKL, Home, End, PgUp, PgDn e Mídia)!", qmk: "MO(1)", targetLayer: 1 },
+      { p: "Space", s: "", t: "key-alpha", title: "Barra de Espaço", desc: "Espaço no polegar esquerdo. Dead keys: ' + espaço = ' literal.", qmk: "KC_SPC", code: "Space" }
     ],
     keysRight: [
-      // Row 0
-      { p: "6", s: "", t: "key-alpha", title: "Número 6", desc: "Número 6.", qmk: "KC_6" },
-      { p: "7", s: "", t: "key-alpha", title: "Número 7", desc: "Número 7.", qmk: "KC_7" },
-      { p: "8", s: "", t: "key-alpha", title: "Número 8", desc: "Número 8.", qmk: "KC_8" },
-      { p: "9", s: "", t: "key-alpha", title: "Número 9", desc: "Número 9.", qmk: "KC_9" },
-      { p: "0", s: "", t: "key-alpha", title: "Número 0", desc: "Número 0. Super+0 = ver todas as tags no DWM.", qmk: "KC_0" },
-      { p: "- / _", s: "KC_MINS", t: "key-alpha", title: "Hífen e Underscore", desc: "Hífen (-) e Shift = Underscore (_).", qmk: "KC_MINS" },
-      // Row 1
-      { p: "Y", s: "", t: "key-alpha", title: "Letra Y", desc: "No Vim: y faz cópia (yank).", qmk: "KC_Y" },
-      { p: "U", s: "", t: "key-alpha", title: "Letra U", desc: "No Vim: u faz desfazer (undo).", qmk: "KC_U" },
-      { p: "I", s: "", t: "key-alpha", title: "Letra I", desc: "No Vim: i entra no modo insert.", qmk: "KC_I" },
-      { p: "O", s: "", t: "key-alpha", title: "Letra O", desc: "No Vim: o insere nova linha abaixo.", qmk: "KC_O" },
-      { p: "P", s: "", t: "key-alpha", title: "Letra P", desc: "No Vim: p cola texto (paste).", qmk: "KC_P" },
-      { p: "⌫", s: "Bksp", t: "key-mod", title: "Backspace", desc: "Apagar tradicional para manter facilidade de adaptação do AULA F75.", qmk: "KC_BSPC" },
-      // Row 2 (Home Row)
-      { p: "H", s: "←", t: "key-alpha", title: "Letra H", desc: "No Vim / DWM: h move para a esquerda e reduz o painel master.", qmk: "KC_H" },
-      { p: "J", s: "↓", t: "key-alpha", title: "Letra J", desc: "No Vim / DWM: j move para baixo e alterna para a próxima janela no DWM!", qmk: "KC_J" },
-      { p: "K", s: "↑", t: "key-alpha", title: "Letra K", desc: "No Vim / DWM: k move para cima e alterna para a janela anterior no DWM!", qmk: "KC_K" },
-      { p: "L", s: "→", t: "key-alpha", title: "Letra L", desc: "No Vim / DWM: l move para a direita e aumenta o painel master.", qmk: "KC_L" },
-      { p: "; / :", s: "KC_SCLN", t: "key-alpha", title: "Ponto e Vírgula / Dois Pontos", desc: "No Vim: : inicia comandos ex (:w, :q).", qmk: "KC_SCLN" },
-      { p: "' / \"", s: "ç / á", t: "key-accent", title: "Aspas e Acentos (' e \")", desc: "✨ Tecla Sagrada do Português US-Intl: Pressione ' e depois C para obter 'ç'! ' + a = á, ' + e = é, ' + o = ó.", qmk: "KC_QUOT" },
-      // Row 3
-      { p: "N", s: "", t: "key-alpha", title: "Letra N", desc: "No Vim: n repete busca para frente.", qmk: "KC_N" },
-      { p: "M", s: "", t: "key-alpha", title: "Letra M", desc: "No DWM: Super+M layout monocle (tela cheia).", qmk: "KC_M" },
-      { p: ", / <", s: "KC_COMM", t: "key-alpha", title: "Vírgula e Menor que", desc: "Vírgula. No DWM: Super+vírgula muda de monitor.", qmk: "KC_COMM" },
-      { p: ". / >", s: "KC_DOT", t: "key-alpha", title: "Ponto e Maior que", desc: "Ponto. No DWM: Super+ponto muda de monitor.", qmk: "KC_DOT" },
-      { p: "/ / ?", s: "KC_SLSH", t: "key-alpha", title: "Barra e Interrogação", desc: "No Vim: / inicia busca de texto.", qmk: "KC_SLSH" },
-      { p: "Shift", s: "", t: "key-mod", title: "Shift Direito", desc: "Modificador Shift.", qmk: "KC_RSFT" }
+      { p: "6", s: "", t: "key-alpha", title: "Número 6", desc: "Número 6.", qmk: "KC_6", code: "Digit6" },
+      { p: "7", s: "", t: "key-alpha", title: "Número 7", desc: "Número 7.", qmk: "KC_7", code: "Digit7" },
+      { p: "8", s: "", t: "key-alpha", title: "Número 8", desc: "Número 8.", qmk: "KC_8", code: "Digit8" },
+      { p: "9", s: "", t: "key-alpha", title: "Número 9", desc: "Número 9.", qmk: "KC_9", code: "Digit9" },
+      { p: "0", s: "", t: "key-alpha", title: "Número 0", desc: "Número 0. Super+0 = ver todas as tags no DWM.", qmk: "KC_0", code: "Digit0" },
+      { p: "- / _", s: "KC_MINS", t: "key-alpha", title: "Hífen e Underscore", desc: "Hífen (-) e Shift = Underscore (_).", qmk: "KC_MINS", code: "Minus" },
+
+      { p: "Y", s: "", t: "key-alpha", title: "Letra Y", desc: "No Vim: y faz cópia (yank).", qmk: "KC_Y", code: "KeyY" },
+      { p: "U", s: "", t: "key-alpha", title: "Letra U", desc: "No Vim: u faz desfazer (undo).", qmk: "KC_U", code: "KeyU" },
+      { p: "I", s: "", t: "key-alpha", title: "Letra I", desc: "No Vim: i entra no modo insert.", qmk: "KC_I", code: "KeyI" },
+      { p: "O", s: "", t: "key-alpha", title: "Letra O", desc: "No Vim: o insere nova linha abaixo.", qmk: "KC_O", code: "KeyO" },
+      { p: "P", s: "", t: "key-alpha", title: "Letra P", desc: "No Vim: p cola texto (paste).", qmk: "KC_P", code: "KeyP" },
+      { p: "⌫", s: "Bksp", t: "key-mod", title: "Backspace", desc: "Apagar tradicional para manter facilidade de adaptação do AULA F75.", qmk: "KC_BSPC", code: "Backspace" },
+
+      { p: "H", s: "←", t: "key-alpha", title: "Letra H", desc: "No Vim / DWM: h move para a esquerda e reduz o painel master.", qmk: "KC_H", code: "KeyH" },
+      { p: "J", s: "↓", t: "key-alpha", title: "Letra J", desc: "No Vim / DWM: j move para baixo e alterna para a próxima janela no DWM!", qmk: "KC_J", code: "KeyJ" },
+      { p: "K", s: "↑", t: "key-alpha", title: "Letra K", desc: "No Vim / DWM: k move para cima e alterna para a janela anterior no DWM!", qmk: "KC_K", code: "KeyK" },
+      { p: "L", s: "→", t: "key-alpha", title: "Letra L", desc: "No Vim / DWM: l move para a direita e aumenta o painel master.", qmk: "KC_L", code: "KeyL" },
+      { p: "; / :", s: "KC_SCLN", t: "key-alpha", title: "Ponto e Vírgula / Dois Pontos", desc: "No Vim: : inicia comandos ex (:w, :q).", qmk: "KC_SCLN", code: "Semicolon" },
+      { p: "' / \"", s: "ç / á", t: "key-accent", title: "Aspas e Acentos (' e \")", desc: "✨ Tecla Sagrada do Português US-Intl: Pressione ' e depois C para obter 'ç'! ' + a = á, ' + e = é, ' + o = ó.", qmk: "KC_QUOT", code: "Quote" },
+
+      { p: "N", s: "", t: "key-alpha", title: "Letra N", desc: "No Vim: n repete busca para frente.", qmk: "KC_N", code: "KeyN" },
+      { p: "M", s: "", t: "key-alpha", title: "Letra M", desc: "No DWM: Super+M layout monocle (tela cheia).", qmk: "KC_M", code: "KeyM" },
+      { p: ", / <", s: "KC_COMM", t: "key-alpha", title: "Vírgula e Menor que", desc: "Vírgula. No DWM: Super+vírgula muda de monitor.", qmk: "KC_COMM", code: "Comma" },
+      { p: ". / >", s: "KC_DOT", t: "key-alpha", title: "Ponto e Maior que", desc: "Ponto. No DWM: Super+ponto muda de monitor.", qmk: "KC_DOT", code: "Period" },
+      { p: "/ / ?", s: "KC_SLSH", t: "key-alpha", title: "Barra e Interrogação", desc: "No Vim: / inicia busca de texto.", qmk: "KC_SLSH", code: "Slash" },
+      { p: "Shift", s: "", t: "key-mod", title: "Shift Direito", desc: "Modificador Shift.", qmk: "KC_RSFT", code: "ShiftRight" }
     ],
     thumbsRight: [
-      { p: "Enter", s: "DWM", t: "key-mod", title: "Enter no Polegar", desc: "Enter ergonômico no polegar direito! No DWM: Super + Enter abre o terminal st instantaneamente.", qmk: "KC_ENT" },
-      { p: "MO(2)", s: "SYM", t: "key-layer", title: "Ativador de Símbolos (Layer 2)", desc: "Segure com o polegar direito para acessar parênteses, chaves, colchetes, operadores e símbolos de código.", qmk: "MO(2)" },
-      { p: "AltGr", s: "US-Intl", t: "key-accent", title: "AltGr (Right Alt)", desc: "AltGr do padrão US-Intl: AltGr + , = ç, AltGr + / = °, AltGr + S = §.", qmk: "KC_RALT" }
+      { p: "Enter", s: "DWM", t: "key-mod", title: "Enter no Polegar", desc: "Enter ergonômico no polegar direito! No DWM: Super + Enter abre o terminal st instantaneamente.", qmk: "KC_ENT", code: "Enter" },
+      { p: "MO(2)", s: "👉 SYM", t: "key-layer", title: "Ativador de Símbolos (Layer 2)", desc: "⚡ CLIQUE OU SEGURE para ver e ativar a Layer 2 (Parênteses, chaves, colchetes e operadores de código)!", qmk: "MO(2)", targetLayer: 2 },
+      { p: "AltGr", s: "US-Intl", t: "key-accent", title: "AltGr (Right Alt)", desc: "AltGr do padrão US-Intl: AltGr + , = ç, AltGr + / = °, AltGr + S = §.", qmk: "KC_RALT", code: "AltRight" }
     ]
   },
 
   1: {
     id: 1,
     title: "Layer 1: NAV & DWM & MULTIMÍDIA",
-    desc: "Ativada segurando o polegar esquerdo (MO1). A mão direita vira uma central Vim de navegação e a mão esquerda comanda áudio e brilho.",
+    badgeText: "Layer 1: NAV (Vim HJKL + Mídia Ativa)",
+    badgeClass: "layer-badge-1",
+    desc: "Mão direita operando navegação Vim pura com setas reais, Home, End, PgUp, PgDn. Mão esquerda controla volume e brilho.",
     keysLeft: [
       { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla da camada inferior.", qmk: "KC_TRNS" },
       { p: "⏮", s: "Prev", t: "key-media", title: "Faixa Anterior", desc: "Controle multimídia: música anterior.", qmk: "KC_MPRV" },
@@ -114,8 +116,8 @@ const LAYERS_DATA = {
     ],
     thumbsLeft: [
       { p: "▼", s: "Super", t: "key-trans", title: "Super (Transparente)", desc: "Mantém Super ativo.", qmk: "KC_TRNS" },
-      { p: "---", s: "Ativa", t: "key-layer", title: "Camada Atual", desc: "Polegar segurando Layer 1.", qmk: "KC_TRNS" },
-      { p: "MO(3)", s: "Num/Fn", t: "key-fn", title: "Ativador Layer 3", desc: "Segure ambos os polegares para Layer 3.", qmk: "MO(3)" }
+      { p: "MO(0)", s: "Voltar", t: "key-layer", title: "Camada 1 Ativa (Clique para Voltar)", desc: "⚡ Clique aqui para voltar à Layer 0!", qmk: "MO(0)", targetLayer: 0 },
+      { p: "MO(3)", s: "👉 Num", t: "key-fn", title: "Ativador Layer 3", desc: "Segure ambos os polegares para Layer 3 (Numpad).", qmk: "MO(3)", targetLayer: 3 }
     ],
     keysRight: [
       { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
@@ -148,7 +150,7 @@ const LAYERS_DATA = {
     ],
     thumbsRight: [
       { p: "Enter", s: "", t: "key-mod", title: "Enter", desc: "Enter padrão.", qmk: "KC_ENT" },
-      { p: "MO(3)", s: "Num/Fn", t: "key-fn", title: "Ativador Layer 3", desc: "Segure ambos os polegares para Layer 3.", qmk: "MO(3)" },
+      { p: "MO(3)", s: "👉 Num", t: "key-fn", title: "Ativador Layer 3", desc: "Segure ambos os polegares para Layer 3.", qmk: "MO(3)", targetLayer: 3 },
       { p: "▼", s: "AltGr", t: "key-trans", title: "AltGr (Transparente)", desc: "Mantém AltGr ativo.", qmk: "KC_TRNS" }
     ]
   },
@@ -156,7 +158,9 @@ const LAYERS_DATA = {
   2: {
     id: 2,
     title: "Layer 2: SYM - SÍMBOLOS DE DEV",
-    desc: "Ativada segurando o polegar direito (MO2). Pares de delimitadores lado a lado () {} [] <> e operadores na Home Row.",
+    badgeText: "Layer 2: SYM (Símbolos de Código Ativos)",
+    badgeClass: "layer-badge-2",
+    desc: "Pares de delimitadores lado a lado () {} [] <> e operadores matemáticos/atribuição na Home Row.",
     keysLeft: [
       { p: "~", s: "Tilde", t: "key-sym", title: "Til (~)", desc: "Símbolo til.", qmk: "KC_TILD" },
       { p: "!", s: "Excl", t: "key-sym", title: "Exclamação (!)", desc: "Operador de negação (ex: !isValid).", qmk: "KC_EXLM" },
@@ -188,7 +192,7 @@ const LAYERS_DATA = {
     ],
     thumbsLeft: [
       { p: "Super", s: "", t: "key-mod", title: "Super", desc: "Super mantido.", qmk: "KC_LGUI" },
-      { p: "MO(3)", s: "Num/Fn", t: "key-fn", title: "Ativador Layer 3", desc: "Segure ambos os polegares para Layer 3.", qmk: "MO(3)" },
+      { p: "MO(3)", s: "👉 Num", t: "key-fn", title: "Ativador Layer 3", desc: "Segure ambos os polegares para Layer 3.", qmk: "MO(3)", targetLayer: 3 },
       { p: "Space", s: "", t: "key-alpha", title: "Espaço", desc: "Espaço.", qmk: "KC_SPC" }
     ],
     keysRight: [
@@ -222,7 +226,7 @@ const LAYERS_DATA = {
     ],
     thumbsRight: [
       { p: "Enter", s: "", t: "key-mod", title: "Enter", desc: "Enter.", qmk: "KC_ENT" },
-      { p: "---", s: "Ativa", t: "key-layer", title: "Camada Atual", desc: "Polegar segurando Layer 2.", qmk: "KC_TRNS" },
+      { p: "MO(0)", s: "Voltar", t: "key-layer", title: "Camada 2 Ativa (Clique para Voltar)", desc: "⚡ Clique aqui para voltar à Layer 0!", qmk: "MO(0)", targetLayer: 0 },
       { p: "AltGr", s: "", t: "key-accent", title: "AltGr", desc: "AltGr.", qmk: "KC_RALT" }
     ]
   },
@@ -230,7 +234,9 @@ const LAYERS_DATA = {
   3: {
     id: 3,
     title: "Layer 3: NUMPAD & FN & BOOTLOADER",
-    desc: "Ativada segurando ambos os polegares (ou tecla dedicada). Teclado numérico 10-key à direita, F1-F12 à esquerda e Bootloader.",
+    badgeText: "Layer 3: NUMPAD & FN (Ativa)",
+    badgeClass: "layer-badge-3",
+    desc: "Teclado numérico 10-key à direita, teclas de função F1-F12 à esquerda e atalho para o modo Bootloader.",
     keysLeft: [
       { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
       { p: "F1", s: "", t: "key-fn", title: "F1", desc: "Ajuda / Tecla de função.", qmk: "KC_F1" },
@@ -261,7 +267,7 @@ const LAYERS_DATA = {
       { p: "⚡ BOOT", s: "Flash", t: "key-boot", title: "Modo Bootloader (QK_BOOT)", desc: "Coloca o microcontrolador RP2040 em modo gravação/pendrive sem precisar abrir a case física!", qmk: "QK_BOOT" }
     ],
     thumbsLeft: [
-      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+      { p: "MO(0)", s: "Voltar", t: "key-layer", title: "Voltar à Layer 0", desc: "⚡ Clique aqui para voltar à Layer 0!", qmk: "MO(0)", targetLayer: 0 },
       { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
       { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" }
     ],
@@ -296,22 +302,64 @@ const LAYERS_DATA = {
     ],
     thumbsRight: [
       { p: "NumEnt", s: "", t: "key-mod", title: "Numpad Enter", desc: "Enter numérico.", qmk: "KC_PENT" },
-      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+      { p: "MO(0)", s: "Voltar", t: "key-layer", title: "Voltar à Layer 0", desc: "⚡ Clique aqui para voltar à Layer 0!", qmk: "MO(0)", targetLayer: 0 },
       { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" }
     ]
   }
 };
 
 let currentLayer = 0;
+let previousLayer = 0;
+let isHoldingLayer = false;
 
 function renderKey(keyData) {
   const btn = document.createElement("div");
-  btn.className = `key-cap ${keyData.t}`;
+  btn.className = `key-cap ${keyData.t} morphing`;
+  btn.dataset.qmk = keyData.qmk || "";
+  if (keyData.code) btn.dataset.code = keyData.code;
+
+  // Se for tecla disparadora de camada
+  if (keyData.targetLayer !== undefined) {
+    btn.classList.add("key-layer-interactive");
+  }
+
   btn.innerHTML = `
     <span class="key-primary">${keyData.p}</span>
     ${keyData.s ? `<span class="key-sub">${keyData.s}</span>` : ""}
   `;
-  btn.addEventListener("click", () => showKeyDetail(keyData, btn));
+
+  // Clique normal: Mostra detalhe E se for tecla de camada, muda de camada!
+  btn.addEventListener("click", (e) => {
+    showKeyDetail(keyData, btn);
+
+    if (keyData.targetLayer !== undefined) {
+      e.stopPropagation();
+      switchLayer(keyData.targetLayer);
+    }
+  });
+
+  // Pressionar e Segurar (Simulação do comportamento físico Momentary MO)
+  if (keyData.targetLayer !== undefined && keyData.targetLayer !== 0) {
+    const startHold = (e) => {
+      e.preventDefault();
+      isHoldingLayer = true;
+      previousLayer = currentLayer;
+      switchLayer(keyData.targetLayer);
+    };
+
+    const endHold = () => {
+      if (isHoldingLayer) {
+        isHoldingLayer = false;
+        switchLayer(previousLayer);
+      }
+    };
+
+    btn.addEventListener("mousedown", startHold);
+    btn.addEventListener("touchstart", startHold, { passive: false });
+    window.addEventListener("mouseup", endHold);
+    window.addEventListener("touchend", endHold);
+  }
+
   btn.addEventListener("mouseenter", () => showKeyDetail(keyData, btn));
   return btn;
 }
@@ -323,6 +371,9 @@ function showKeyDetail(keyData, element) {
   const card = document.getElementById("key-detail-target");
   if (!card) return;
 
+  const isTrigger = keyData.targetLayer !== undefined;
+  const triggerHint = isTrigger ? `<span class="key-detail-tag" style="background: rgba(242,163,60,0.2); color: var(--accent); border-color: var(--accent);">⚡ Clique para alternar para a Layer ${keyData.targetLayer}</span>` : "";
+
   card.innerHTML = `
     <div class="key-detail-title">
       <span>${keyData.title || keyData.p}</span>
@@ -333,6 +384,7 @@ function showKeyDetail(keyData, element) {
       <span class="key-detail-tag">Camada: ${currentLayer}</span>
       <span class="key-detail-tag">Tipo: ${keyData.t.replace("key-", "")}</span>
       ${keyData.s ? `<span class="key-detail-tag">Sub: ${keyData.s}</span>` : ""}
+      ${triggerHint}
     </div>
   `;
 }
@@ -342,14 +394,26 @@ function switchLayer(layerId) {
   const layer = LAYERS_DATA[layerId];
   if (!layer) return;
 
-  // Atualizar botões
+  // Atualizar botões superiores
   document.querySelectorAll(".layer-btn").forEach(btn => {
     btn.classList.toggle("active", parseInt(btn.dataset.layer, 10) === layerId);
   });
 
+  // Atualizar Banner Ativo
+  const bannerPill = document.getElementById("layer-badge-pill");
+  if (bannerPill) {
+    bannerPill.className = `layer-badge-pill ${layer.badgeClass}`;
+    bannerPill.innerHTML = `<span class="pulse-dot"></span> <span>${layer.badgeText}</span>`;
+  }
+
   // Atualizar descrição
   const descEl = document.getElementById("layer-desc-target");
-  if (descEl) descEl.textContent = layer.desc;
+  if (descEl) {
+    descEl.textContent = layer.desc;
+    // Borda combinando com a cor da camada
+    const borderColors = ["#58a6ff", "#7ee787", "#d2a8ff", "#f0883e"];
+    descEl.style.borderLeftColor = borderColors[layerId] || "var(--accent)";
+  }
 
   // Renderizar lado esquerdo
   const leftGrid = document.getElementById("grid-left-main");
@@ -371,9 +435,42 @@ function switchLayer(layerId) {
     layer.thumbsRight.forEach(k => rightThumbs.appendChild(renderKey(k)));
   }
 
-  // Selecionar a primeira tecla por padrão para preencher os detalhes
-  const firstKey = layer.keysLeft[0];
-  if (firstKey) showKeyDetail(firstKey, leftGrid ? leftGrid.firstChild : null);
+  // Remove classe de animação após o término para permitir novas animações
+  setTimeout(() => {
+    document.querySelectorAll(".key-cap.morphing").forEach(k => k.classList.remove("morphing"));
+  }, 400);
+
+  // Selecionar tecla de exemplo relevante
+  const keyToHighlight = layer.thumbsLeft[1] || layer.keysLeft[0];
+  if (keyToHighlight) showKeyDetail(keyToHighlight, leftThumbs ? leftThumbs.children[1] : null);
+}
+
+// Simulador de Digitação em Tempo Real (Highlight da tecla física pressionada)
+function setupLiveKeyboard() {
+  const inputTest = document.getElementById("live-keyboard-input");
+
+  window.addEventListener("keydown", (e) => {
+    // Teclas de atalho para mudar camada rápida: Alt+0..3 ou se o foco não estiver no input
+    if (e.altKey && ["0", "1", "2", "3"].includes(e.key)) {
+      e.preventDefault();
+      switchLayer(parseInt(e.key, 10));
+      return;
+    }
+
+    // Achar elemento da tecla física na tela
+    const keyEl = document.querySelector(`.key-cap[data-code="${e.code}"]`);
+    if (keyEl) {
+      keyEl.classList.add("pressed-live");
+      keyEl.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+    }
+  });
+
+  window.addEventListener("keyup", (e) => {
+    const keyEl = document.querySelector(`.key-cap[data-code="${e.code}"]`);
+    if (keyEl) {
+      keyEl.classList.remove("pressed-live");
+    }
+  });
 }
 
 // Inicialização
@@ -384,5 +481,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  setupLiveKeyboard();
   switchLayer(0);
 });

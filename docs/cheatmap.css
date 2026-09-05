@@ -11,11 +11,115 @@
   margin-bottom: 24px;
 }
 
+/* Banner de Status da Camada Ativa */
+.layer-active-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.layer-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(88, 166, 255, 0.15);
+  color: var(--accent-2);
+  border: 1px solid var(--accent-2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.layer-badge-pill .pulse-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 10px currentColor;
+  animation: pulseDot 1.5s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+.layer-badge-0 { color: #58a6ff; border-color: #58a6ff; background: rgba(88, 166, 255, 0.15); }
+.layer-badge-1 { color: #7ee787; border-color: #7ee787; background: rgba(126, 231, 135, 0.15); }
+.layer-badge-2 { color: #d2a8ff; border-color: #d2a8ff; background: rgba(210, 168, 255, 0.15); }
+.layer-badge-3 { color: #f0883e; border-color: #f0883e; background: rgba(240, 136, 62, 0.15); }
+
+.layer-quick-hint {
+  font-size: 0.88rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.layer-quick-hint kbd {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+/* Caixa de Teste de Digitação ao Vivo */
+.live-test-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-soft);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-top: 14px;
+  margin-bottom: 20px;
+  transition: all 0.2s ease;
+}
+
+.live-test-box:focus-within {
+  border-color: var(--accent);
+  background: var(--card);
+  box-shadow: 0 0 12px rgba(242, 163, 60, 0.15);
+}
+
+.live-test-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.95rem;
+}
+
+.live-test-box input::placeholder {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.88rem;
+}
+
+/* Botões do Seletor de Camadas */
 .layer-switcher {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 20px 0 28px;
+  margin: 16px 0 20px;
 }
 
 .layer-btn {
@@ -44,7 +148,7 @@
   background: rgba(88, 166, 255, 0.15);
   color: var(--accent-2);
   border-color: var(--accent-2);
-  box-shadow: 0 0 12px rgba(88, 166, 255, 0.2);
+  box-shadow: 0 0 12px rgba(88, 166, 255, 0.25);
 }
 
 .layer-desc-box {
@@ -56,6 +160,7 @@
   margin-bottom: 24px;
   font-size: 0.95rem;
   color: var(--text);
+  transition: border-color 0.3s ease;
 }
 
 /* Container do Teclado Split */
@@ -64,25 +169,26 @@
   justify-content: center;
   align-items: flex-start;
   gap: 36px;
-  margin: 30px auto;
+  margin: 24px auto;
   overflow-x: auto;
-  padding: 16px 8px 30px;
+  padding: 16px 8px 24px;
 }
 
 @media (max-width: 960px) {
   .keyboard-split-container {
     flex-direction: column;
     align-items: center;
-    gap: 32px;
+    gap: 28px;
   }
 }
 
 .keyboard-half {
-  background: rgba(22, 27, 34, 0.7);
+  background: rgba(22, 27, 34, 0.85);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 18px 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .half-title {
@@ -138,7 +244,7 @@
   text-align: center;
   cursor: pointer;
   user-select: none;
-  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
   box-shadow: 0 3px 0 #161b22, 0 4px 6px rgba(0, 0, 0, 0.3);
   padding: 4px;
   height: 52px;
@@ -150,6 +256,17 @@
     height: 44px;
     width: 44px;
   }
+}
+
+/* Animação quando a camada muda */
+.key-cap.morphing {
+  animation: keyMorph 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes keyMorph {
+  0% { transform: scale(0.88); opacity: 0.6; }
+  60% { transform: scale(1.08); }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 .key-cap:hover {
@@ -165,6 +282,35 @@
   border-color: var(--accent);
 }
 
+.key-cap.pressed-live {
+  background: #f2a33c !important;
+  color: #000 !important;
+  border-color: #ffbe6b !important;
+  transform: translateY(3px) !important;
+  box-shadow: 0 0 16px rgba(242, 163, 60, 0.6) !important;
+}
+
+.key-cap.pressed-live .key-primary,
+.key-cap.pressed-live .key-sub {
+  color: #000 !important;
+}
+
+/* Tecla que dispara mudança de camada (com pulso visual) */
+.key-cap.key-layer {
+  background: #382417;
+  border-color: #f0883e;
+  position: relative;
+}
+
+.key-cap.key-layer::after {
+  content: "⚡";
+  position: absolute;
+  top: 2px;
+  right: 3px;
+  font-size: 0.6rem;
+  opacity: 0.8;
+}
+
 .key-primary {
   font-family: var(--mono);
   font-size: 0.85rem;
@@ -175,7 +321,7 @@
 }
 
 .key-sub {
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   color: var(--muted);
   margin-top: 2px;
   font-family: var(--sans);
@@ -183,80 +329,73 @@
 }
 
 /* Categorias de Cores */
-.key-mod {
-  background: #1f2a3a;
-  border-color: #2e4460;
-}
-.key-mod .key-primary {
-  color: #79c0ff;
+.key-mod { background: #1f2a3a; border-color: #2e4460; }
+.key-mod .key-primary { color: #79c0ff; }
+
+.key-layer { background: #312117; border-color: #59351e; }
+.key-layer .key-primary { color: #f0883e; }
+
+.key-nav { background: #172d24; border-color: #21543e; }
+.key-nav .key-primary { color: #7ee787; }
+
+.key-sym { background: #2b1f3d; border-color: #4b326d; }
+.key-sym .key-primary { color: #d2a8ff; }
+
+.key-accent { background: #342817; border-color: #63471f; }
+.key-accent .key-primary { color: #e3b341; }
+
+.key-media { background: #1c2b38; border-color: #264a66; }
+.key-media .key-primary { color: #56d4dd; }
+
+.key-fn { background: #232233; border-color: #383654; }
+.key-fn .key-primary { color: #a5d6ff; }
+
+.key-boot { background: #3d1414; border-color: #6d2222; }
+.key-boot .key-primary { color: #ff7b72; }
+
+.key-trans { background: #13171f; border-color: #21262d; opacity: 0.45; }
+.key-trans .key-primary { color: #6e7681; }
+
+/* Campo Interativo para Testar Digitação ao Vivo */
+.live-typing-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 20px auto;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.key-layer {
-  background: #312117;
-  border-color: #59351e;
-}
-.key-layer .key-primary {
-  color: #f0883e;
-}
-
-.key-nav {
-  background: #172d24;
-  border-color: #21543e;
-}
-.key-nav .key-primary {
-  color: #7ee787;
+.live-typing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
-.key-sym {
-  background: #2b1f3d;
-  border-color: #4b326d;
-}
-.key-sym .key-primary {
-  color: #d2a8ff;
-}
-
-.key-accent {
-  background: #342817;
-  border-color: #63471f;
-}
-.key-accent .key-primary {
-  color: #e3b341;
+.live-input {
+  width: 100%;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
 }
 
-.key-media {
-  background: #1c2b38;
-  border-color: #264a66;
-}
-.key-media .key-primary {
-  color: #56d4dd;
+.live-input:focus {
+  border-color: var(--accent-2);
+  box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
 }
 
-.key-fn {
-  background: #232233;
-  border-color: #383654;
-}
-.key-fn .key-primary {
-  color: #a5d6ff;
-}
-
-.key-boot {
-  background: #3d1414;
-  border-color: #6d2222;
-}
-.key-boot .key-primary {
-  color: #ff7b72;
-}
-
-.key-trans {
-  background: #13171f;
-  border-color: #21262d;
-  opacity: 0.45;
-}
-.key-trans .key-primary {
-  color: #6e7681;
-}
-
-/* Painel de Detalhes da Tecla Inspecionada */
+/* Painel de Detalhes da Tecla */
 .key-detail-card {
   background: var(--card);
   border: 1px solid var(--border);
