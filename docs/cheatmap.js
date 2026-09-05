@@ -312,11 +312,31 @@ let currentLayer = 0;
 let previousLayer = 0;
 let isHoldingLayer = false;
 
-function renderKey(keyData) {
+// Matriz física Silakka54 (24 teclas principais + 3 polegares por metade)
+const LEFT_PHYSICAL_CODES = [
+  "Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5",
+  "Tab", "KeyQ", "KeyW", "KeyE", "KeyR", "KeyT",
+  "CapsLock", "KeyA", "KeyS", "KeyD", "KeyF", "KeyG",
+  "ShiftLeft", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB"
+];
+const LEFT_THUMB_PHYSICAL_CODES = ["MetaLeft", "Layer1", "Space"];
+
+const RIGHT_PHYSICAL_CODES = [
+  "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus",
+  "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "Backspace",
+  "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote",
+  "KeyN", "KeyM", "Comma", "Period", "Slash", "ShiftRight"
+];
+const RIGHT_THUMB_PHYSICAL_CODES = ["Enter", "Layer2", "AltRight"];
+
+function renderKey(keyData, physicalCode) {
   const btn = document.createElement("div");
   btn.className = `key-cap ${keyData.t} morphing`;
   btn.dataset.qmk = keyData.qmk || "";
-  if (keyData.code) btn.dataset.code = keyData.code;
+
+  const codeToSet = keyData.code || physicalCode || "";
+  if (codeToSet) btn.dataset.code = codeToSet;
+  if (keyData.p) btn.dataset.primary = keyData.p;
 
   // Se for tecla disparadora de camada
   if (keyData.targetLayer !== undefined) {
@@ -410,29 +430,28 @@ function switchLayer(layerId) {
   const descEl = document.getElementById("layer-desc-target");
   if (descEl) {
     descEl.textContent = layer.desc;
-    // Borda combinando com a cor da camada
     const borderColors = ["#58a6ff", "#7ee787", "#d2a8ff", "#f0883e"];
     descEl.style.borderLeftColor = borderColors[layerId] || "var(--accent)";
   }
 
-  // Renderizar lado esquerdo
+  // Renderizar lado esquerdo com mapeamento de posição física
   const leftGrid = document.getElementById("grid-left-main");
   const leftThumbs = document.getElementById("thumbs-left");
   if (leftGrid && leftThumbs) {
     leftGrid.innerHTML = "";
     leftThumbs.innerHTML = "";
-    layer.keysLeft.forEach(k => leftGrid.appendChild(renderKey(k)));
-    layer.thumbsLeft.forEach(k => leftThumbs.appendChild(renderKey(k)));
+    layer.keysLeft.forEach((k, idx) => leftGrid.appendChild(renderKey(k, LEFT_PHYSICAL_CODES[idx])));
+    layer.thumbsLeft.forEach((k, idx) => leftThumbs.appendChild(renderKey(k, LEFT_THUMB_PHYSICAL_CODES[idx])));
   }
 
-  // Renderizar lado direito
+  // Renderizar lado direito com mapeamento de posição física
   const rightGrid = document.getElementById("grid-right-main");
   const rightThumbs = document.getElementById("thumbs-right");
   if (rightGrid && rightThumbs) {
     rightGrid.innerHTML = "";
     rightThumbs.innerHTML = "";
-    layer.keysRight.forEach(k => rightGrid.appendChild(renderKey(k)));
-    layer.thumbsRight.forEach(k => rightThumbs.appendChild(renderKey(k)));
+    layer.keysRight.forEach((k, idx) => rightGrid.appendChild(renderKey(k, RIGHT_PHYSICAL_CODES[idx])));
+    layer.thumbsRight.forEach((k, idx) => rightThumbs.appendChild(renderKey(k, RIGHT_THUMB_PHYSICAL_CODES[idx])));
   }
 
   // Remove classe de animação após o término para permitir novas animações
@@ -443,37 +462,324 @@ function switchLayer(layerId) {
   // Selecionar tecla de exemplo relevante
   const keyToHighlight = layer.thumbsLeft[1] || layer.keysLeft[0];
   if (keyToHighlight) showKeyDetail(keyToHighlight, leftThumbs ? leftThumbs.children[1] : null);
+
+  // Atualizar dica da próxima tecla caso esteja em modo de treino
+  updateTargetKeyHint();
 }
 
-// Simulador de Digitação em Tempo Real (Highlight da tecla física pressionada)
-function setupLiveKeyboard() {
-  const inputTest = document.getElementById("live-keyboard-input");
+// ==========================================================================
+// SOM MECÂNICO DE SWITCH (WEB AUDIO API - ZERO LATÊNCIA)
+// ==========================================================================
+let audioCtx = null;
+let soundEnabled = true;
 
-  window.addEventListener("keydown", (e) => {
-    // Teclas de atalho para mudar camada rápida: Alt+0..3 ou se o foco não estiver no input
-    if (e.altKey && ["0", "1", "2", "3"].includes(e.key)) {
-      e.preventDefault();
-      switchLayer(parseInt(e.key, 10));
-      return;
-    }
+function playSwitchSound() {
+  if (!soundEnabled) return;
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    if (!audioCtx) audioCtx = new AudioContext();
+    if (audioCtx.state === "suspended") audioCtx.resume();
 
-    // Achar elemento da tecla física na tela
-    const keyEl = document.querySelector(`.key-cap[data-code="${e.code}"]`);
-    if (keyEl) {
-      keyEl.classList.add("pressed-live");
-      keyEl.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
-    }
-  });
+    const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
 
-  window.addEventListener("keyup", (e) => {
-    const keyEl = document.querySelector(`.key-cap[data-code="${e.code}"]`);
-    if (keyEl) {
-      keyEl.classList.remove("pressed-live");
-    }
-  });
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(540, now);
+    osc.frequency.exponentialRampToValueAtTime(130, now + 0.035);
+
+    gain.gain.setValueAtTime(0.2, now);
+    gain.gain.exponentialRampToValueAtTime(0.005, now + 0.035);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.035);
+  } catch (err) {}
 }
 
-// Inicialização
+// ==========================================================================
+// ARENA DE DIGITAÇÃO INTERATIVA EM TEMPO REAL
+// ==========================================================================
+const PRACTICE_PROMPTS = {
+  free: "",
+  pt: "não é difícil programar no teclado split com acentuação e cedilha",
+  dev: "const [count, setCount] = useState(0); return <Button>{count}</Button>;",
+  vim: ":w | :q | h j k l | Super+Enter para terminal | Super+d para dmenu"
+};
+
+let currentMode = "free";
+let typedText = "";
+let totalKeysPressed = 0;
+let typingStartTime = null;
+
+// Mapa de aliases físicos para atalhos de camada enviados pelo QMK/Vial:
+const ALIAS_CODE_MAP = {
+  "ArrowLeft": "KeyH",
+  "ArrowDown": "KeyJ",
+  "ArrowUp": "KeyK",
+  "ArrowRight": "KeyL",
+  "Home": "KeyU",
+  "End": "KeyP",
+  "PageUp": "KeyI",
+  "PageDown": "KeyO",
+  "Delete": "KeyM",
+  "Escape": "CapsLock"
+};
+
+function findKeyElement(e) {
+  const code = e.code;
+  const key = e.key;
+
+  // 1. Match direto pelo data-code
+  let el = document.querySelector(`.key-cap[data-code="${code}"]`);
+  if (el) return el;
+
+  // 2. Alias de navegação Vim quando a Silakka54 envia setas na Layer 1
+  const aliasCode = ALIAS_CODE_MAP[code] || ALIAS_CODE_MAP[key];
+  if (aliasCode) {
+    el = document.querySelector(`.key-cap[data-code="${aliasCode}"]`);
+    if (el) return el;
+  }
+
+  // 3. Fallback por caractere primário
+  if (key && key.length === 1) {
+    const clean = key.toLowerCase();
+    el = Array.from(document.querySelectorAll(".key-cap")).find(k => {
+      const p = (k.dataset.primary || k.querySelector(".key-primary")?.textContent || "").toLowerCase();
+      return p === clean || p.startsWith(clean);
+    });
+  }
+
+  return el;
+}
+
+function updateTargetKeyHint() {
+  document.querySelectorAll(".key-cap.target-key-hint").forEach(el => el.classList.remove("target-key-hint"));
+  if (currentMode === "free") return;
+
+  const prompt = PRACTICE_PROMPTS[currentMode] || "";
+  if (typedText.length >= prompt.length) return;
+
+  const nextChar = prompt[typedText.length];
+  const lowerChar = nextChar.toLowerCase();
+
+  const keyEl = Array.from(document.querySelectorAll(".key-cap")).find(k => {
+    const p = (k.dataset.primary || k.querySelector(".key-primary")?.textContent || "").toLowerCase();
+    return p === lowerChar || p.startsWith(lowerChar);
+  });
+
+  if (keyEl) {
+    keyEl.classList.add("target-key-hint");
+  }
+}
+
+function renderTypingDisplay() {
+  const prompt = PRACTICE_PROMPTS[currentMode] || "";
+  const targetEl = document.getElementById("typing-target-text");
+  const typedEl = document.getElementById("typed-content");
+  const hintEl = document.getElementById("typing-placeholder-hint");
+
+  if (currentMode === "free") {
+    if (targetEl) targetEl.style.display = "none";
+    if (typedEl) typedEl.textContent = typedText;
+    if (hintEl) hintEl.style.display = typedText.length > 0 ? "none" : "block";
+  } else {
+    if (targetEl) {
+      targetEl.style.display = "block";
+      const before = prompt.slice(0, typedText.length);
+      const current = prompt.slice(typedText.length, typedText.length + 1);
+      const after = prompt.slice(typedText.length + 1);
+      targetEl.innerHTML = `<span style="color: #58a6ff;">${before}</span><span class="typing-target-char-next">${current || ""}</span><span>${after}</span>`;
+    }
+    if (typedEl) typedEl.textContent = typedText;
+    if (hintEl) hintEl.style.display = "none";
+  }
+
+  updateTargetKeyHint();
+}
+
+function updateHUD(e, keyEl) {
+  const lastKeyEl = document.getElementById("hud-last-key");
+  const rawCodeEl = document.getElementById("hud-raw-code");
+  const layerEl = document.getElementById("hud-layer-detected");
+  const accentInfoEl = document.getElementById("hud-accent-info");
+  const accentTextEl = document.getElementById("hud-accent-text");
+  const statCountEl = document.getElementById("stat-key-count");
+  const statWpmEl = document.getElementById("stat-wpm");
+
+  let displayKey = e.key;
+  if (e.code === "Space") displayKey = "Space ␣";
+  else if (e.code === "Enter") displayKey = "Enter ↵";
+  else if (e.code === "Backspace") displayKey = "Backspace ⌫";
+  else if (e.code === "CapsLock") displayKey = "CapsLock / Esc";
+
+  if (lastKeyEl) lastKeyEl.textContent = displayKey;
+  if (rawCodeEl) rawCodeEl.textContent = e.code;
+
+  // Detectar camada pela ação
+  let detected = `Layer ${currentLayer}`;
+  if (["ArrowLeft", "ArrowDown", "ArrowUp", "ArrowRight", "Home", "End", "PageUp", "PageDown"].includes(e.code) || ["ArrowLeft", "ArrowDown", "ArrowUp", "ArrowRight"].includes(e.key)) {
+    detected = "Layer 1: Vim NAV (HJKL)";
+  } else if (["(", ")", "{", "}", "[", "]", "<", ">", "=", "+"].includes(e.key)) {
+    detected = "Layer 2: SYM (Dev)";
+  }
+  if (layerEl) layerEl.textContent = detected;
+
+  // Acentuação Português
+  if (accentInfoEl && accentTextEl) {
+    const ptAccents = {
+      "ç": "' + c = ç (Cedilha)",
+      "ã": "~ + a = ã (Til)",
+      "õ": "~ + o = õ (Til)",
+      "á": "' + a = á (Agudo)",
+      "é": "' + e = é (Agudo)",
+      "í": "' + i = í (Agudo)",
+      "ó": "' + o = ó (Agudo)",
+      "ú": "' + u = ú (Agudo)",
+      "à": "` + a = à (Crase)",
+      "ê": "^ + e = ê (Circunflexo)",
+      "ô": "^ + o = ô (Circunflexo)",
+      "â": "^ + a = â (Circunflexo)"
+    };
+
+    if (ptAccents[e.key]) {
+      accentTextEl.textContent = ptAccents[e.key];
+      accentInfoEl.style.display = "inline-flex";
+    } else if (e.key === "'" || e.key === "~" || e.key === "`" || e.key === "^" || e.key === "Dead") {
+      accentTextEl.textContent = "Dead key aguardando próxima letra...";
+      accentInfoEl.style.display = "inline-flex";
+    } else {
+      accentInfoEl.style.display = "none";
+    }
+  }
+
+  // Estatísticas
+  totalKeysPressed++;
+  if (statCountEl) statCountEl.textContent = totalKeysPressed;
+
+  if (!typingStartTime) typingStartTime = Date.now();
+  const elapsedMinutes = (Date.now() - typingStartTime) / 60000;
+  if (elapsedMinutes > 0.05 && statWpmEl) {
+    const wordsTyped = totalKeysPressed / 5;
+    const wpm = Math.round(wordsTyped / elapsedMinutes);
+    statWpmEl.textContent = Math.min(wpm, 250);
+  }
+}
+
+function handleGlobalKeydown(e) {
+  // Ignorar se o foco estiver em algum input diferente do container da página
+  if (e.target.tagName === "INPUT" && e.target.id !== "live-keyboard-input") return;
+
+  // Atalho rápido Alt + 0..3 para troca de camada
+  if (e.altKey && ["0", "1", "2", "3"].includes(e.key)) {
+    e.preventDefault();
+    switchLayer(parseInt(e.key, 10));
+    return;
+  }
+
+  // Tocar som mecânico de switch
+  playSwitchSound();
+
+  // Localizar elemento visual da tecla e acender
+  const keyEl = findKeyElement(e);
+  if (keyEl) {
+    keyEl.classList.add("pressed-live");
+    const rawQmk = keyEl.dataset.qmk;
+    showKeyDetail({
+      p: keyEl.querySelector(".key-primary")?.textContent || e.key,
+      s: keyEl.querySelector(".key-sub")?.textContent || "",
+      t: keyEl.className.includes("key-accent") ? "key-accent" : (keyEl.className.includes("key-mod") ? "key-mod" : "key-alpha"),
+      title: `Tecla física: ${e.code}`,
+      desc: `Pressionada em tempo real no seu teclado físico! QMK: ${rawQmk || "Direta"}`,
+      qmk: rawQmk
+    }, keyEl);
+  }
+
+  // Atualizar HUD
+  updateHUD(e, keyEl);
+
+  // Atualizar texto digitado na Arena
+  if (e.key === "Backspace") {
+    typedText = typedText.slice(0, -1);
+    renderTypingDisplay();
+  } else if (e.key === "Enter") {
+    typedText += "\n";
+    renderTypingDisplay();
+  } else if (e.key === "Tab") {
+    e.preventDefault();
+    typedText += "  ";
+    renderTypingDisplay();
+  } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+    typedText += e.key;
+    renderTypingDisplay();
+  }
+}
+
+function handleGlobalKeyup(e) {
+  const keyEl = findKeyElement(e);
+  if (keyEl) {
+    keyEl.classList.remove("pressed-live");
+  } else {
+    document.querySelectorAll(".key-cap.pressed-live").forEach(k => k.classList.remove("pressed-live"));
+  }
+}
+
+function setupTypingArena() {
+  // Event listeners globais de teclado (funciona ao teclar em qualquer lugar!)
+  window.addEventListener("keydown", handleGlobalKeydown);
+  window.addEventListener("keyup", handleGlobalKeyup);
+
+  // Alternador de som
+  const soundBtn = document.getElementById("btn-toggle-sound");
+  if (soundBtn) {
+    soundBtn.addEventListener("click", () => {
+      soundEnabled = !soundEnabled;
+      soundBtn.classList.toggle("active", soundEnabled);
+      soundBtn.textContent = soundEnabled ? "🔊 Switch: ON" : "🔈 Switch: OFF";
+    });
+  }
+
+  // Botão de limpar
+  const clearBtn = document.getElementById("btn-clear-typing");
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      typedText = "";
+      totalKeysPressed = 0;
+      typingStartTime = null;
+      document.getElementById("stat-key-count").textContent = "0";
+      document.getElementById("stat-wpm").textContent = "0";
+      document.getElementById("hud-last-key").textContent = "—";
+      document.getElementById("hud-raw-code").textContent = "—";
+      renderTypingDisplay();
+    });
+  }
+
+  // Chips de modo de treino
+  document.querySelectorAll(".mode-chip[data-mode]").forEach(chip => {
+    chip.addEventListener("click", () => {
+      document.querySelectorAll(".mode-chip[data-mode]").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      currentMode = chip.dataset.mode;
+      typedText = "";
+      renderTypingDisplay();
+    });
+  });
+
+  // Foco na arena ao clicar
+  const arenaBox = document.getElementById("typing-display-box");
+  if (arenaBox) {
+    arenaBox.addEventListener("click", () => arenaBox.focus());
+  }
+
+  renderTypingDisplay();
+}
+
+// ==========================================================================
+// INICIALIZAÇÃO GERAL
+// ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".layer-btn").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -481,6 +787,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  setupLiveKeyboard();
+  setupTypingArena();
   switchLayer(0);
 });
+

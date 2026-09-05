@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
-<link rel="stylesheet" href="cheatmap.css" />
+<link rel="stylesheet" href="cheatmap.css?v=3.3" />
 <script type="importmap">
 {
   "imports": {
@@ -104,11 +104,57 @@
       Carregando informações da camada...
     </div>
 
-    <!-- Teste de Digitação ao Vivo -->
-    <div class="live-test-box">
-      <span style="font-size: 1.2rem;">⌨️</span>
-      <input type="text" id="live-keyboard-input" placeholder="Experimente clicar nas teclas abaixo ou digite aqui para testar..." autocomplete="off">
-      <span class="mono small" style="color: var(--muted); font-size: 0.75rem;">(Alt+0..3 muda camada)</span>
+    <!-- Arena de Digitação Interativa & Feedback em Tempo Real -->
+    <div class="interactive-typing-arena">
+      <div class="typing-arena-header">
+        <div class="typing-status-pill">
+          <span class="live-recording-dot"></span>
+          <span id="live-typing-status">Modo Digitação Ativo · Toque qualquer tecla do seu Silakka54</span>
+        </div>
+        <div class="typing-modes-bar">
+          <button class="mode-chip active" data-mode="free">⌨️ Digitação Livre</button>
+          <button class="mode-chip" data-mode="pt">🇧🇷 Acentuação PT (ç, ã, é)</button>
+          <button class="mode-chip" data-mode="dev">💻 Código Dev (Símbolos)</button>
+          <button class="mode-chip" data-mode="vim">🪟 Vim &amp; DWM (HJKL)</button>
+          <button id="btn-toggle-sound" class="mode-chip sound-chip active" title="Ativar/desativar clique mecânico">🔊 Switch: ON</button>
+          <button id="btn-clear-typing" class="mode-chip danger-chip" title="Limpar digitação">🧹 Limpar</button>
+        </div>
+      </div>
+
+      <!-- Caixa de Texto Interativa -->
+      <div class="typing-display-box" id="typing-display-box" tabindex="0" title="Clique aqui ou comece a digitar diretamente no teclado">
+        <div class="typing-target-text" id="typing-target-text"></div>
+        <div class="typing-typed-text" id="typing-typed-text">
+          <span class="typed-content" id="typed-content"></span><span class="typing-caret">|</span>
+        </div>
+        <div class="typing-placeholder-hint" id="typing-placeholder-hint">
+          Pressione qualquer tecla no seu teclado agora... as teclas acendem abaixo em tempo real!
+        </div>
+      </div>
+
+      <!-- Régua HUD em Tempo Real -->
+      <div class="live-keystroke-hud">
+        <div class="hud-item">
+          <span class="hud-label">Última tecla:</span>
+          <span class="hud-value" id="hud-last-key">—</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Código:</span>
+          <span class="hud-value mono" id="hud-raw-code">—</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Camada:</span>
+          <span class="hud-value" id="hud-layer-detected">Layer 0 (Base)</span>
+        </div>
+        <div class="hud-item hud-accent-info" id="hud-accent-info" style="display: none;">
+          <span class="hud-badge">🇧🇷 Acentuação</span>
+          <span id="hud-accent-text"></span>
+        </div>
+        <div class="hud-stats">
+          <span class="hud-stat-badge"><strong id="stat-key-count">0</strong> teclas</span>
+          <span class="hud-stat-badge"><strong id="stat-wpm">0</strong> WPM</span>
+        </div>
+      </div>
     </div>
 
     <!-- Teclado Split Visual (Metade Esquerda e Metade Direita) -->
@@ -346,6 +392,6 @@
 </main>
 
 <script type="module" src="app.js"></script>
-<script src="cheatmap.js"></script>
+<script src="cheatmap.js?v=3.3"></script>
 </body>
 </html>
