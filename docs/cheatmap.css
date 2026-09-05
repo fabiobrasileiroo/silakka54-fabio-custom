@@ -1,0 +1,351 @@
+/* ==========================================================================
+   CHEATMAP INTERATIVO - SILAKKA54
+   ========================================================================== */
+
+.cheatmap-section {
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+
+.cheatmap-header {
+  margin-bottom: 24px;
+}
+
+.layer-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 28px;
+}
+
+.layer-btn {
+  background: var(--bg-soft);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.layer-btn:hover {
+  background: var(--card);
+  color: var(--text);
+  border-color: var(--accent-2);
+}
+
+.layer-btn.active {
+  background: rgba(88, 166, 255, 0.15);
+  color: var(--accent-2);
+  border-color: var(--accent-2);
+  box-shadow: 0 0 12px rgba(88, 166, 255, 0.2);
+}
+
+.layer-desc-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  padding: 14px 20px;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+/* Container do Teclado Split */
+.keyboard-split-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 36px;
+  margin: 30px auto;
+  overflow-x: auto;
+  padding: 16px 8px 30px;
+}
+
+@media (max-width: 960px) {
+  .keyboard-split-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+}
+
+.keyboard-half {
+  background: rgba(22, 27, 34, 0.7);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.half-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-bottom: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Grid das Teclas Principais (6 colunas x 4 linhas) */
+.key-grid-main {
+  display: grid;
+  grid-template-columns: repeat(6, 52px);
+  grid-template-rows: repeat(4, 52px);
+  gap: 6px;
+}
+
+@media (max-width: 600px) {
+  .key-grid-main {
+    grid-template-columns: repeat(6, 44px);
+    grid-template-rows: repeat(4, 44px);
+    gap: 4px;
+  }
+}
+
+/* Cluster dos Polegares */
+.thumb-cluster {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
+.half-right .thumb-cluster {
+  justify-content: flex-start;
+}
+
+/* Estilo Individual das Teclas */
+.key-cap {
+  position: relative;
+  background: #21262d;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 3px 0 #161b22, 0 4px 6px rgba(0, 0, 0, 0.3);
+  padding: 4px;
+  height: 52px;
+  width: 52px;
+}
+
+@media (max-width: 600px) {
+  .key-cap {
+    height: 44px;
+    width: 44px;
+  }
+}
+
+.key-cap:hover {
+  transform: translateY(-2px);
+  border-color: #58a6ff;
+  box-shadow: 0 5px 0 #161b22, 0 6px 12px rgba(88, 166, 255, 0.25);
+  z-index: 10;
+}
+
+.key-cap:active, .key-cap.selected {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #161b22;
+  border-color: var(--accent);
+}
+
+.key-primary {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #f0f6fc;
+  line-height: 1.1;
+  word-break: break-all;
+}
+
+.key-sub {
+  font-size: 0.65rem;
+  color: var(--muted);
+  margin-top: 2px;
+  font-family: var(--sans);
+  font-weight: 500;
+}
+
+/* Categorias de Cores */
+.key-mod {
+  background: #1f2a3a;
+  border-color: #2e4460;
+}
+.key-mod .key-primary {
+  color: #79c0ff;
+}
+
+.key-layer {
+  background: #312117;
+  border-color: #59351e;
+}
+.key-layer .key-primary {
+  color: #f0883e;
+}
+
+.key-nav {
+  background: #172d24;
+  border-color: #21543e;
+}
+.key-nav .key-primary {
+  color: #7ee787;
+}
+
+.key-sym {
+  background: #2b1f3d;
+  border-color: #4b326d;
+}
+.key-sym .key-primary {
+  color: #d2a8ff;
+}
+
+.key-accent {
+  background: #342817;
+  border-color: #63471f;
+}
+.key-accent .key-primary {
+  color: #e3b341;
+}
+
+.key-media {
+  background: #1c2b38;
+  border-color: #264a66;
+}
+.key-media .key-primary {
+  color: #56d4dd;
+}
+
+.key-fn {
+  background: #232233;
+  border-color: #383654;
+}
+.key-fn .key-primary {
+  color: #a5d6ff;
+}
+
+.key-boot {
+  background: #3d1414;
+  border-color: #6d2222;
+}
+.key-boot .key-primary {
+  color: #ff7b72;
+}
+
+.key-trans {
+  background: #13171f;
+  border-color: #21262d;
+  opacity: 0.45;
+}
+.key-trans .key-primary {
+  color: #6e7681;
+}
+
+/* Painel de Detalhes da Tecla Inspecionada */
+.key-detail-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 20px auto;
+  max-width: 860px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.key-detail-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.key-detail-badge {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--bg-soft);
+  color: var(--accent-2);
+  border: 1px solid var(--border);
+}
+
+.key-detail-body {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.key-detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.key-detail-tag {
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  border-radius: 12px;
+  color: var(--text);
+}
+
+/* Grid de Dicas / Cheat Sheet Rápido */
+.cheatsheet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.cheatsheet-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.cheatsheet-card h4 {
+  font-size: 1rem;
+  color: var(--accent);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cheatsheet-card ul {
+  list-style: none;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.cheatsheet-card li {
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cheatsheet-card li code {
+  color: var(--text);
+}

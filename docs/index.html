@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="cheatmap.css" />
 <script type="importmap">
 {
   "imports": {
@@ -31,6 +32,7 @@
     </p>
     <div class="hero-actions">
       <a class="btn primary" href="https://github.com/fabiobrasileiroo/silakka54-fabio-custom/raw/main/01-final/silakka54-fabio-pacote-completo.zip" download>📥 Baixar Pacote Completo STL (.ZIP)</a>
+      <a class="btn primary" style="background: var(--accent); color: #000; font-weight: 700;" href="#cheatmap">⌨️ Cheatmap Interativo (Layers)</a>
       <a class="btn ghost" href="#viewer">Ver em 3D</a>
       <a class="btn ghost" href="#pecas">Guia de Peças</a>
     </div>
@@ -58,6 +60,133 @@
 </section>
 
 <main>
+
+  <!-- ===================== CHEATMAP INTERATIVO ===================== -->
+  <section id="cheatmap" class="section cheatmap-section">
+    <div class="cheatmap-header">
+      <div class="kicker">Configuração Oficial Vial · v1.0</div>
+      <h2>⌨️ Cheatmap Interativo: Layout Silakka54</h2>
+      <p class="muted">
+        Otimizado para <strong>DWM</strong>, <strong>Vim/LazyVim</strong>, <strong>VSCode</strong> e digitação fluida em <strong>Português (US-Intl)</strong>.
+        Clique ou passe o mouse sobre qualquer tecla para inspecionar os atalhos e funções em cada camada.
+      </p>
+    </div>
+
+    <!-- Seletor de Camadas (Layers) -->
+    <div class="layer-switcher">
+      <button class="layer-btn active" data-layer="0">
+        <span>0</span> Base QWERTY (US-Intl &amp; DWM)
+      </button>
+      <button class="layer-btn" data-layer="1">
+        <span>1</span> NAV &amp; DWM &amp; Vim (Polegar E.)
+      </button>
+      <button class="layer-btn" data-layer="2">
+        <span>2</span> SYM - Símbolos Dev (Polegar D.)
+      </button>
+      <button class="layer-btn" data-layer="3">
+        <span>3</span> NUMPAD &amp; FN &amp; Boot
+      </button>
+    </div>
+
+    <!-- Descrição da Camada -->
+    <div id="layer-desc-target" class="layer-desc-box">
+      Carregando informações da camada...
+    </div>
+
+    <!-- Teclado Split Visual (Metade Esquerda e Metade Direita) -->
+    <div class="keyboard-split-container">
+      <!-- Metade Esquerda -->
+      <div class="keyboard-half half-left">
+        <div class="half-title">
+          <span>Metade Esquerda (LH)</span>
+          <span class="mono small">27 teclas</span>
+        </div>
+        <div id="grid-left-main" class="key-grid-main"></div>
+        <div id="thumbs-left" class="thumb-cluster"></div>
+      </div>
+
+      <!-- Metade Direita -->
+      <div class="keyboard-half half-right">
+        <div class="half-title">
+          <span>Metade Direita (RH)</span>
+          <span class="mono small">27 teclas</span>
+        </div>
+        <div id="grid-right-main" class="key-grid-main"></div>
+        <div id="thumbs-right" class="thumb-cluster"></div>
+      </div>
+    </div>
+
+    <!-- Painel de Inspeção da Tecla -->
+    <div id="key-detail-target" class="key-detail-card">
+      <div class="key-detail-title">
+        <span>Passe o mouse ou clique em uma tecla</span>
+      </div>
+      <div class="key-detail-body">
+        Veja aqui a função exata no Linux, no DWM, no Vim e o comportamento de acentuação em Português.
+      </div>
+    </div>
+
+    <!-- Download e Referência Rápida -->
+    <div style="text-align: center; margin: 28px 0 16px;">
+      <a class="btn primary" href="silakka54-fabio-vim-dwm.vil" download>
+        📥 Baixar Arquivo de Layout do Vial (.vil)
+      </a>
+      <a class="btn ghost" href="https://github.com/fabiobrasileiroo/silakka54-fabio-custom/blob/main/LAYOUT-FABIO.md" target="_blank" rel="noopener">
+        📖 Ver Documentação Técnica Completa
+      </a>
+    </div>
+
+    <!-- Cheat Sheet em Cards -->
+    <div class="cheatsheet-grid">
+      <div class="cheatsheet-card">
+        <h4>🇧🇷 Acentuação Português</h4>
+        <ul>
+          <li><span>Cedilha:</span> <code>'</code> + <code>c</code> = <code>ç</code></li>
+          <li><span>Agudo:</span> <code>'</code> + <code>a/e/i/o/u</code> = <code>á/é</code></li>
+          <li><span>Til:</span> <code>~</code> + <code>a/o</code> = <code>ã/õ</code></li>
+          <li><span>Circunflexo:</span> <code>^</code> + <code>a/e/o</code> = <code>â/ê/ô</code></li>
+          <li><span>Crase:</span> <code>`</code> + <code>a</code> = <code>à</code></li>
+          <li><span>AltGr direto:</span> <code>AltGr</code> + <code>,</code> = <code>ç</code></li>
+        </ul>
+      </div>
+
+      <div class="cheatsheet-card">
+        <h4>🪟 DWM (Polegar Esquerdo)</h4>
+        <ul>
+          <li><span>Terminal st:</span> <code>Super</code> + <code>Enter</code></li>
+          <li><span>dmenu:</span> <code>Super</code> + <code>d</code></li>
+          <li><span>Foco Janela:</span> <code>Super</code> + <code>j</code> / <code>k</code></li>
+          <li><span>Redimensionar:</span> <code>Super</code> + <code>h</code> / <code>l</code></li>
+          <li><span>Fechar Janela:</span> <code>Super</code> + <code>Shift</code> + <code>q</code></li>
+          <li><span>Mudar Tag:</span> <code>Super</code> + <code>1..4</code></li>
+        </ul>
+      </div>
+
+      <div class="cheatsheet-card">
+        <h4>⌨️ Navegação Vim (Layer 1)</h4>
+        <ul>
+          <li><span>Setas:</span> <code>H</code> <code>J</code> <code>K</code> <code>L</code> = <code>←</code> <code>↓</code> <code>↑</code> <code>→</code></li>
+          <li><span>Home / End:</span> <code>U</code> / <code>P</code></li>
+          <li><span>PgUp / PgDn:</span> <code>I</code> / <code>O</code></li>
+          <li><span>Apagar:</span> <code>N</code> = <code>Bksp</code>, <code>M</code> = <code>Del</code></li>
+          <li><span>Esc / Ctrl:</span> <code>CapsLock</code> (Tap=Esc / Hold=Ctrl)</li>
+          <li><span>Áudio/Brilho:</span> Top row &amp; Mão Esquerda</li>
+        </ul>
+      </div>
+
+      <div class="cheatsheet-card">
+        <h4>💻 Símbolos Dev (Layer 2)</h4>
+        <ul>
+          <li><span>Parênteses:</span> <code>Q</code> = <code>(</code> &nbsp; <code>W</code> = <code>)</code></li>
+          <li><span>Chaves:</span> <code>E</code> = <code>{</code> &nbsp; <code>R</code> = <code>}</code></li>
+          <li><span>Colchetes:</span> <code>Z</code> = <code>[</code> &nbsp; <code>X</code> = <code>]</code></li>
+          <li><span>Tags / Menor:</span> <code>C</code> = <code>&lt;</code> &nbsp; <code>V</code> = <code>&gt;</code></li>
+          <li><span>Operadores:</span> <code>H</code> = <code>=</code>, <code>J</code> = <code>+</code>, <code>K</code> = <code>-</code></li>
+          <li><span>Comentários:</span> <code>L</code> = <code>*</code>, <code>;</code> = <code>/</code></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <!-- ===================== VISUALIZADOR 3D ===================== -->
   <section id="viewer" class="section">
@@ -187,5 +316,6 @@
 </main>
 
 <script type="module" src="app.js"></script>
+<script src="cheatmap.js"></script>
 </body>
 </html>
