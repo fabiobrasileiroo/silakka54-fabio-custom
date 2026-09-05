@@ -102,6 +102,29 @@ Thumbs: NUM_ENTER ___   ___
 
 ---
 
+### Layer 4: VIM MOUSE & SCROLL & CLIQUES (`TG(4)`: Polegar E + `V` ou `B`)
+```text
+[L-Half]
+Row 0:  SAIR(0)  SNIPER(0) NORMAL(1) TURBO(2)  ___    ___
+Row 1:  TAB      ___       SCROLL_UP SCROLL_DN ___    ___
+Row 2:  SAIR(0)  BTN_MEIO  BTN_ESQ   BTN_DIR   ___    ___
+Row 3:  SHIFT    CTRL      ALT       VOLTAR(4) AVAN(5)SAIR(0)
+Thumbs: BTN_ESQ  SAIR(0)   BTN_DIR
+
+[R-Half]
+Row 0:  ___      ___       ___       ___       ___    ___
+Row 1:  SCR_ESQ  SCROLL_UP SCR_BAIXO SCR_BAIXO SCR_DIR BSPC
+Row 2:  MS_ESQ(H)MS_BAIX(J)MS_CIMA(K)MS_DIR(L) BTN_ESQ BTN_DIR
+Row 3:  BTN_ESQ  BTN_DIR   BTN_MEIO  ___       ___    SAIR(0)
+Thumbs: BTN_ESQ  SAIR(0)   BTN_DIR
+```
+
+* **Como ativar**: Segure o polegar esquerdo (`MO(1)`) e aperte `V` ou `B`. O teclado trava no modo mouse!
+* **Como usar**: Mão direita mexe o cursor com `HJKL` e rola com `U/I/O`. Polegares e mão esquerda clicam (`Btn 1` / `Btn 2`).
+* **Como sair**: Aperte `Esc` ou a tecla do meio do polegar (`TO(0)`) e ele volta instantaneamente para a digitação normal.
+
+---
+
 ## 🚀 Como Importar no Vial
 
 1. Abra o **Vial** (AppImage ou pelo navegador em [vial.rocks](https://vial.rocks)).

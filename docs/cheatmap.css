@@ -59,6 +59,7 @@
 .layer-badge-1 { color: #7ee787; border-color: #7ee787; background: rgba(126, 231, 135, 0.15); }
 .layer-badge-2 { color: #d2a8ff; border-color: #d2a8ff; background: rgba(210, 168, 255, 0.15); }
 .layer-badge-3 { color: #f0883e; border-color: #f0883e; background: rgba(240, 136, 62, 0.15); }
+.layer-badge-4 { color: #f778ba; border-color: #f778ba; background: rgba(247, 120, 186, 0.15); }
 
 .layer-quick-hint {
   font-size: 0.88rem;
@@ -550,6 +551,9 @@
 
 .key-fn { background: #232233; border-color: #383654; }
 .key-fn .key-primary { color: #a5d6ff; }
+
+.key-mouse { background: #321c2e; border-color: #632d56; }
+.key-mouse .key-primary { color: #f778ba; }
 
 .key-boot { background: #3d1414; border-color: #6d2222; }
 .key-boot .key-primary { color: #ff7b72; }

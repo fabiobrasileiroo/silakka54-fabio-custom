@@ -114,8 +114,8 @@
         "KC_TRNS",
         "KC_TRNS",
         "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS"
+        "0x5264",
+        "0x5264"
       ],
       [
         -1,
@@ -332,84 +332,84 @@
     ],
     [
       [
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS"
-      ],
-      [
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
+        "0x5210",
+        "0xdd",
+        "0xde",
+        "0xdf",
         "KC_TRNS",
         "KC_TRNS"
       ],
       [
+        "KC_TAB",
         "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS"
-      ],
-      [
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
+        "0xd9",
+        "0xda",
         "KC_TRNS",
         "KC_TRNS"
       ],
       [
-        -1,
-        -1,
-        -1,
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS"
-      ],
-      [
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
+        "0x5210",
+        "0xd3",
+        "0xd1",
+        "0xd2",
         "KC_TRNS",
         "KC_TRNS"
       ],
       [
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS"
-      ],
-      [
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS"
-      ],
-      [
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS"
+        "KC_LSHIFT",
+        "KC_LCTRL",
+        "KC_LALT",
+        "0xd4",
+        "0xd5",
+        "0x5210"
       ],
       [
         -1,
         -1,
         -1,
+        "0xd1",
+        "0x5210",
+        "0xd2"
+      ],
+      [
+        "KC_TRNS",
+        "KC_TRNS",
+        "KC_TRNS",
         "KC_TRNS",
         "KC_TRNS",
         "KC_TRNS"
+      ],
+      [
+        "KC_BSPACE",
+        "0xdc",
+        "0xda",
+        "0xda",
+        "0xd9",
+        "0xdb"
+      ],
+      [
+        "0xd2",
+        "0xd1",
+        "0xd0",
+        "0xcd",
+        "0xce",
+        "0xcf"
+      ],
+      [
+        "0x5210",
+        "KC_TRNS",
+        "KC_TRNS",
+        "0xd3",
+        "0xd2",
+        "0xd1"
+      ],
+      [
+        -1,
+        -1,
+        -1,
+        "0xd2",
+        "0x5210",
+        "0xd1"
       ]
     ],
     [

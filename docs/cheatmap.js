@@ -111,8 +111,8 @@ const LAYERS_DATA = {
       { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
       { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
       { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
-      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
-      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" }
+      { p: "🐭 Mouse", s: "TG(4)", t: "key-layer", title: "Ativar Modo Mouse (Layer 4)", desc: "⚡ Clique para travar no Modo Mouse! Mão direita vira ponteiro HJKL.", qmk: "TG(4)", targetLayer: 4 },
+      { p: "🐭 Mouse", s: "TG(4)", t: "key-layer", title: "Ativar Modo Mouse (Layer 4)", desc: "⚡ Clique para travar no Modo Mouse! Mão direita vira ponteiro HJKL.", qmk: "TG(4)", targetLayer: 4 }
     ],
     thumbsLeft: [
       { p: "▼", s: "Super", t: "key-trans", title: "Super (Transparente)", desc: "Mantém Super ativo.", qmk: "KC_TRNS" },
@@ -305,6 +305,82 @@ const LAYERS_DATA = {
       { p: "MO(0)", s: "Voltar", t: "key-layer", title: "Voltar à Layer 0", desc: "⚡ Clique aqui para voltar à Layer 0!", qmk: "MO(0)", targetLayer: 0 },
       { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" }
     ]
+  },
+
+  4: {
+    id: 4,
+    title: "Layer 4: VIM MOUSE & SCROLL & CLIQUES",
+    badgeText: "Layer 4: Modo Mouse Vim (HJKL = Ponteiro)",
+    badgeClass: "layer-badge-4",
+    desc: "Mão direita guia o cursor do mouse pelo padrão Vim (HJKL) e rolagem (U/I/O). Mão esquerda e polegares fazem cliques e ajuste de velocidade.",
+    keysLeft: [
+      { p: "✕ Sair", s: "TO(0)", t: "key-layer", title: "Sair do Mouse (TO 0)", desc: "⚡ Sai do modo mouse e volta imediatamente para digitação normal.", qmk: "TO(0)", targetLayer: 0 },
+      { p: "🎯 0", s: "Sniper", t: "key-mouse", title: "Velocidade 0 (Sniper / Lento)", desc: "Movimento ultra preciso e cirúrgico do ponteiro.", qmk: "KC_ACL0" },
+      { p: "🎯 1", s: "Normal", t: "key-mouse", title: "Velocidade 1 (Normal)", desc: "Velocidade padrão de navegação do mouse.", qmk: "KC_ACL1" },
+      { p: "🎯 2", s: "Turbo", t: "key-mouse", title: "Velocidade 2 (Rápido)", desc: "Movimento acelerado para telas grandes / múltiplos monitores.", qmk: "KC_ACL2" },
+      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+
+      { p: "Tab", s: "", t: "key-mod", title: "Tab", desc: "Tabulação padrão.", qmk: "KC_TAB" },
+      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+      { p: "▲ Rolar", s: "W", t: "key-mouse", title: "Rolar para Cima (Wheel Up)", desc: "Rolar página web para cima.", qmk: "KC_WH_U" },
+      { p: "▼ Rolar", s: "E", t: "key-mouse", title: "Rolar para Baixo (Wheel Down)", desc: "Rolar página web para baixo.", qmk: "KC_WH_D" },
+      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+
+      { p: "✕ Sair", s: "Esc", t: "key-layer", title: "Sair do Mouse (Esc)", desc: "Sair do modo mouse e voltar para digitação normal.", qmk: "TO(0)", targetLayer: 0 },
+      { p: "🖱️ Meio", s: "Btn 3", t: "key-mouse", title: "Clique do Meio (Scroll Click)", desc: "Botão 3 do mouse. Abre links em nova aba.", qmk: "KC_BTN3" },
+      { p: "🖱️ Esq", s: "Btn 1", t: "key-mouse", title: "Clique Esquerdo (Left Click)", desc: "Botão principal de clique do mouse.", qmk: "KC_BTN1" },
+      { p: "🖱️ Dir", s: "Btn 2", t: "key-mouse", title: "Clique Direito (Right Click)", desc: "Botão secundário / Menu de contexto.", qmk: "KC_BTN2" },
+      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+
+      { p: "Shift", s: "", t: "key-mod", title: "Shift", desc: "Segurar Shift para seleção de texto com o clique.", qmk: "KC_LSFT" },
+      { p: "Ctrl", s: "", t: "key-mod", title: "Ctrl", desc: "Segurar Ctrl para atalhos combinados com mouse.", qmk: "KC_LCTL" },
+      { p: "Alt", s: "", t: "key-mod", title: "Alt", desc: "Modificador Alt.", qmk: "KC_LALT" },
+      { p: "◀ Voltar", s: "Btn 4", t: "key-mouse", title: "Navegador: Voltar", desc: "Voltar para página anterior no browser.", qmk: "KC_BTN4" },
+      { p: "Avançar ▶", s: "Btn 5", t: "key-mouse", title: "Navegador: Avançar", desc: "Avançar para próxima página no browser.", qmk: "KC_BTN5" },
+      { p: "✕ Sair", s: "TO(0)", t: "key-layer", title: "Sair do Modo Mouse", desc: "Voltar à Layer 0.", qmk: "TO(0)", targetLayer: 0 }
+    ],
+    thumbsLeft: [
+      { p: "🖱️ Esq", s: "Click", t: "key-mouse", title: "Clique Esquerdo no Polegar", desc: "Clique ergonômico no polegar esquerdo enquanto a mão direita guia o mouse!", qmk: "KC_BTN1" },
+      { p: "✕ Sair", s: "TO(0)", t: "key-layer", title: "Sair do Modo Mouse", desc: "⚡ Toque para voltar à Layer 0!", qmk: "TO(0)", targetLayer: 0 },
+      { p: "🖱️ Dir", s: "Right", t: "key-mouse", title: "Clique Direito no Polegar", desc: "Clique secundário no polegar esquerdo.", qmk: "KC_BTN2" }
+    ],
+    keysRight: [
+      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+
+      { p: "◀ Rolar", s: "Y", t: "key-mouse", title: "Scroll Esquerda", desc: "Rolar horizontalmente para a esquerda.", qmk: "KC_WH_L" },
+      { p: "▲ Rolar", s: "U", t: "key-mouse", title: "Scroll Cima (Wheel Up)", desc: "Rolar página web para cima.", qmk: "KC_WH_U" },
+      { p: "▼ Rolar", s: "I", t: "key-mouse", title: "Scroll Baixo (Wheel Down)", desc: "Rolar página web para baixo.", qmk: "KC_WH_D" },
+      { p: "▼ Rolar", s: "O", t: "key-mouse", title: "Scroll Baixo (Wheel Down)", desc: "Rolar página web para baixo.", qmk: "KC_WH_D" },
+      { p: "Rolar ▶", s: "P", t: "key-mouse", title: "Scroll Direita", desc: "Rolar horizontalmente para a direita.", qmk: "KC_WH_R" },
+      { p: "⌫", s: "Bksp", t: "key-mod", title: "Backspace", desc: "Apagar.", qmk: "KC_BSPC" },
+
+      { p: "🖰 ◀", s: "H", t: "key-mouse", title: "Mouse: Esquerda (H)", desc: "🐭 Move o cursor do mouse para a esquerda (Vim H).", qmk: "KC_MS_L" },
+      { p: "🖰 ▼", s: "J", t: "key-mouse", title: "Mouse: Baixo (J)", desc: "🐭 Move o cursor do mouse para baixo (Vim J).", qmk: "KC_MS_D" },
+      { p: "🖰 ▲", s: "K", t: "key-mouse", title: "Mouse: Cima (K)", desc: "🐭 Move o cursor do mouse para cima (Vim K).", qmk: "KC_MS_U" },
+      { p: "🖰 ▶", s: "L", t: "key-mouse", title: "Mouse: Direita (L)", desc: "🐭 Move o cursor do mouse para a direita (Vim L).", qmk: "KC_MS_R" },
+      { p: "🖱️ Esq", s: ";", t: "key-mouse", title: "Clique Esquerdo (;)", desc: "Botão esquerdo de clique do mouse.", qmk: "KC_BTN1" },
+      { p: "🖱️ Dir", s: "'", t: "key-mouse", title: "Clique Direito (')", desc: "Botão direito de clique do mouse.", qmk: "KC_BTN2" },
+
+      { p: "🖱️ Esq", s: "N", t: "key-mouse", title: "Clique Esquerdo (N)", desc: "Botão esquerdo.", qmk: "KC_BTN1" },
+      { p: "🖱️ Dir", s: "M", t: "key-mouse", title: "Clique Direito (M)", desc: "Botão direito.", qmk: "KC_BTN2" },
+      { p: "🖱️ Meio", s: ",", t: "key-mouse", title: "Clique do Meio (,)", desc: "Botão 3 (scroll click).", qmk: "KC_BTN3" },
+      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+      { p: "✕ Sair", s: "TO(0)", t: "key-layer", title: "Sair do Modo Mouse", desc: "Voltar à Layer 0.", qmk: "TO(0)", targetLayer: 0 }
+    ],
+    thumbsRight: [
+      { p: "🖱️ Esq", s: "Click", t: "key-mouse", title: "Clique Esquerdo", desc: "Botão esquerdo no polegar.", qmk: "KC_BTN1" },
+      { p: "✕ Sair", s: "TO(0)", t: "key-layer", title: "Sair do Mouse", desc: "⚡ Clique para voltar à Layer 0!", qmk: "TO(0)", targetLayer: 0 },
+      { p: "🖱️ Dir", s: "Right", t: "key-mouse", title: "Clique Direito", desc: "Botão direito no polegar.", qmk: "KC_BTN2" }
+    ]
   }
 };
 
@@ -430,7 +506,7 @@ function switchLayer(layerId) {
   const descEl = document.getElementById("layer-desc-target");
   if (descEl) {
     descEl.textContent = layer.desc;
-    const borderColors = ["#58a6ff", "#7ee787", "#d2a8ff", "#f0883e"];
+    const borderColors = ["#58a6ff", "#7ee787", "#d2a8ff", "#f0883e", "#f778ba"];
     descEl.style.borderLeftColor = borderColors[layerId] || "var(--accent)";
   }
 
@@ -673,8 +749,8 @@ function handleGlobalKeydown(e) {
   // Ignorar se o foco estiver em algum input diferente do container da página
   if (e.target.tagName === "INPUT" && e.target.id !== "live-keyboard-input") return;
 
-  // Atalho rápido Alt + 0..3 para troca de camada
-  if (e.altKey && ["0", "1", "2", "3"].includes(e.key)) {
+  // Atalho rápido Alt + 0..4 para troca de camada
+  if (e.altKey && ["0", "1", "2", "3", "4"].includes(e.key)) {
     e.preventDefault();
     switchLayer(parseInt(e.key, 10));
     return;
