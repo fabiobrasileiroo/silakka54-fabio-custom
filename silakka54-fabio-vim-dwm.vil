@@ -336,7 +336,7 @@
         "0xdd",
         "0xde",
         "0xdf",
-        "KC_TRNS",
+        "LCTL(KC_R)",
         "KC_TRNS"
       ],
       [
@@ -349,18 +349,18 @@
       ],
       [
         "0x5210",
+        "0xdd",
         "0xd3",
         "0xd1",
         "0xd2",
-        "KC_TRNS",
-        "KC_TRNS"
+        "0xd1"
       ],
       [
         "KC_LSHIFT",
-        "KC_LCTRL",
-        "KC_LALT",
-        "0xd4",
-        "0xd5",
+        "LALT(KC_LEFT)",
+        "LALT(KC_RIGHT)",
+        "LCTL(KC_W)",
+        "LCTL(KC_T)",
         "0x5210"
       ],
       [
@@ -397,8 +397,8 @@
       ],
       [
         "0x5210",
-        "KC_TRNS",
-        "KC_TRNS",
+        "LALT(KC_RIGHT)",
+        "LALT(KC_LEFT)",
         "0xd3",
         "0xd2",
         "0xd1"

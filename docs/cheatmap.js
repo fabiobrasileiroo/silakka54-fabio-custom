@@ -329,18 +329,18 @@ const LAYERS_DATA = {
       { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
 
       { p: "✕ Sair", s: "Esc", t: "key-layer", title: "Sair do Mouse (Esc)", desc: "Sair do modo mouse e voltar para digitação normal.", qmk: "TO(0)", targetLayer: 0 },
-      { p: "🖱️ Meio", s: "Btn 3", t: "key-mouse", title: "Clique do Meio (Scroll Click)", desc: "Botão 3 do mouse. Abre links em nova aba.", qmk: "KC_BTN3" },
-      { p: "🖱️ Esq", s: "Btn 1", t: "key-mouse", title: "Clique Esquerdo (Left Click)", desc: "Botão principal de clique do mouse.", qmk: "KC_BTN1" },
-      { p: "🖱️ Dir", s: "Btn 2", t: "key-mouse", title: "Clique Direito (Right Click)", desc: "Botão secundário / Menu de contexto.", qmk: "KC_BTN2" },
-      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
-      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+      { p: "🎯 Sniper", s: "A", t: "key-mouse", title: "Modo Sniper (A)", desc: "Velocidade ultra lenta e cirúrgica para mira precisa.", qmk: "KC_ACL0" },
+      { p: "🖱️ Meio", s: "S", t: "key-mouse", title: "Clique do Meio (S)", desc: "Botão 3 do mouse. Abre links em nova aba no navegador!", qmk: "KC_BTN3" },
+      { p: "🖱️ Esq", s: "D", t: "key-mouse", title: "Clique Esquerdo (D)", desc: "Botão principal de clique do mouse.", qmk: "KC_BTN1" },
+      { p: "🖱️ Dir", s: "F", t: "key-mouse", title: "Clique Direito (F)", desc: "Botão secundário / Menu de contexto.", qmk: "KC_BTN2" },
+      { p: "🖱️ Esq", s: "G", t: "key-mouse", title: "Clique Esquerdo Extra (G)", desc: "Clique esquerdo sob o indicador.", qmk: "KC_BTN1" },
 
       { p: "Shift", s: "", t: "key-mod", title: "Shift", desc: "Segurar Shift para seleção de texto com o clique.", qmk: "KC_LSFT" },
-      { p: "Ctrl", s: "", t: "key-mod", title: "Ctrl", desc: "Segurar Ctrl para atalhos combinados com mouse.", qmk: "KC_LCTL" },
-      { p: "Alt", s: "", t: "key-mod", title: "Alt", desc: "Modificador Alt.", qmk: "KC_LALT" },
-      { p: "◀ Voltar", s: "Btn 4", t: "key-mouse", title: "Navegador: Voltar", desc: "Voltar para página anterior no browser.", qmk: "KC_BTN4" },
-      { p: "Avançar ▶", s: "Btn 5", t: "key-mouse", title: "Navegador: Avançar", desc: "Avançar para próxima página no browser.", qmk: "KC_BTN5" },
-      { p: "✕ Sair", s: "TO(0)", t: "key-layer", title: "Sair do Modo Mouse", desc: "Voltar à Layer 0.", qmk: "TO(0)", targetLayer: 0 }
+      { p: "◀ Voltar", s: "Z", t: "key-mouse", title: "Navegador: Voltar Página (Z)", desc: "Voltar para a página anterior no browser (Alt + Seta Esquerda).", qmk: "LALT(KC_LEFT)" },
+      { p: "Avançar ▶", s: "X", t: "key-mouse", title: "Navegador: Avançar Página (X)", desc: "Avançar para a próxima página no browser (Alt + Seta Direita).", qmk: "LALT(KC_RIGHT)" },
+      { p: "✕ Fechar Aba", s: "C", t: "key-mouse", title: "Fechar Aba (Ctrl+W)", desc: "Fecha a aba atual do navegador.", qmk: "LCTL(KC_W)" },
+      { p: "✚ Nova Aba", s: "V", t: "key-mouse", title: "Nova Aba (Ctrl+T)", desc: "Abre uma nova aba no navegador.", qmk: "LCTL(KC_T)" },
+      { p: "✕ Sair", s: "B", t: "key-layer", title: "Sair do Modo Mouse (B)", desc: "Voltar à Layer 0.", qmk: "TO(0)", targetLayer: 0 }
     ],
     thumbsLeft: [
       { p: "🖱️ Esq", s: "Click", t: "key-mouse", title: "Clique Esquerdo no Polegar", desc: "Clique ergonômico no polegar esquerdo enquanto a mão direita guia o mouse!", qmk: "KC_BTN1" },
@@ -371,9 +371,9 @@ const LAYERS_DATA = {
 
       { p: "🖱️ Esq", s: "N", t: "key-mouse", title: "Clique Esquerdo (N)", desc: "Botão esquerdo.", qmk: "KC_BTN1" },
       { p: "🖱️ Dir", s: "M", t: "key-mouse", title: "Clique Direito (M)", desc: "Botão direito.", qmk: "KC_BTN2" },
-      { p: "🖱️ Meio", s: ",", t: "key-mouse", title: "Clique do Meio (,)", desc: "Botão 3 (scroll click).", qmk: "KC_BTN3" },
-      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
-      { p: "▼", s: "", t: "key-trans", title: "Transparente", desc: "Repassa tecla.", qmk: "KC_TRNS" },
+      { p: "🖱️ Meio", s: ",", t: "key-mouse", title: "Clique do Meio (,)", desc: "Botão 3 (scroll click para abrir links em nova aba).", qmk: "KC_BTN3" },
+      { p: "◀ Voltar", s: ".", t: "key-mouse", title: "Voltar Página (.)", desc: "Voltar página no navegador (Alt + Seta Esquerda).", qmk: "LALT(KC_LEFT)" },
+      { p: "Avançar ▶", s: "/", t: "key-mouse", title: "Avançar Página (/)", desc: "Avançar página no navegador (Alt + Seta Direita).", qmk: "LALT(KC_RIGHT)" },
       { p: "✕ Sair", s: "TO(0)", t: "key-layer", title: "Sair do Modo Mouse", desc: "Voltar à Layer 0.", qmk: "TO(0)", targetLayer: 0 }
     ],
     thumbsRight: [

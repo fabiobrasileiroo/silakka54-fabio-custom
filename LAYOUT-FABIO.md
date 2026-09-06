@@ -105,23 +105,33 @@ Thumbs: NUM_ENTER ___   ___
 ### Layer 4: VIM MOUSE & SCROLL & CLIQUES (`TG(4)`: Polegar E + `V` ou `B`)
 ```text
 [L-Half]
-Row 0:  SAIR(0)  SNIPER(0) NORMAL(1) TURBO(2)  ___    ___
-Row 1:  TAB      ___       SCROLL_UP SCROLL_DN ___    ___
-Row 2:  SAIR(0)  BTN_MEIO  BTN_ESQ   BTN_DIR   ___    ___
-Row 3:  SHIFT    CTRL      ALT       VOLTAR(4) AVAN(5)SAIR(0)
+Row 0:  SAIR(0)  SNIPER(1) NORMAL(2) TURBO(3)  ___       ___
+Row 1:  TAB      ___       SCR_CIMA  SCR_BAIXO ___       ___
+Row 2:  SAIR(0)  SNIPER(A) BTN_MEIO  BTN_ESQ   BTN_DIR   BTN_ESQ
+Row 3:  SHIFT    VOLTAR(Z) AVAN(X)   F_ABA(C)  N_ABA(V)  SAIR(B)
 Thumbs: BTN_ESQ  SAIR(0)   BTN_DIR
 
 [R-Half]
-Row 0:  ___      ___       ___       ___       ___    ___
-Row 1:  SCR_ESQ  SCROLL_UP SCR_BAIXO SCR_BAIXO SCR_DIR BSPC
-Row 2:  MS_ESQ(H)MS_BAIX(J)MS_CIMA(K)MS_DIR(L) BTN_ESQ BTN_DIR
-Row 3:  BTN_ESQ  BTN_DIR   BTN_MEIO  ___       ___    SAIR(0)
+Row 0:  ___      ___       ___       ___       ___       ___
+Row 1:  SCR_ESQ  SCR_CIMA  SCR_BAIXO SCR_BAIXO SCR_DIR   BSPC
+Row 2:  MS_ESQ(H)MS_BAIX(J)MS_CIMA(K)MS_DIR(L) BTN_ESQ   BTN_DIR
+Row 3:  BTN_ESQ  BTN_DIR   BTN_MEIO  VOLTAR(.) AVAN(/)   SAIR(0)
 Thumbs: BTN_ESQ  SAIR(0)   BTN_DIR
 ```
 
-* **Como ativar**: Segure o polegar esquerdo (`MO(1)`) e aperte `V` ou `B`. O teclado trava no modo mouse!
-* **Como usar**: Mão direita mexe o cursor com `HJKL` e rola com `U/I/O`. Polegares e mão esquerda clicam (`Btn 1` / `Btn 2`).
-* **Como sair**: Aperte `Esc` ou a tecla do meio do polegar (`TO(0)`) e ele volta instantaneamente para a digitação normal.
+* **Como ativar**: Segure o polegar esquerdo (`MO(1)`) e aperte `V` ou `B`. O teclado entra e trava no modo mouse!
+* **Como guiar o mouse**: Mão direita mexe o cursor com `H J K L` (Vim) e rola com `U/I/O` (scroll vertical) e `Y/P` (scroll horizontal).
+* **Cliques**:
+  * **Clique Esquerdo**: `D`, `G`, `N`, `;` ou **Polegar Esquerdo**.
+  * **Clique Direito**: `F`, `M`, `'` ou **Polegar Direito**.
+  * **Clique do Meio (abrir links em nova aba)**: Tecla **`S`** ou vírgula **`,`**.
+* **Navegação Web Direta**:
+  * **Voltar Página** (`Alt + ←`): Tecla **`Z`** (mão esquerda) ou ponto **`.`** (mão direita).
+  * **Avançar Página** (`Alt + →`): Tecla **`X`** (mão esquerda) ou barra **`/`** (mão direita).
+  * **Fechar Aba** (`Ctrl + W`): Tecla **`C`**.
+  * **Nova Aba** (`Ctrl + T`): Tecla **`V`**.
+* **Velocidades**: Tecla `A` ou `1` (Sniper / precisão cirúrgica), `2` (Normal), `3` (Turbo).
+* **Como sair**: Aperte `Esc`, `Caps Lock`, tecla `B` ou o centro do polegar (`TO(0)`) para voltar na hora à digitação normal.
 
 ---
 
